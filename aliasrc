@@ -1,0 +1,17 @@
+alias ls='ls -h --color=auto'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias ncal='ncal -s ES -b'
+alias bc='bc -l -q ~/.config/bcrc'
+alias cd..='cd ..'
+alias update-ydl='sudo pip3 install --upgrade youtube-dl'
+alias epoch='date +%s'
+
+alias dmenu='dmenu -b -fn "mono-10"'
