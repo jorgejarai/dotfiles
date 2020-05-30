@@ -149,5 +149,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-/usr/bin/keychain --quiet --nogui $HOME/.ssh/github $HOME/.ssh/raspi
-source $HOME/.keychain/$HOSTNAME-sh
+# Platform dependent addendum to .bashrc (i.e. special environment
+# variables for both WSL and "real" GNU/Linux installs)
+if [ -f ~/.config/platdefrc ]; then
+    . ~/.config/platdefrc
+fi
