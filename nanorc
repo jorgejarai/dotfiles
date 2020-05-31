@@ -1,0 +1,9 @@
+unset autoindent
+set tabsize 4
+unset nonewlines
+set smarthome
+set constantshow
+set linenumbers
+set morespace
+set smooth
+set softwrap
