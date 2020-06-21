@@ -7,3 +7,5 @@ set linenumbers
 set morespace
 set smooth
 set softwrap
+set suspend
+include /home/jorge/.config/nano/*.nanorc

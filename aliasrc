@@ -1,8 +1,8 @@
-alias ls='ls -h --color=auto'
+alias ls='ls -h --color=always'
 
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias grep='grep --color=always'
+alias fgrep='fgrep --color=always'
+alias egrep='egrep --color=always'
 
 alias ll='ls -alF'
 alias la='ls -A'
@@ -13,5 +13,6 @@ alias bc='bc -l -q ~/.config/bcrc'
 alias cd..='cd ..'
 alias update-ydl='sudo pip3 install --upgrade youtube-dl'
 alias epoch='date +%s'
+alias hd='hexdump -C'
 
 alias dmenu='dmenu -b -fn "mono-10"'

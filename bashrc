@@ -94,7 +94,12 @@ PROMPT_COMMAND=timer_stop
 #fi
 unset color_prompt force_color_prompt
 
-PS1='${timer_show}${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+if [[ "$USER" == "root" ]]
+then
+    PS1='${timer_show}${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u\[\033[01;32m\]@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${timer_show}${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[01;32m\]@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+fi
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
