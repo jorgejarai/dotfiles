@@ -1,52 +1,52 @@
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages"))
+	     '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-; Keep customize settings in a separate file
+;; Keep customize settings in a separate file
 (setq custom-file "~/.emacs.d/custom.el")
 
-; Personal information
+;; Personal information
 (setq user-full-name "Jorge Jara"
       user-mail-address "jorgejarainostroza@gmail.com")
 
-; Remove toolbars and such
+;; Remove toolbars and such
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (column-number-mode 1)
 
-; Show matching parentheses
+;; Show matching parentheses
 (show-paren-mode 1)
 
-; Show line numbers
+;; Show line numbers
 (global-display-line-numbers-mode)
 
-; Set font
+;; Set font
 (setq default-frame-alist '((font . "IBM Plex Mono-10")))
 
-; Powerline
+;; Powerline
 (require 'powerline)
 (powerline-default-theme)
 
-; Theme
+;; Theme
 (load-theme 'tangotango t)
 
-; Emojify
+;; Emojify
 (add-hook 'after-init-hook #'global-emojify-mode)
 
-; diff-hl
+;; diff-hl
 (global-diff-hl-mode)
 (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
-; Indentation
+;; Indentation
 (setq-default c-basic-offset 4
 	      c-default-style "java")
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
-; Company
+;; Company
 (require 'company)
 
 (global-company-mode)
@@ -56,7 +56,7 @@
 (company-tng-configure-default)
 (setq company-global-modes '(not org-mode))
 
-; irony-mode
+;; irony-mode
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'objc-mode-hook 'irony-mode) ; I've never used Objective-C, but it doesn't hurt to have this
@@ -65,45 +65,42 @@
 (add-hook 'flycheck-mode-hook 'flycheck-irony-setup)
 (add-hook 'irony-mode-hook 'irony-eldoc)
 
-; ido
+;; ido
 (require 'ido)
 (ido-mode t)
 (ido-everywhere t)
 
-; smex
+;; smex
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
-; cmake-ide
+;; cmake-ide
 (require 'rtags)
 (cmake-ide-setup)
 
-; Flycheck
+;; Flycheck
 (global-flycheck-mode)
 
-; Multiple cursors
+;; Multiple cursors
 (global-set-key (kbd "C-c m c") 'mc/edit-lines)
 
-; Emmet
+;; Emmet
 (add-hook 'sgml-mode-hook 'emmet-mode)
 (add-hook 'css-mode-hook 'emmet-mode)
 
-; Delete trailing whitespace characters
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-; dumb-jump
+;; dumb-jump
 (dumb-jump-mode)
 
-; Magit
+;; Magit
 (global-set-key (kbd "C-x g") 'magit-status)
 (setq vc-follow-symlinks nil)
 
-; Neotree
+;; Neotree
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
-; Org
+;; Org
 (require 'org)
 
 (setq org-directory "~/org/")
@@ -124,9 +121,13 @@
 
 (add-hook 'org-mode-hook 'org-indent-mode)
 
-; Texfrag
+;; Texfrag
 (texfrag-global-mode)
 
-; Disable ThinkPad back and forward keys
+;; Disable ThinkPad back and forward keys
 (global-unset-key (kbd "<XF86Back>"))
 (global-unset-key (kbd "<XF86Forward>"))
+
+;; ws-butler (for deleting trailing whitespace)
+(require 'ws-butler)
+(add-hook 'prog-mode-hook #'ws-butler-mode)
