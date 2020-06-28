@@ -17,7 +17,7 @@
 (scroll-bar-mode 0)
 (column-number-mode 1)
 
-; Show matching parentheses 
+; Show matching parentheses
 (show-paren-mode 1)
 
 ; Show line numbers
@@ -97,6 +97,7 @@
 
 ; Magit
 (global-set-key (kbd "C-x g") 'magit-status)
+(setq vc-follow-symlinks nil)
 
 ; Neotree
 (require 'neotree)
