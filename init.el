@@ -33,9 +33,6 @@
 ;; Theme
 (load-theme 'tangotango t)
 
-;; Emojify
-(add-hook 'after-init-hook #'global-emojify-mode)
-
 ;; diff-hl
 (global-diff-hl-mode)
 (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
@@ -43,18 +40,22 @@
 
 ;; Indentation
 (setq-default c-basic-offset 4
-	      c-default-style "java")
+	      c-default-style "java"
+              indent-tabs-mode nil)
+
+;; C/C++
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;; Company
 (require 'company)
 
-(global-company-mode)
+(global-company-mode t)
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 1)
 (setq company-selection-wrap-around t)
 (company-tng-configure-default)
 (setq company-global-modes '(not org-mode))
+(push 'company-robe company-backends)
 
 ;; irony-mode
 (add-hook 'c++-mode-hook 'irony-mode)
@@ -120,9 +121,26 @@
 (setq org-log-done 'time)
 
 (add-hook 'org-mode-hook 'org-indent-mode)
+(setq org-src-tab-acts-natively t)
+(setq org-src-preserve-indentation nil
+      org-edit-src-content-indentation 0)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((clojure    . t)
+   (emacs-lisp . t)
+   (gnuplot    . t)
+   (haskell    . t)
+   (js         . t)
+   (python     . t)
+   (ruby       . t)
+   (shell      . t)))
+
+(setq org-confirm-babel-evaluate nil)
 
 ;; Texfrag
 (texfrag-global-mode)
+(setq-default texfrag-scale 1.4)
 
 ;; Disable ThinkPad back and forward keys
 (global-unset-key (kbd "<XF86Back>"))
@@ -131,3 +149,14 @@
 ;; ws-butler (for deleting trailing whitespace)
 (require 'ws-butler)
 (add-hook 'prog-mode-hook #'ws-butler-mode)
+
+;; ROBE (Ruby)
+(require 'robe)
+(add-hook 'ruby-mode-hook 'robe-mode)
+
+(setq org-refile-targets '((nil :maxlevel . 3)
+			   (org-agenda-files :maxlevel . 3)))
+(setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
+(setq org-refile-use-outline-path t)
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
