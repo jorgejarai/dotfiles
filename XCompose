@@ -1,21 +1,41 @@
+# Spanish ñ
 <Multi_key> <n> <n> : "ñ"
 <Multi_key> <N> <N> : "Ñ"
+
+# Lesser than and greater than
 <Multi_key> <l> <t> : "<"
 <Multi_key> <g> <t> : ">"
 
+# A more visual space character
 <Multi_key> <backslash> <space> : "␣"
 
+# Word joiner (U+2060, like &nbsp; but with width 0)
+<Multi_key> <w> <j> : "⁠"
+
+# Square root
+<Multi_key> <s> <q> : "√"
+
+# Multiplication dot
+<Multi_key> <d> <o> <t> : "⋅"
+
+# Infinity
+<Multi_key> <i> <n> <f> : "∞"
+
+# Number sets
 <Multi_key> <I> <R> : "ℝ"
 <Multi_key> <I> <C> : "ℂ"
 <Multi_key> <I> <N> : "ℕ"
 <Multi_key> <I> <Q> : "ℚ"
 <Multi_key> <I> <Z> : "ℤ"
 
+# Some algebra symbols
 <Multi_key> <minus> <plus> : "∓"
 <Multi_key> <asciitilde> <asciitilde> : "≈"
 
+# Partial derivative
 <Multi_key> <p> <a> <r>: "∂"
 
+# Set theory
 <Multi_key> <e> <o> : "∈"
 <Multi_key> <slash> <e> <o> : "∉"
 <Multi_key> <s> <t> : "⊆"
@@ -28,6 +48,7 @@
 <Multi_key> <slash> <t> <i> : "∄"
 <Multi_key> <i> <f> <f>: "⇔"
 
+# Greek alphabet (the ones we usually use at math)
 <Multi_key> <asterisk> <a> : "α"
 <Multi_key> <asterisk> <b> : "β"
 <Multi_key> <asterisk> <g> : "γ"
@@ -47,6 +68,7 @@
 <Multi_key> <asterisk> <O> : "Ω"
 <Multi_key> <asterisk> <n> : "∇"
 
+# Emojis
 <Multi_key> <Multi_key> <x> <d>                     : "🤭"
 <Multi_key> <Multi_key> <y> <u> <p>                 : "😌"
 <Multi_key> <Multi_key> <1> <3> <1> <3>             : "😏"
@@ -71,14 +93,44 @@
 <Multi_key> <Multi_key> <a> <s> <c> <o> <2>         : "🤢"
 <Multi_key> <Multi_key> <r> <a> <b> <i> <a>         : "😤"
 <Multi_key> <Multi_key> <f> <p>                     : "🤦🏻‍♂️"
+<Multi_key> <Multi_key> <f> <p> <f>                 : "🤦🏻‍♀️"
 <Multi_key> <Multi_key> <g> <a> <i> <a>             : "💅"
 <Multi_key> <Multi_key> <f> <u>                     : "🔥"
 <Multi_key> <Multi_key> <r> <i> <c> <o>             : "🤤"
 <Multi_key> <Multi_key> <p> <u> <c> <h> <a>         : "😕"
 <Multi_key> <Multi_key> <o> <k>                     : "👌🏻"
 <Multi_key> <Multi_key> <i> <d> <k>                 : "🤷🏻‍♂️"
+<Multi_key> <Multi_key> <i> <d> <k> <f>             : "🤷🏻‍♀️"
 <Multi_key> <Multi_key> <z> <z> <z>                 : "😴"
 <Multi_key> <Multi_key> <o> <o> <p> <s>             : "🙊"
 <Multi_key> <Multi_key> <h> <a> <h>                 : "😅"
 <Multi_key> <Multi_key> <c> <h> <a> <l> <e>         : "😔"
+<Multi_key> <Multi_key> <c> <h> <a> <l> <e> <1>     : "😔👊"
+<Multi_key> <Multi_key> <c> <h> <a> <l> <e> <2>     : "😔👌"
 <Multi_key> <Multi_key> <a> <y>                     : "😫"
+
+# Esperanto diacritics
+<Multi_key> <c> <x> : "ĉ"
+<Multi_key> <g> <x> : "ĝ"
+<Multi_key> <h> <x> : "ĥ"
+<Multi_key> <j> <x> : "ĵ"
+<Multi_key> <s> <x> : "ŝ"
+<Multi_key> <u> <x> : "ŭ"
+<Multi_key> <c> <X> : "Ĉ"
+<Multi_key> <g> <X> : "Ĝ"
+<Multi_key> <h> <X> : "Ĥ"
+<Multi_key> <j> <X> : "Ĵ"
+<Multi_key> <s> <X> : "Ŝ"
+<Multi_key> <u> <X> : "Ŭ"
+<Multi_key> <C> <x> : "Ĉ"
+<Multi_key> <G> <x> : "Ĝ"
+<Multi_key> <H> <x> : "Ĥ"
+<Multi_key> <J> <x> : "Ĵ"
+<Multi_key> <S> <x> : "Ŝ"
+<Multi_key> <U> <x> : "Ŭ"
+<Multi_key> <C> <X> : "Ĉ"
+<Multi_key> <G> <X> : "Ĝ"
+<Multi_key> <H> <X> : "Ĥ"
+<Multi_key> <J> <X> : "Ĵ"
+<Multi_key> <S> <X> : "Ŝ"
+<Multi_key> <U> <X> : "Ŭ"
