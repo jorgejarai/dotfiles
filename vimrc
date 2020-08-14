@@ -14,6 +14,7 @@ set ignorecase
 set smartcase
 set noswapfile
 set nobackup
+set nowritebackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
@@ -27,6 +28,8 @@ set shortmess+=c
 let g:usemarks=0
 set colorcolumn=80
 set noshowmode
+set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --follow
+let g:rg_derive_root='true'
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
@@ -38,14 +41,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Go support
 Plug 'tweekmonster/gofmt.vim'
 
-" Showing man pages
-Plug 'vim-utils/vim-man'
-
 " Get an undo tree
 Plug 'mbbill/undotree'
 
 " Appearance
+Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'chriskempson/base16-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'machakann/vim-highlightedyank'
@@ -57,7 +60,21 @@ Plug 'tpope/vim-commentary'
 Plug 'alvan/vim-closetag'
 
 " Autocomplete parentheses
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
+
+" Python linter
+Plug 'nvie/vim-flake8'
+
+" fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
+
+" ctrlp
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Ranger
+Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 
 " Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
@@ -75,6 +92,8 @@ nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
+nnoremap <Leader>q :wincmd q<CR>
+nnoremap <Leader>= :wincmd =<CR>
 
 vnoremap X "_d
 inoremap <C-c> <esc>
@@ -100,8 +119,29 @@ inoremap <silent><expr> <TAB>
             \ coc#refresh()
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <C-space> coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
 " Goto code navigation
 nmap <leader>gd <Plug>(coc-definition)
@@ -114,6 +154,12 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
 nnoremap <leader>cr :CocRestart
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Formatting selected code
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
 
 " Trim whitespace
 fun! TrimWhitespace()
@@ -136,6 +182,7 @@ let g:closetag_regions = {
     \ 'javascript.jsx': 'jsxRegion',
     \ }
 let g:closetag_shortcut = '>'
+noremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Rename objects
 nmap <F2> <Plug>(coc-rename)
@@ -157,11 +204,38 @@ if (empty($TMUX))
 endif
 
 " Setting up theme
-colorscheme onedark
-set background=dark
+colorscheme gruvbox
 let g:lightline = {
-  \ 'colorscheme': 'onedark',
+  \ 'colorscheme': 'powerline',
   \ }
 
 " Enable auto-pairs
 let g:AutoPairsFlyMode = 1
+
+" Python linting
+autocmd BufWritePost *.py call flake8#Flake8()
+
+nnoremap \ :Rg<CR>
+nnoremap <C-T> :Files<cr>
+nnoremap <Leader>b :Buffers<cr>
+nnoremap <Leader>s :BLines<cr>
+
+if has("patch-8.1.1564")
+    set signcolumn=number
+else
+    set signcolumn=yes
+endif
+
+" rnvimr
+let g:rnvimr_ex_enable = 1
+
+nmap <space>r :RnvimrToggle<CR>
+
+" ctrlp
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|obj|build)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': '',
+  \ }

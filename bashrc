@@ -153,3 +153,5 @@ vterm_printf(){
         printf "\e]%s\e\\" "$1"
     fi
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
