@@ -8,11 +8,22 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias ncal='ncal -s ES -b'
 alias bc='bc -l -q ~/.config/bcrc'
 alias cd..='cd ..'
 alias update-ydl='sudo pip3 install --upgrade youtube-dl'
-alias epoch='date +%s'
 alias hd='hexdump -C'
 
+alias ncal='ncal -s ES -b'
+alias epoch='date +%s'
+alias iso8601='date -Iseconds'
+
 alias dmenu='dmenu -b -fn "mono-10"'
+
+alias scrsize='printf "%sx%s\n" $COLUMNS $LINES'
+
+alias oggdload='youtube-dl -x --audio-format vorbis'
+alias destreamer='$HOME/Sources/destreamer/destreamer.sh -o /tmp/'
+
+alias ydl='youtube-dl'
+
+# vim: set syntax=sh:
