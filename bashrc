@@ -155,3 +155,5 @@ vterm_printf(){
 }
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+exec fish

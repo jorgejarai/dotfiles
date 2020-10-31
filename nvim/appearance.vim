@@ -1,3 +1,2 @@
 set termguicolors
-let ayucolor="mirage"
-colorscheme ayu
+colorscheme onedark

@@ -43,5 +43,11 @@ let g:rainbow_active = 1
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 let g:livepreview_previewer = 'zathura'
 let g:livepreview_cursorhold_recompile = 0
+Plug 'matthewsimo/angular-vim-snippets'
+Plug 'scrooloose/syntastic'
+Plug 'vimwiki/vimwiki'
+Plug 'junegunn/vim-easy-align'
+Plug 'joshdick/onedark.vim'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()

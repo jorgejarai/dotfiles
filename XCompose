@@ -32,8 +32,12 @@
 <Multi_key> <minus> <plus> : "∓"
 <Multi_key> <asciitilde> <asciitilde> : "≈"
 
-# Partial derivative
+# Calculus
 <Multi_key> <p> <a> <r>: "∂"
+<Multi_key> <i> <n> <t>: "∫"
+<Multi_key> <i> <i> <n> <t>: "∬"
+<Multi_key> <i> <i> <i> <n> <t>: "∭"
+
 
 # Set theory
 <Multi_key> <e> <o> : "∈"
@@ -89,7 +93,7 @@
 <Multi_key> <Multi_key> <h> <u> <h>                 : "🤨"
 <Multi_key> <Multi_key> <m> <b>                     : "🤯"
 <Multi_key> <Multi_key> <c> <o> <r> <a>             : "❤️"
-<Multi_key> <Multi_key> <c> <o> </> <r> <a>             : "💔"
+<Multi_key> <Multi_key> <c> <o> <slash> <r> <a>     : "💔"
 <Multi_key> <Multi_key> <a> <s> <c> <o> <1>         : "🤮"
 <Multi_key> <Multi_key> <a> <s> <c> <o> <2>         : "🤢"
 <Multi_key> <Multi_key> <r> <a> <b> <i> <a>         : "😤"
@@ -117,6 +121,10 @@
 <Multi_key> <Multi_key> <e> <n> <o> <j> <o> <2>     : "😡"
 <Multi_key> <Multi_key> <p> <e> <r> <a>             : "🍐"
 <Multi_key> <Multi_key> <s> <l> <w>                 : "🤔"
+<Multi_key> <Multi_key> <w> <t> <f>                 : "😱"
+<Multi_key> <Multi_key> <y> <o> <x>                 : "🙋🏻"
+<Multi_key> <Multi_key> <y> <o> <m>                 : "🙋🏻‍♂️"
+<Multi_key> <Multi_key> <y> <o> <f>                 : "🙋🏻‍♀️"
 
 # Esperanto diacritics
 <Multi_key> <c> <x> : "ĉ"
