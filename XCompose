@@ -12,6 +12,9 @@
 # Word joiner (U+2060, like &nbsp; but with width 0)
 <Multi_key> <w> <j> : "⁠"
 
+# Non-breaking space
+<Multi_key> <Multi_key> <n> <b> <s> <p> : " "
+
 # Square root
 <Multi_key> <s> <q> : "√"
 
@@ -20,6 +23,12 @@
 
 # Infinity
 <Multi_key> <i> <n> <f> : "∞"
+
+# Angle symbol
+<Multi_key> <a> <n> <g> : "∠"
+
+# Generic currency
+<Multi_key> <dollar> : "¤"
 
 # Number sets
 <Multi_key> <I> <R> : "ℝ"
@@ -38,7 +47,12 @@
 <Multi_key> <i> <i> <n> <t>: "∬"
 <Multi_key> <i> <i> <i> <n> <t>: "∭"
 
-
+# Logic
+<Multi_key> <ampersand> <ampersand>: "∧" 
+<Multi_key> <bar> <bar>: "∨"
+<Multi_key> <asciitilde> <grave>: "¬"
+<Multi_key> <grave> <asciitilde>: "¬"
+¬q∨∧
 # Set theory
 <Multi_key> <e> <o> : "∈"
 <Multi_key> <slash> <e> <o> : "∉"
@@ -71,6 +85,8 @@
 <Multi_key> <asterisk> <o> : "ω"
 <Multi_key> <asterisk> <O> : "Ω"
 <Multi_key> <asterisk> <n> : "∇"
+
+<Multi_key> <asterisk> <asterisk> <t> : "τ"
 
 # Emojis
 <Multi_key> <Multi_key> <x> <d>                     : "🤭"
@@ -125,6 +141,10 @@
 <Multi_key> <Multi_key> <y> <o> <x>                 : "🙋🏻"
 <Multi_key> <Multi_key> <y> <o> <m>                 : "🙋🏻‍♂️"
 <Multi_key> <Multi_key> <y> <o> <f>                 : "🙋🏻‍♀️"
+<Multi_key> <Multi_key> <p> <a> <n> <a>             : "🤝🏻"
+<Multi_key> <Multi_key> <u> <period> <u>            : "😓"
+<Multi_key> <Multi_key> <d> <e> <d> <o> <s>         : "👉🏻👈🏻"
+<Multi_key> <Multi_key> <w> <a> <t>                 : "😨"
 
 # Esperanto diacritics
 <Multi_key> <c> <x> : "ĉ"
