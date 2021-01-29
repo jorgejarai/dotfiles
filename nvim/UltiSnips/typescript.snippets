@@ -1,0 +1,25 @@
+snippet imr "Import React" b
+import React from 'react';
+endsnippet
+
+snippet fc "React function component" b
+interface $1Props {
+  $2
+}
+
+const $1: React.FC<$1Props> = (props) => {
+  $3
+};
+endsnippet
+
+snippet cc "React class component" b
+interface $1Props {
+  $2
+}
+
+class $1 extends React.Component<$1Props> {
+  render: () => {
+	$3
+  }
+};
+endsnippet

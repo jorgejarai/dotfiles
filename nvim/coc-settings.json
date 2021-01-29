@@ -10,7 +10,8 @@
     "graphql",
     "python",
     "html",
-    "yaml"
+    "yaml",
+    "dart"
   ],
   "languageserver": {
     "ccls": {
@@ -34,5 +35,6 @@
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "python.jediEnabled": false,
-  "snippets.ultisnips.directories": ["UltiSnips", "~/.config/nvim/snips"]
+  "snippets.ultisnips.directories": ["UltiSnips", "~/.config/nvim/snips"],
+  "coc.preferences.extensionUpdateCheck": "daily"
 }

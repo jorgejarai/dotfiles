@@ -9,3 +9,4 @@ source ~/.config/nvim/coc.vim
 source ~/.config/nvim/keymaps.vim
 source ~/.config/nvim/fzf.vim
 source ~/.config/nvim/nerdcommenter.vim
+source ~/.config/nvim/codefmt.vim

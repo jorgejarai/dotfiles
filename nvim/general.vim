@@ -15,15 +15,17 @@ set mouse+=a
 set nobackup
 set nu
 set ruler
-set shiftwidth=4
+set shiftwidth=2
 set smartindent
 set smarttab
 set so=10
-set softtabstop=4
-set tabstop=4
+set softtabstop=2
+set tabstop=2
 set textwidth=80
 set title
 set wildmenu
 set wrap
 filetype plugin on
 set relativenumber
+set noshowmode
+set colorcolumn=80
