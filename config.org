@@ -1,0 +1,549 @@
+#+title: My personal Emacs configuration
+#+property: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
+
+This is the configuration I currently use for my Emacs installation. A lot of what I wrote here is based on the [[https://github.com/daviwil/emacs-from-scratch][Emacs From Scratch]] repo by David Wilson, but tweaked a bit for my needs.
+
+My Emacs configuration is generated from this file by Org-mode, which extracts all code blocks and concatenates them (tangling) into my [[file:init.el][init.el]] file.
+
+* Basic appearance
+** Basic UI
+#+begin_src emacs-lisp
+(setq inhibit-startup-message t)
+
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
+(set-fringe-mode 10)
+
+(menu-bar-mode -1)
+
+(setq visible-bell t)
+#+end_src
+** Fonts
+#+begin_src emacs-lisp
+(set-face-attribute 'default nil :font "IBM Plex Mono" :height 100)
+(set-face-attribute 'fixed-pitch nil :font "IBM Plex Mono" :height 100)
+(set-face-attribute 'variable-pitch nil :font "Cantarell" :weight 'regular :height 110)
+#+end_src
+** Line numbering and highlighting the current line
+#+begin_src emacs-lisp
+(column-number-mode)
+(global-display-line-numbers-mode t)
+(setq display-line-numbers-type 'relative)
+
+(global-hl-line-mode) ;; Highlight the current line
+#+end_src
+*** Exception for certain modes
+#+begin_src emacs-lisp
+(dolist (mode '(org-mode-hook
+		term-mode-hook
+		tetris-mode-hook ;; Emacs Tetris is love, Emacs Tetris is life
+		eshell-mode-hook
+		treemacs-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+#+end_src
+* Behaviour
+** Pressing =<ESC>= for canceling (just like =C-g=)
+#+begin_src emacs-lisp
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+#+end_src
+** Disable the generation of custom settingss
+Any attempt by Emacs for generating that annoying custom settings section is automatically redirected to =/dev/null=.
+ 
+#+begin_src emacs-lisp
+(setq-default custom-file null-device)
+#+end_src
+* Package management
+#+begin_src emacs-lisp
+(require 'package)
+
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+			 ("melpa-stable" . "https://stable.melpa.org/packages/")
+			 ("org" . "https://orgmode.org/elpa/")
+			 ("elpa" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t) ;; All packages mentioned in this file will be installed automatically
+#+end_src
+* General improvements
+** Appearance
+*** =doom-modeline= (a much better modeline)
+#+begin_src emacs-lisp
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode))
+#+end_src
+*** =doom-themes=
+#+begin_src emacs-lisp
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t
+	doom-themes-enable-italic t)
+  (load-theme 'doom-vibrant t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-neotree-config)
+  (setq doom-themes-treemacs-theme "doom-colors")
+  (doom-themes-treemacs-config)
+  (doom-themes-org-config))
+#+end_src
+*** =all-the-icons=
+#+begin_src emacs-lisp
+(use-package all-the-icons)
+#+end_src
+*** =rainbow-delimiters= (for colourising nested parentheses)
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src
+** Better file/buffer autocompletion
+*** =ivy=
+#+begin_src emacs-lisp
+(use-package ivy
+  :defer 0.1
+  :diminish
+  :bind (("C-s" . swiper)
+	 :map ivy-minibuffer-map
+	 ("TAB" . ivy-alt-done)
+	 ("C-l" . ivy-alt-done)
+	 ("C-j" . ivy-next-line)
+	 ("C-k" . ivy-previous-line)
+	 :map ivy-switch-buffer-map
+	 ("C-k" . ivy-previous-line)
+	 ("C-l" . ivy-done)
+	 ("C-d" . ivy-switch-buffer-kill)
+	 :map ivy-reverse-i-search-map
+	 ("C-k" . ivy-previous-line)
+	 ("C-d" . ivy-reverse-i-search-kill))
+  :custom
+  (ivy-use-virtual-buffers t)
+  :config
+  (ivy-mode))
+#+end_src
+**** Addons
+***** =ivy-prescient=
+#+begin_src emacs-lisp
+(use-package ivy-prescient
+  :after counsel
+  :custom
+  (ivy-prescient-enable-filtering nil)
+  :config
+  (prescient-persist-mode 1)
+  (ivy-prescient-mode 1))
+#+end_src
+***** =ivy-rich=
+#+begin_src emacs-lisp
+(use-package ivy-rich
+  :init (ivy-rich-mode))
+#+end_src
+*** =counsel=
+#+begin_src emacs-lisp
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x b" . counsel-ibuffer)
+	 ("C-x C-f" . counsel-find-file)
+	 :map minibuffer-local-map
+	 ("C-r" . 'counsel-minibuffer-history))
+  :config
+  (setq ivy-initial-inputs-alist nil))
+
+(global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
+#+end_src
+*** =swiper= (a better way for searching in a document, imo)
+#+begin_src emacs-lisp
+(use-package swiper
+  :after ivy
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)))
+#+end_src
+*** =helpful=
+#+begin_src emacs-lisp
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
+#+end_src
+** Better code autocompletion (=company=)
+#+begin_src emacs-lisp
+(use-package company
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :bind (:map company-active-map
+	      ("<tab>" . company-complete-selection))
+  (:map lsp-mode-map
+	("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+#+end_src
+** =evil-mode=
+If it weren't for this thing I wouldn't probably use Emacs. I have nothing against its default keybindings, but they kinda hurt in the long run.
+#+begin_src emacs-lisp
+(defun jorgejarai/evil-hook ()
+  (dolist (mode '(custom-mode
+		  eshell-mode
+		  git-rebase-mode
+		  erc-mode
+		  circe-server-mode
+		  circe-chat-mode
+		  sauron-mode
+		  term-mode))
+    (add-to-list 'evil-emacs-state-modes mode)))
+
+(use-package evil
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
+  ;;:hook (evil-mode . jorgejarai/evil-hook)
+  :config
+  (evil-mode)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  ;; (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+#+end_src
+** =dired=
+#+begin_src emacs-lisp
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :bind (("C-x C-j" . dired-jump))
+  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  :config
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "h" 'dired-up-directory
+    "l" 'dired-find-file))
+
+(use-package dired-single)
+
+(use-package all-the-icons-dired)
+
+(use-package dired-open
+  :config
+  (setq dired-open-extensions '(("png" . "ristretto")
+				("mkv" . "mpv")
+				("pdf" . "zathura"))))
+
+(use-package dired-hide-dotfiles
+  :hook (dired-mode . dired-hide-dotfiles-mode)
+  :config
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "H" 'dired-hide-dotfiles-mode))
+#+end_src
+** =which-key=
+If I press only a part of a keybinding, a minibuffer will show showing every possible combination.
+#+begin_src emacs-lisp
+(use-package which-key
+	      :init (which-key-mode))
+#+end_src
+** Cleaner file structure
+#+begin_src emacs-lisp
+(use-package no-littering)
+
+(setq auto-save-file-name-transforms
+      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+#+end_src
+** Comment lines (=M-/=)
+#+begin_src emacs-lisp
+(use-package evil-nerd-commenter
+  :bind ("M-/" . evilnc-comment-or-uncomment-lines))
+#+end_src
+* Org mode
+** Base configuration
+#+begin_src emacs-lisp
+(defun jorgejarai/org-mode-setup ()
+  (org-indent-mode)
+  (variable-pitch-mode 1)
+  (visual-line-mode 1))
+
+(use-package org
+  :hook (org-mode . jorgejarai/org-mode-setup)
+  :config
+  (setq org-ellipsis " ▾"
+	org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+#+end_src
+** Better bullets (=*****this= becomes =␣␣␣␣*=; a lot better on the eyes)
+#+begin_src emacs-lisp
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode))
+
+(require 'org-indent)
+#+end_src
+** Font sizes for titles
+#+begin_src emacs-lisp
+(with-eval-after-load 'org-faces
+  (dolist (face '((org-level-1 . 1.2)
+		  (org-level-2 . 1.1)
+		  (org-level-3 . 1.05)
+		  (org-level-4 . 1.0)
+		  (org-level-5 . 1.0)
+		  (org-level-6 . 1.0)
+		  (org-level-7 . 1.0)
+		  (org-level-8 . 1.0)))
+    (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face))))
+
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+#+end_src
+** Setting text width so it doesn't use the whole screen
+#+begin_src emacs-lisp
+(defun jorgejarai/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+	visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package visual-fill-column
+  :defer t
+  :hook (org-mode . jorgejarai/org-mode-visual-fill))
+#+end_src
+** Show code blocks with monospaced fonts
+My current configuration makes Org text use a variable pitch font that makes it look more document-y for writing prose. The problem is that code blocks will also use that font. This blocks fixes that problem.
+#+begin_src emacs-lisp
+(set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-table nil  :inherit 'fixed-pitch)
+(set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
+(set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
+(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
+#+end_src
+** Preserve code indentation
+#+begin_src emacs-lisp
+(setq org-src-preserve-indentation nil 
+      org-edit-src-content-indentation 0
+      org-src-tab-acts-natively t)
+#+end_src
+** Babel
+#+begin_src emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (python . t)
+   (js . t)
+   (typescript . t)
+   (C . t)
+   (R . t)
+   (gnuplot . t)
+   (octave . t)
+   (ruby . t)
+   (shell . t)))
+(setq org-confirm-babel-evaluate nil)
+
+(require 'ob-js)
+(use-package ob-typescript)
+(require 'ob-C)
+(require 'ob-octave)
+(require 'org-tempo)
+
+#+end_src
+** Reveal.js exporter
+#+begin_src emacs-lisp
+(use-package ox-reveal)
+#+end_src
+** Auto-tangle configuration files
+#+begin_src emacs-lisp
+(defun efs/org-babel-tangle-config ()
+  (when (string-equal (file-name-directory (buffer-file-name))
+                      (expand-file-name user-emacs-directory))
+    ;; Dynamic scoping to the rescue
+    (let ((org-confirm-babel-evaluate nil))
+      (org-babel-tangle))))
+
+(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
+#+end_src
+* Projectile
+#+begin_src emacs-lisp
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/Proyectos")
+    (setq projectile-project-search-path '("~/Proyectos" "~/Proyectos/apps-universidad")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
+#+end_src
+* Magit
+#+begin_src emacs-lisp
+(use-package magit
+  :commands (magit-status magit-get-current-branch))
+
+(use-package forge) ;; GitHub integration
+#+end_src
+* LSP
+** Base configuration
+#+begin_src emacs-lisp
+(defun jorgejarai/lsp-mode-setup ()
+  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+  (lsp-headerline-breadcrumb-mode))
+
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :hook (lsp-mode . jorgejarai/lsp-mode-setup)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
+
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-position 'bottom))
+
+(use-package lsp-treemacs
+  :after lsp)
+
+(use-package lsp-ivy)
+
+(use-package lsp-dart
+  :after dart-mode
+  :hook (dart-mode . lsp)
+  :custom
+  (lsp-dart-flutter-widget-guides nil))
+#+end_src
+* DAP
+** Base configuration
+#+begin_src emacs-lisp
+(use-package dap-mode
+  :config
+  (require 'dap-node)
+  (dap-node-setup)
+
+  (general-define-key
+   :keymaps 'lsp-mode-map
+   :prefix lsp-keymap-prefix
+   "d" '(dap-hydra t :wk "debugger")))
+#+end_src
+
+* =eshell=
+#+begin_src emacs-lisp
+(defun efs/configure-eshell ()
+  (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
+
+  (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
+
+  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'counsel-esh-history)
+  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "<home>") 'eshell-bol)
+  (evil-normalize-keymaps)
+
+  (setq eshell-history-size 10000
+	eshell-buffer-maximum-lines 10000
+	eshell-hist-ignoredups t
+	eshell-scroll-to-bottom-on-input t))
+
+(use-package eshell-git-prompt)
+
+(use-package eshell
+  :hook (eshell-first-time-mode . efs/configure-eshell)
+  :config
+
+  (with-eval-after-load 'esh-opt
+    (setq eshell-destroy-buffer-when-process-dies t)
+    (setq eshell-visual-commands '("htop" "zsh" "vim" "nvim")))
+
+  (eshell-git-prompt-use-theme 'powerline))
+#+end_src
+* Custom keystrokes
+This are the custom keystrokes I have configured:
+- Temporarily change the theme (=C-SPC t t=)
+- Temporarily scale text size (=C-SPC t s=)
+  - =j=: zoom in
+  - =k=: zoom out
+  - =f=: finish (return to editing)
+- Check parentheses (=C-SPC c p=)
+#+begin_src emacs-lisp
+(use-package general
+  :config
+  (general-create-definer jorgejarai/leader-keys
+    :keymaps '(normal insert visual emacs)
+    :prefix "SPC"
+    :global-prefix "C-SPC")
+
+  (jorgejarai/leader-keys
+   "t" '(:ignore t :which-key "toggles")
+   "tt" '(counsel-load-theme :which-key "choose theme")))
+
+(use-package hydra)
+
+(defhydra hydra-text-scale (:timeout 4)
+  "scale text"
+  ("j" text-scale-increase "in")
+  ("k" text-scale-decrease "out")
+  ("f" nil "finished" :exit t))
+
+(jorgejarai/leader-keys
+  "ts" '(hydra-text-scale/body :which-key "scale text")
+  "cp" '(check-parens :which-key "check parentheses"))
+#+end_src
+* Additional language support
+** Python
+#+begin_src emacs-lisp
+(use-package python-mode
+  :hook (python-mode . lsp-deferred)
+  :custom
+  (python-shell-interpeter "python3")
+  (dap-python-executable "python3")
+  (dap-python-debugger 'debugpy)
+  :config
+  (require 'dap-python))
+#+end_src
+** TypeScript
+TSX support is not available yet according to the developers, but I like to live on the edge lol
+#+begin_src emacs-lisp
+(use-package typescript-mode
+  :mode "\\.tsx?$"
+  :hook (typescript-mode . lsp-deferred)
+  :config
+  (setq typescript-indent-level 2))
+#+end_src
+** Dart/Flutter
+I'm not in love with the Dart/Flutter support for Emacs, but I'll have this just in case.
+#+begin_src emacs-lisp
+(use-package dart-mode
+  :hook (dart-mode . flutter-test-mode))
+
+(use-package flutter
+  :after dart-mode
+  :bind (:map dart-mode-map
+              ("C-M-x" . #'flutter-run-or-hot-reload))
+  :custom
+  (flutter-sdk-path "/home/jorge/snap/flutter/common/flutter")
+  (lsp-dart-sdk-dir "/home/jorge/snap/flutter/common/flutter/bin/cache/dart-sdk"))
+
+(use-package flutter-l10n-flycheck
+  :after flutter
+  :config
+  (flutter-l10n-flycheck-setup))
+#+end_src
