@@ -5,6 +5,11 @@ This is the configuration I currently use for my Emacs installation. A lot of wh
 
 My Emacs configuration is generated from this file by Org-mode, which extracts all code blocks and concatenates them (tangling) into my [[file:init.el][init.el]] file.
 
+* Personal information
+#+begin_src emacs-lisp
+(setq user-full-name "Jorge Jara")
+(setq user-mail-address "jorgejarainostroza@gmail.com")
+#+end_src
 * Basic appearance
 ** Basic UI
 #+begin_src emacs-lisp
@@ -49,7 +54,7 @@ My Emacs configuration is generated from this file by Org-mode, which extracts a
 #+end_src
 ** Disable the generation of custom settingss
 Any attempt by Emacs for generating that annoying custom settings section is automatically redirected to =/dev/null=.
- 
+
 #+begin_src emacs-lisp
 (setq-default custom-file null-device)
 #+end_src
@@ -337,7 +342,7 @@ My current configuration makes Org text use a variable pitch font that makes it 
 #+end_src
 ** Preserve code indentation
 #+begin_src emacs-lisp
-(setq org-src-preserve-indentation nil 
+(setq org-src-preserve-indentation nil
       org-edit-src-content-indentation 0
       org-src-tab-acts-natively t)
 #+end_src
@@ -546,4 +551,73 @@ I'm not in love with the Dart/Flutter support for Emacs, but I'll have this just
   :after flutter
   :config
   (flutter-l10n-flycheck-setup))
+#+end_src
+* Mail support (=mu4e=)
+#+begin_src emacs-lisp
+(setq message-send-mail-function 'smtpmail-send-it)
+(setq mu4e-compose-context-policy 'ask-if-none)
+(setq mu4e-compose-format-flowed t)
+
+(auth-source-search :host "smtp.gmail.com")
+(auth-source-search :host "smtp.udec.cl")
+
+(use-package mu4e
+  :ensure nil
+  :config
+
+  (setq mu4e-change-filenames-when-moving t)
+
+  (setq mu4e-update-interval (* 10 60))
+  (setq mu4e-get-mail-command "mbsync -a")
+  (setq mu4e-maildir "~/Mail")
+
+  (setq mu4e-contexts
+	(list
+	 (make-mu4e-context
+	  :name "Personal"
+	  :match-func
+	  (lambda (msg)
+	    (when msg
+	      (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
+	  :vars '((user-mail-address . "jorgejarainostroza@gmail.com")
+		  (user-full-name . "Jorge Jara")
+		  (smtpmail-smtp-server . "smtp.gmail.com")
+		  (smtpmail-smtp-service . 465)
+		  (smtpmail-stream-type . ssl)
+		  (mu4e-drafts-folder . "/Gmail/[Gmail]/Borradores")
+		  (mu4e-sent-folder . "/Gmail/[Gmail]/Enviados")
+		  (mu4e-refile-folder . "/Gmail/[Gmail]/Todos")
+		  (mu4e-trash-folder . "/Gmail/[Gmail]/Papelera")))
+
+	 (make-mu4e-context
+	  :name "UdeC"
+	  :match-func
+	  (lambda (msg)
+	    (when msg
+	      (string-prefix-p "/UdeC" (mu4e-message-field msg :maildir))))
+	  :vars '((user-mail-address . "jjara2018@udec.cl")
+		  (user-full-name . "Jorge Jara")
+		  (smtpmail-smtp-server . "smtp.udec.cl")
+		  (smtpmail-smtp-service . 587)
+		  (smtpmail-stream-type . starttls)
+		  (mu4e-drafts-folder . "/UdeC/Borrador")
+		  (mu4e-sent-folder . "/UdeC/Enviados")
+		  (mu4e-refile-folder . "/UdeC/Archivo")
+		  (mu4e-trash-folder . "/UdeC/Papelera")))))
+
+  (setq mu4e-maildir-shortcuts
+	'((:maildir "/Gmail/Inbox" :key ?i)
+	  (:maildir "/Gmail/[Gmail]/Enviados" :key ?s)
+	  (:maildir "/Gmail/[Gmail]/Papelera" :key ?t)
+	  (:maildir "/Gmail/[Gmail]/Borradores" :key ?d)
+	  (:maildir "/Gmail/[Gmail]/Todos" :key ?a))))
+#+end_src
+** HTML mail
+#+begin_src emacs-lisp
+(use-package org-mime)
+#+end_src
+
+Add a reminder for reminding me if I wrote an HTML message without converting it.
+#+begin_src emacs-lisp
+(add-hook 'message-send-hook 'org-mime-confirm-when-no-multipart)
 #+end_src
