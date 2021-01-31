@@ -607,10 +607,7 @@ I'm not in love with the Dart/Flutter support for Emacs, but I'll have this just
 
   (setq mu4e-maildir-shortcuts
 	'((:maildir "/Gmail/Inbox" :key ?i)
-	  (:maildir "/Gmail/[Gmail]/Enviados" :key ?s)
-	  (:maildir "/Gmail/[Gmail]/Papelera" :key ?t)
-	  (:maildir "/Gmail/[Gmail]/Borradores" :key ?d)
-	  (:maildir "/Gmail/[Gmail]/Todos" :key ?a))))
+	  (:maildir "/UdeC/INBOX" :key ?I))))
 #+end_src
 ** HTML mail
 #+begin_src emacs-lisp
