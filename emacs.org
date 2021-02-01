@@ -469,6 +469,7 @@ My current configuration makes Org text use a variable pitch font that makes it 
 (use-package dap-mode
   :config
   (require 'dap-node)
+  (require 'dap-lldb)
   (dap-node-setup)
 
   (general-define-key
