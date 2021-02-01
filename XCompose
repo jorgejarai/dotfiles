@@ -1,3 +1,5 @@
+include "%L"
+
 # Spanish ñ
 <Multi_key> <n> <n> : "ñ"
 <Multi_key> <N> <N> : "Ñ"
