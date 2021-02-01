@@ -1,0 +1,12 @@
+[user]
+	name = Jorge Jara
+	email = jorgejarainostroza@gmail.com
+	signingKey = B49E6CD1
+[commit]
+	gpgSign = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[github]
+	user = jorgejarai
+[init]
+	defaultBranch = main
