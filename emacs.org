@@ -78,7 +78,7 @@ Since I may run Emacs from a daemon instead of a traditional instance, I have pu
 #+begin_src emacs-lisp
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 #+end_src
-** Disable the generation of custom settingss
+** Disable the generation of custom settings
 Any attempt by Emacs for generating that annoying custom settings section is automatically redirected to =/dev/null=.
 
 #+begin_src emacs-lisp
@@ -227,11 +227,11 @@ If it weren't for this thing I wouldn't probably use Emacs. I have nothing again
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
-  ;;:hook (evil-mode . jorgejarai/evil-hook)
+  :hook (evil-mode . jorgejarai/evil-hook)
   :config
   (evil-mode)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  ;; (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
 
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
@@ -243,6 +243,13 @@ If it weren't for this thing I wouldn't probably use Emacs. I have nothing again
   :after evil
   :config
   (evil-collection-init))
+#+end_src
+*** =evil-surround=
+I effin love this thing. It makes so much easier to insert parentheses or braces around chunks of code.
+#+begin_src emacs-lisp
+(use-package evil-surround
+  :config
+  (global-evil-surround-mode 1))
 #+end_src
 ** =dired=
 #+begin_src emacs-lisp
@@ -295,8 +302,10 @@ If I press only a part of a keybinding, a minibuffer will show showing every pos
 (use-package flycheck
   :hook (c++-mode . (lambda () (setq flycheck-clang-language-standard "c++17")))
   :config (global-flycheck-mode))
-
-(use-package flycheck-pyflakes) ;; For Python code
+#+end_src
+** Removing trailing whitespace on save
+#+begin_src emacs-lisp
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+end_src
 * Org mode
 ** Base configuration
@@ -505,14 +514,15 @@ My current configuration makes Org text use a variable pitch font that makes it 
 
   (eshell-git-prompt-use-theme 'powerline))
 #+end_src
-* Custom keystrokes
-This are the custom keystrokes I have configured:
+* Custom keybindings
+This are the custom keybindings I have configured:
 - Temporarily change the theme (=C-SPC t t=)
 - Temporarily scale text size (=C-SPC t s=)
   - =j=: zoom in
   - =k=: zoom out
   - =f=: finish (return to editing)
 - Check parentheses (=C-SPC c p=)
+- Open the =M-x calc= calculator (=C-SPC o c=)
 #+begin_src emacs-lisp
 (use-package general
   :config
@@ -522,8 +532,13 @@ This are the custom keystrokes I have configured:
     :global-prefix "C-SPC")
 
   (jorgejarai/leader-keys
-   "t" '(:ignore t :which-key "toggles")
-   "tt" '(counsel-load-theme :which-key "choose theme")))
+    "c" '(:ignore t :which-key "check")
+    "cp" '(check-parens :which-key "parentheses")
+    "o" '(:ignore t :which-key "open")
+    "oc" '(calc :which-key "calculator")
+    "ot" '(tetris :which-key "tetris")
+    "s" '(:ignore t :which-key "settings")
+    "st" '(counsel-load-theme :which-key "choose theme")))
 
 (use-package hydra)
 
@@ -534,8 +549,7 @@ This are the custom keystrokes I have configured:
   ("f" nil "finished" :exit t))
 
 (jorgejarai/leader-keys
-  "ts" '(hydra-text-scale/body :which-key "scale text")
-  "cp" '(check-parens :which-key "check parentheses"))
+   "ss" '(hydra-text-scale/body :which-key "scale text"))
 #+end_src
 * Additional language support
 ** C/C++
@@ -555,16 +569,45 @@ This are the custom keystrokes I have configured:
 #+begin_src emacs-lisp
 (use-package cmake-mode)
 #+end_src
+** LaTeX
+*** AUCTeX
+#+begin_src emacs-lisp
+(use-package auctex
+  :hook
+  ((LaTeX-mode . visual-line-mode)
+   (LaTeX-mode . flyspell-mode)
+   (LaTeX-mode . LaTeX-math-mode))
+  :config
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil)
+  (setq reftex-plug-into-AUCTeX t))
+#+end_src
+*** Add MikTex to =PATH=
+I use MikTeX as my (La)TeX distribution, because it uses less space compared to TeXLive and it only downloads packages from the Internet as needed instead of providing them all at once (you thought =node_modules= uses a lot of space? Go have a look at TeXLive documentation). Since I installed MikTeX as a local installation I need to add the folder with its executables to the =PATH= variable:
+#+begin_src emacs-lisp
+(setenv "PATH" (concat "/home/jorge/bin"
+                       (getenv "PATH")))
+(add-to-list 'exec-path "/home/jorge/bin")
+#+end_src
 ** Python
 #+begin_src emacs-lisp
 (use-package python-mode
   :hook (python-mode . lsp-deferred)
   :custom
-  (python-shell-interpeter "python3")
   (dap-python-executable "python3")
   (dap-python-debugger 'debugpy)
   :config
   (require 'dap-python))
+
+(use-package flycheck-pyflakes)
+
+(defun jorgejarai/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(use-package company-jedi
+  :hook (python-mode . jorgejarai/python-mode-hook))
+		     
 #+end_src
 ** TypeScript
 TSX support is not available yet according to the developers, but I like to live on the edge lol
