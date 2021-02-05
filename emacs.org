@@ -196,8 +196,9 @@ Any attempt by Emacs for generating that annoying custom settings section is aut
 (use-package company
   ;; :after lsp-mode
   :hook (prog-mode . company-mode)
-  :bind (:map company-active-map
-	      ("<tab>" . company-complete-selection))
+  :bind
+  (:map company-active-map
+	("<tab>" . company-complete-selection))
   (:map lsp-mode-map
 	("<tab>" . company-indent-or-complete-common))
   :custom
@@ -466,11 +467,6 @@ My current configuration makes Org text use a variable pitch font that makes it 
 
 (use-package lsp-ivy)
 
-(use-package lsp-dart
-  :after dart-mode
-  :hook (dart-mode . lsp)
-  :custom
-  (lsp-dart-flutter-widget-guides nil))
 #+end_src
 * DAP (debugging server)
 ** Base configuration
@@ -583,7 +579,7 @@ This are the custom keybindings I have configured:
   (setq-default TeX-master nil)
   (setq reftex-plug-into-AUCTeX t))
 #+end_src
-*** Add MikTex to =PATH=
+*** Add MikTeX to =PATH=
 I use MikTeX as my (La)TeX distribution, because it uses less space compared to TeXLive and it only downloads packages from the Internet as needed instead of providing them all at once (you thought =node_modules= uses a lot of space? Go have a look at TeXLive documentation). Since I installed MikTeX as a local installation I need to add the folder with its executables to the =PATH= variable:
 #+begin_src emacs-lisp
 (setenv "PATH" (concat "/home/jorge/bin"
@@ -598,16 +594,16 @@ I use MikTeX as my (La)TeX distribution, because it uses less space compared to 
   (dap-python-executable "python3")
   (dap-python-debugger 'debugpy)
   :config
-  (require 'dap-python))
+  (require 'dap-python)
+  (setq python-shell-interpreter "python3"))
 
 (use-package flycheck-pyflakes)
 
-(defun jorgejarai/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
+;; (defun jorgejarai/python-mode-hook ()
+;;   (add-to-list 'company-backends 'company-jedi))
 
-(use-package company-jedi
-  :hook (python-mode . jorgejarai/python-mode-hook))
-		     
+;; (use-package company-jedi
+;;   :hook (python-mode . jorgejarai/python-mode-hook))
 #+end_src
 ** TypeScript
 TSX support is not available yet according to the developers, but I like to live on the edge lol
@@ -617,6 +613,10 @@ TSX support is not available yet according to the developers, but I like to live
   :hook (typescript-mode . lsp-deferred)
   :config
   (setq typescript-indent-level 2))
+#+end_src
+*** Angular
+#+begin_src emacs-lisp
+(use-package ng2-mode)
 #+end_src
 ** Dart/Flutter
 I'm not in love with the Dart/Flutter support for Emacs, but I'll have this just in case.
@@ -636,6 +636,33 @@ I'm not in love with the Dart/Flutter support for Emacs, but I'll have this just
   :after flutter
   :config
   (flutter-l10n-flycheck-setup))
+
+(use-package lsp-dart
+  :after dart-mode
+  :hook (dart-mode . lsp)
+  :custom
+  (lsp-dart-flutter-widget-guides nil))
+#+end_src
+** Emacs Lisp
+*** ParEdit
+#+begin_src emacs-lisp
+(use-package paredit
+  :hook
+  ((emacs-lisp-mode . enable-paredit-mode)
+   (eval-expression-minibuffer-setup. enable-paredit-mode)
+   (ielm-mode . enable-paredit-mode)
+   (lisp-mode . enable-paredit-mode)
+   (lisp-interaction-mode . enable-paredit-mode)
+   (scheme-mode . enable-paredit-mode)))
+
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-strucutral editing of Lisp code." t)
+#+end_src
+** Haskell
+#+begin_src emacs-lisp
+(use-package lsp-haskell
+  :hook
+  ((haskell-mode . lsp-deferred)
+   (haskell-literate-mode-hook . lsp-deferred)))
 #+end_src
 * Mail support (=mu4e=)
 #+begin_src emacs-lisp
