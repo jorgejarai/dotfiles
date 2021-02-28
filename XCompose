@@ -1,3 +1,18 @@
+# Observations: Since I like to use emojis, I created custom bindings for
+# the ones I use the most. In order to differentiate them from the regular
+# symbols, I added an extra <Multi_key> to them as a sort of prefix (regular
+# symbols only require a single press of Compose, but emojis need two). This
+# works as a namespace of sorts.
+#
+# The thing is I installed Manjaro in my laptop and discovered that the
+# "vanilla" Compose support didn't work with many of my emoji keybindings that
+# did work with my previous setup. Then, I discovered that it was IBus which
+# allowed me to register bindings that required pressing Compose more than once.
+# Therefore, you will need to have IBus installed for using the kind of
+# combinations I have for emojis. Maybe this can work with other IME systems,
+# but that's just speculation from my part.
+
+# Just ensuring that the default bindings are included
 include "%L"
 
 # Spanish ñ
@@ -11,7 +26,7 @@ include "%L"
 # A more visual space character
 <Multi_key> <backslash> <space> : "␣"
 
-# Word joiner (U+2060, like &nbsp; but with width 0)
+# Word joiner (U+2060, like &nbsp; but with no width)
 <Multi_key> <w> <j> : "⁠"
 
 # Non-breaking space
@@ -50,11 +65,11 @@ include "%L"
 <Multi_key> <i> <i> <i> <n> <t>: "∭"
 
 # Logic
-<Multi_key> <ampersand> <ampersand>: "∧" 
+<Multi_key> <ampersand> <ampersand>: "∧"
 <Multi_key> <bar> <bar>: "∨"
 <Multi_key> <asciitilde> <grave>: "¬"
 <Multi_key> <grave> <asciitilde>: "¬"
-¬q∨∧
+
 # Set theory
 <Multi_key> <e> <o> : "∈"
 <Multi_key> <slash> <e> <o> : "∉"

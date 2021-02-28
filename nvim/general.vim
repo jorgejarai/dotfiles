@@ -29,3 +29,6 @@ filetype plugin on
 set relativenumber
 set noshowmode
 set colorcolumn=80
+set undofile
+set undodir=~/.cache/nvim_undo
+set undolevels=10000

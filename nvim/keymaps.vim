@@ -43,9 +43,20 @@ inoremap <silent> <C-S-PageUp> <ESC>:tabp<CR>i
 inoremap <silent> <C-S-PageDown> <ESC>:tabn<CR>i
 inoremap <silent> <C-S-C> <ESC>:tabc<CR>i
 cnoreabbrev te tabedit
+cnoreabbrev tn tabnew
+cnoreabbrev tc tabclose
+cnoreabbrev to tabonly
 
 " Map :W to :w
 cnoreabbrev W w
 
 " Map :waq to :wqa
 cnoreabbrev waq wqa
+
+" telescope.nvim
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fm <cmd>Telescope man_pages<cr>
+nnoremap <leader>fr <cmd>Telescope registers<cr>

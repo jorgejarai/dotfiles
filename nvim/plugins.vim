@@ -65,11 +65,11 @@ let g:vimtex_compiler_latexmk = {
 Plug 'reedes/vim-colors-pencil'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-x>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsExpandTrigger="<nop>"
+" let g:UltiSnipsJumpForwardTrigger="<c-x>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
@@ -77,6 +77,11 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'cespare/vim-toml'
 Plug 'srcery-colors/srcery-vim'
 Plug 'vim-scripts/dbext.vim'
+Plug 'junegunn/vim-peekaboo'
+Plug 'chaoren/vim-wordmotion'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 
