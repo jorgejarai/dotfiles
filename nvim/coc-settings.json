@@ -31,10 +31,7 @@
       }
     }
   },
-  "lsp-wl.wolframExecutablePath": "/usr/bin/wolframscript",
-  "python.linting.enabled": true,
-  "python.linting.pylintEnabled": true,
-  "python.jediEnabled": false,
   "snippets.ultisnips.directories": ["UltiSnips", "~/.config/nvim/snips"],
-  "coc.preferences.extensionUpdateCheck": "daily"
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "clangd.path": "/home/jorge/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
 }

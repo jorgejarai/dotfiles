@@ -16,6 +16,10 @@ inoremap <silent> <M-Down> <ESC>:wincmd j<CR>i
 inoremap <silent> <M-Up> <ESC>:wincmd k<CR>i
 inoremap <silent> <M-Right> <ESC>:wincmd l<CR>i
 
+" Close all windows but current one
+nnoremap <silent> <M-o> :wincmd o<CR>
+inoremap <silent> <M-o> <ESC>:wincmd o<CR>i
+
 " Window split
 nnoremap <silent> <Leader>v :wincmd v<CR>
 nnoremap <silent> <Leader>s :wincmd s<CR>
@@ -60,3 +64,6 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fm <cmd>Telescope man_pages<cr>
 nnoremap <leader>fr <cmd>Telescope registers<cr>
+
+" NERDTree
+nmap <silent> <Leader>p :NERDTreeToggle<CR>

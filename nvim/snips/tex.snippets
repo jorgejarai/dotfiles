@@ -1,5 +1,23 @@
-snippet ttt "Texto monoespaciado (\texttt)" w
+snippet tt "Texto monoespaciado (\texttt)" w
 \texttt{$1}
+endsnippet
+
+snippet bf "Texto en negrita (\textbf)" w
+\textbf{$1}
+endsnippet
+
+snippet it "Texto en cursiva (\textit)" w
+\textit{$1}
+endsnippet
+
+snippet ttt "Texto en negrita cursiva (\textit{\textbf})" w
+\textit{\textbf{$1}}
+endsnippet
+
+snippet verbatim "Texto verbatim" b
+\begin{verbatim}
+$2
+\end{verbatim}
 endsnippet
 
 snippet itemize "Lista no enumerada" b
@@ -22,4 +40,16 @@ endsnippet
 
 snippet minline "Código minted inline" w
 \mintinline{$1}{$2}
+endsnippet
+
+snippet fragile "Diapositiva Beamer frágil" b
+\begin{frame}[fragile]{$1}
+$2
+\end{frame}
+endsnippet
+
+snippet frame "Diapositiva Beamer" b
+\begin{frame}{$1}
+$2
+\end{frame}
 endsnippet

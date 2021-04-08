@@ -1,17 +1,17 @@
 " Check whether vim-plug is installed and install it if necessary
 let plugpath = expand('<sfile>:p:h'). '/autoload/plug.vim'
 if !filereadable(plugpath)
-    if executable('curl')
-        let plugurl = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-        call system('curl -fLo ' . shellescape(plugpath) . ' --create-dirs ' . plugurl)
-        if v:shell_error
-            echom "Error downloading vim-plug. Please install it manually.\n"
-            exit
-        endif
-    else
-        echom "vim-plug not installed. Please install it manually or install curl.\n"
-        exit
+  if executable('curl')
+    let plugurl = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    call system('curl -fLo ' . shellescape(plugpath) . ' --create-dirs ' . plugurl)
+    if v:shell_error
+      echom "Error downloading vim-plug. Please install it manually.\n"
+      exit
     endif
+  else
+    echom "vim-plug not installed. Please install it manually or install curl.\n"
+    exit
+  endif
 endif
 
 call plug#begin('~/.config/nvim/plugged')
@@ -26,7 +26,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-" Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/vim-gitbranch'
 Plug 'junegunn/gv.vim'
@@ -39,10 +38,6 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
-" Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-" let g:livepreview_previewer = 'zathura'
-" let g:livepreview_cursorhold_recompile = 0
-" Plug 'matthewsimo/angular-vim-snippets'
 Plug 'scrooloose/syntastic'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/vim-easy-align'
@@ -51,28 +46,25 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'alvan/vim-closetag'
 Plug 'lervag/vimtex'
 let g:tex_flavor='latex'
-let g:Tex_ViewRule_pdf =  'zathura'
-let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_general_viewer = 'sumatrapdf'
+let g:vimtex_view_general_options = '-reuse-instance @pdf'
+let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 let g:vimtex_compiler_latexmk = {
-    \ 'options' : [
-    \   '-shell-escape',
-    \   '-verbose',
-    \   '-file-line-error',
-    \   '-synctex=1',
-    \   '-interaction=nonstopmode',
-    \ ],
-    \}
+      \ 'options' : [
+      \   '-shell-escape',
+      \   '-verbose',
+      \   '-file-line-error',
+      \   '-synctex=1',
+      \   '-interaction=nonstopmode',
+      \ ],
+      \}
 Plug 'reedes/vim-colors-pencil'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" let g:UltiSnipsExpandTrigger="<nop>"
-" let g:UltiSnipsJumpForwardTrigger="<c-x>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
-Plug 'google/vim-glaive'
+" Plug 'google/vim-maktaba'
+" Plug 'google/vim-codefmt'
+" Plug 'google/vim-glaive'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'cespare/vim-toml'
 Plug 'srcery-colors/srcery-vim'
@@ -82,7 +74,11 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+let g:indentLine_fileTypeExclude = ['text', 'sh', 'help', 'terminal']
+let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
+Plug 'rakr/vim-one'
+Plug 'ahw/vim-hooks'
+Plug 'Chiel92/vim-autoformat'
+au BufWrite * :Autoformat
 
 call plug#end()
-
-call glaive#Install()

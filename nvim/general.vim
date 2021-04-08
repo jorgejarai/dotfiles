@@ -32,3 +32,5 @@ set colorcolumn=80
 set undofile
 set undodir=~/.cache/nvim_undo
 set undolevels=10000
+      
+let g:python3_host_prog="/usr/bin/python3"
