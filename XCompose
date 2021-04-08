@@ -162,6 +162,7 @@ include "%L"
 <Multi_key> <Multi_key> <u> <period> <u>            : "😓"
 <Multi_key> <Multi_key> <d> <e> <d> <o> <s>         : "👉🏻👈🏻"
 <Multi_key> <Multi_key> <w> <a> <t>                 : "😨"
+<Multi_key> <Multi_key> <y> <a> <w> <n>             : "🥱"
 
 # Esperanto diacritics
 <Multi_key> <c> <x> : "ĉ"
