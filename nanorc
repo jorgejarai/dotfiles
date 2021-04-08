@@ -8,4 +8,4 @@ set morespace
 set smooth
 set softwrap
 set suspend
-set indicator
+# set indicator
