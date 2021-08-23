@@ -5,12 +5,13 @@ export EDITOR="emacs"
 export VISUAL="code"
 export TERMINAL="xfce4-terminal"
 export BROWSER="google-chrome-stable"
+export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 
 export HISTFILE="$HOME/.local/.bash_history"
 
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 export PATH="$PATH:$HOME/opt/miktex"
-export PATH="$PATH:$HOME/opt/nethack-3.6.6/games/lib/nethackdir"
+export PATH="$PATH:$HOME/nh/install/games/lib/nethackdir"
 export PATH="$PATH:$HOME/opt/vcpkg"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
@@ -28,10 +29,13 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH=$PATH:/opt/flutter/dev/bin
 
+export PATH=$PATH:$HOME/opt/cross/bin
+
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+export LANGUAGE="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export MANPAGER="less -X"
@@ -45,3 +49,5 @@ export XDG_DOWNLOAD_DIR="/home/jorge/Downloads"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+
+sh /etc/profile.d/snapd.sh
