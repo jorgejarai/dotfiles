@@ -1,4 +1,4 @@
-alias ls='ls -h --color=always'
+#alias ls='ls -h --color=always'
 
 alias grep='grep --color=always'
 alias fgrep='fgrep --color=always'
@@ -21,9 +21,15 @@ alias dmenu='dmenu -b -fn "mono-10"'
 
 alias scrsize='printf "%sx%s\n" $COLUMNS $LINES'
 
+alias mp3dload='youtube-dl -x --audio-format mp3'
 alias oggdload='youtube-dl -x --audio-format vorbis'
 alias destreamer='$HOME/Sources/destreamer/destreamer.sh -o /tmp/'
 
 alias ydl='youtube-dl'
+
+alias nethackx11='NETHACKOPTIONS="windowtype:x11" nethack'
+alias nethackcurses='NETHACKOPTIONS="windowtype:curses" nethack'
+
+alias bootvm='VBoxManage startvm "Ubuntu" --type headless'
 
 # vim: set syntax=sh:
