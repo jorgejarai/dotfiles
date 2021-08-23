@@ -54,7 +54,7 @@ include "%L"
 <Multi_key> <bar> <bar>: "∨"
 <Multi_key> <asciitilde> <grave>: "¬"
 <Multi_key> <grave> <asciitilde>: "¬"
-¬q∨∧
+
 # Set theory
 <Multi_key> <e> <o> : "∈"
 <Multi_key> <slash> <e> <o> : "∉"
