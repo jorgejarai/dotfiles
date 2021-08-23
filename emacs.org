@@ -10,69 +10,6 @@ My Emacs configuration is generated from this file by Org-mode, which extracts a
 (setq user-full-name "Jorge Jara")
 (setq user-mail-address "jorgejarainostroza@gmail.com")
 #+end_src
-* Basic appearance
-** Basic UI
-#+begin_src emacs-lisp
-(setq inhibit-startup-message t)
-
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(tooltip-mode -1)
-(set-fringe-mode 10)
-
-(menu-bar-mode -1)
-
-(setq visible-bell t)
-#+end_src
-** Fonts
-Since I may run Emacs from a daemon instead of a traditional instance, I have put my font settings into a function that might be run differently whether I run Emacs from the daemon (=emacsclient=) or the =emacs= executable.
-#+begin_src emacs-lisp
-(setq jorgejarai/monospace-font "IBM Plex Mono")
-(setq jorgejarai/monospace-font-size 105)
-
-(defun jorgejarai/set-font-faces ()
-  (set-face-attribute 'default nil :font jorgejarai/monospace-font :height jorgejarai/monospace-font-size)
-  (set-face-attribute 'fixed-pitch nil :font jorgejarai/monospace-font :height jorgejarai/monospace-font-size)
-  (set-face-attribute 'variable-pitch nil :font jorgejarai/monospace-font :weight 'normal :height jorgejarai/monospace-font-size))
-#+end_src
-** Line numbering and highlighting the current line
-#+begin_src emacs-lisp
-(column-number-mode)
-(global-display-line-numbers-mode t)
-(setq display-line-numbers-type 'relative)
-
-(global-hl-line-mode) ;; Highlight the current line
-#+end_src
-*** Exception for certain modes
-#+begin_src emacs-lisp
-(dolist (mode '(org-mode-hook
-		term-mode-hook
-		tetris-mode-hook ;; Emacs Tetris is love, Emacs Tetris is life
-		eshell-mode-hook
-		treemacs-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
-#+end_src
-** Theme
-#+begin_src emacs-lisp
-;; (use-package material-theme
-;;   :config (load-theme 'material-light t))
-
-;; (use-package kaolin-themes
-;;   :config
-;;   (load-theme 'kaolin-light t)
-;;   (kaolin-treemacs-theme))
-
-(use-package doom-themes
-  :config
-  (setq doom-themes-enable-bold t
-	doom-themes-enable-italic t)
-  (load-theme 'doom-vibrant t)
-  (doom-themes-visual-bell-config)
-  (doom-themes-neotree-config)
-  (setq doom-themes-treemacs-theme "doom-colors")
-  (doom-themes-treemacs-config)
-  (doom-themes-org-config))
-#+end_src
 * Behaviour
 ** Pressing =<ESC>= for canceling (just like =C-g=)
 #+begin_src emacs-lisp
@@ -104,6 +41,60 @@ Any attempt by Emacs for generating that annoying custom settings section is aut
 #+end_src
 * General improvements
 ** Appearance
+*** Basic UI
+#+begin_src emacs-lisp
+(setq inhibit-startup-message t)
+
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
+(set-fringe-mode 10)
+
+(menu-bar-mode -1)
+
+(setq visible-bell t)
+#+end_src
+*** Fonts
+Since I may run Emacs from a daemon instead of a traditional instance, I have put my font settings into a function that might be run differently whether I run Emacs from the daemon (=emacsclient=) or the =emacs= executable.
+#+begin_src emacs-lisp
+(setq jorgejarai/monospace-font "IBM Plex Mono")
+(setq jorgejarai/monospace-font-size 105)
+
+(defun jorgejarai/set-font-faces ()
+  (set-face-attribute 'default nil :font jorgejarai/monospace-font :height jorgejarai/monospace-font-size)
+  (set-face-attribute 'fixed-pitch nil :font jorgejarai/monospace-font :height jorgejarai/monospace-font-size)
+  (set-face-attribute 'variable-pitch nil :font jorgejarai/monospace-font :weight 'normal :height jorgejarai/monospace-font-size))
+#+end_src
+*** Line numbering and highlighting the current line
+#+begin_src emacs-lisp
+(column-number-mode)
+(global-display-line-numbers-mode t)
+(setq display-line-numbers-type 'relative)
+
+(global-hl-line-mode) ;; Highlight the current line
+#+end_src
+*** Exception for certain modes
+#+begin_src emacs-lisp
+(dolist (mode '(org-mode-hook
+		term-mode-hook
+		tetris-mode-hook ;; Emacs Tetris is love, Emacs Tetris is life
+		eshell-mode-hook
+		treemacs-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+#+end_src
+*** Theme
+#+begin_src emacs-lisp
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t
+	doom-themes-enable-italic t)
+  (load-theme 'doom-one-light t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-neotree-config)
+  (setq doom-themes-treemacs-theme "doom-colors")
+  (doom-themes-treemacs-config)
+  (doom-themes-org-config))
+#+end_src
 *** =doom-modeline= (a much better modeline)
 #+begin_src emacs-lisp
 (use-package doom-modeline
@@ -308,6 +299,7 @@ If I press only a part of a keybinding, a minibuffer will show showing every pos
 #+begin_src emacs-lisp
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+end_src
+* Basic appearance
 * Org mode
 ** Base configuration
 #+begin_src emacs-lisp
@@ -383,8 +375,6 @@ My current configuration makes Org text use a variable pitch font that makes it 
  'org-babel-load-languages
  '((emacs-lisp . t)
    (python . t)
-   (js . t)
-   (typescript . t)
    (C . t)
    (R . t)
    (gnuplot . t)
@@ -393,8 +383,6 @@ My current configuration makes Org text use a variable pitch font that makes it 
    (shell . t)))
 (setq org-confirm-babel-evaluate nil)
 
-(require 'ob-js)
-(use-package ob-typescript)
 (require 'ob-C)
 (require 'ob-octave)
 (require 'org-tempo)
@@ -551,15 +539,18 @@ This are the custom keybindings I have configured:
 ** C/C++
 *** CMake support
 #+begin_src emacs-lisp
-(use-package cmake-project)
+;(use-package cmake-project)
 
-(defun maybe-cmake-project-mode ()
-  (if (or (file-exists-p "CMakeLists.txt")
-          (file-exists-p (expand-file-name "CMakeLists.txt" (car (project-roots (project-current))))))
-      (cmake-project-mode)))
+;(defun maybe-cmake-project-mode ()
+;  (if (or (file-exists-p "CMakeLists.txt")
+;          (file-exists-p (expand-file-name "CMakeLists.txt" (car (project-roots (project-current))))))
+;      (cmake-project-mode)))
 
-(add-hook 'c-mode-hook 'maybe-cmake-project-mode)
-(add-hook 'c++-mode-hook 'maybe-cmake-project-mode)
+;(add-hook 'c-mode-hook 'maybe-cmake-project-mode)
+;(add-hook 'c++-mode-hook 'maybe-cmake-project-mode)
+
+(use-package cmake-ide
+  :config (cmake-ide-setup))
 #+end_src
 *** Syntax highlighting for CMakeLists.txt
 #+begin_src emacs-lisp
@@ -580,7 +571,7 @@ This are the custom keybindings I have configured:
   (setq reftex-plug-into-AUCTeX t))
 #+end_src
 *** Add MikTeX to =PATH=
-I use MikTeX as my (La)TeX distribution, because it uses less space compared to TeXLive and it only downloads packages from the Internet as needed instead of providing them all at once (you thought =node_modules= uses a lot of space? Go have a look at TeXLive documentation). Since I installed MikTeX as a local installation I need to add the folder with its executables to the =PATH= variable:
+I use MikTeX as my (La)TeX distribution, because it uses less space compared to TeXLive and it only downloads packages from the Internet as needed instead of providing them all at once (you thought =node_modules= used a lot of space? Go have a look at the TeXLive documentation). Since I installed MikTeX as a local installation I need to add the folder with its executables to the =PATH= variable:
 #+begin_src emacs-lisp
 (setenv "PATH" (concat "/home/jorge/bin"
                        (getenv "PATH")))
@@ -604,19 +595,6 @@ I use MikTeX as my (La)TeX distribution, because it uses less space compared to 
 
 ;; (use-package company-jedi
 ;;   :hook (python-mode . jorgejarai/python-mode-hook))
-#+end_src
-** TypeScript
-TSX support is not available yet according to the developers, but I like to live on the edge lol
-#+begin_src emacs-lisp
-(use-package typescript-mode
-  :mode "\\.tsx?$"
-  :hook (typescript-mode . lsp-deferred)
-  :config
-  (setq typescript-indent-level 2))
-#+end_src
-*** Angular
-#+begin_src emacs-lisp
-(use-package ng2-mode)
 #+end_src
 ** Dart/Flutter
 I'm not in love with the Dart/Flutter support for Emacs, but I'll have this just in case.
