@@ -31,5 +31,11 @@ alias nethackx11='NETHACKOPTIONS="windowtype:x11" nethack'
 alias nethackcurses='NETHACKOPTIONS="windowtype:curses" nethack'
 
 alias bootvm='VBoxManage startvm "Ubuntu" --type headless'
+alias shutdownvm='ssh vm shutdown now'
+
+alias cleanheads='ssh srv /home/jorge/.local/bin/cleanheads'
+alias nozzlecheck='ssh srv /home/jorge/.local/bin/nozzlecheck'
+
+alias direwolf='direwolf -c $HOME/.direwolf.conf'
 
 # vim: set syntax=sh:
