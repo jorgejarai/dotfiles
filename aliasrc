@@ -1,4 +1,4 @@
-#alias ls='ls -h --color=always'
+alias ls='gls -h --color=always'
 
 alias grep='grep --color=always'
 alias fgrep='fgrep --color=always'
