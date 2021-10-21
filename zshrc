@@ -60,11 +60,9 @@ function precmd() {
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS='--color=light --border=rounded --height=60%'
 
-# Map Alt+Left and Alt+Right on Mac systems
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    bindkey "^[[1;3C" forward-word
-    bindkey "^[[1;3D" backward-word
-fi
+# Use Alt+Left and Alt+Right for navigating between words
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
 
 # Custom ls colors
 export LS_COLORS="$(cat ~/.config/ls_colors)"
