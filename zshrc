@@ -1,6 +1,6 @@
 #!/bin/usr/env zsh
 
-export ZSH="/Users/jorge/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="jorge"
 ENABLE_CORRECTION="true"
