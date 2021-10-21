@@ -1,4 +1,11 @@
-alias ls='gls -h --color=always'
+#!/usr/bin/env bash
+
+# Use GNU ls instead of the BSD version on macOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias ls='gls -h --color=always'
+else
+    alias ls='ls -h --color=always'
+fi
 
 alias grep='grep --color=always'
 alias fgrep='fgrep --color=always'

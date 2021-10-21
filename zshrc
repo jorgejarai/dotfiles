@@ -1,3 +1,5 @@
+#!/bin/usr/env zsh
+
 export ZSH="/Users/jorge/.oh-my-zsh"
 
 ZSH_THEME="jorge"
@@ -12,12 +14,22 @@ source $ZSH/oh-my-zsh.sh
 
 # Execution time routines (used in prompt)
 function preexec() {
-    timer=$(($(gdate +%s%0N) / 1000000))
+    # Use GNU date instead of the BSD version on macOS
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        timer=$(($(gdate +%s%0N) / 1000000))
+    else
+        timer=$(($(date +%s%0N) / 1000000))
+    fi
 }
 
 function precmd() {
     if [ $timer ]; then
-        now=$(($(gdate +%s%0N) / 1000000))
+        # Use GNU date instead of the BSD version on macOS
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            now=$(($(gdate +%s%0N) / 1000000))
+        else
+            now=$(($(date +%s%0N) / 1000000))
+        fi
         elapsed=$(($now - $timer))
 
         ms=$((elapsed % 1000))
