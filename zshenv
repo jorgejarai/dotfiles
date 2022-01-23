@@ -10,7 +10,7 @@ export PATH="$PATH:$HOME/.local/bin"
 
 export PATH="$PATH:$HOME/Library/Python/3.8/bin:$HOME/Library/Python/3.9/bin"
 
-export PATH="$PATH:$HOME/.yarn/bin"
+export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 export MANPATH=$HOME/perl5/man:$MANPATH
