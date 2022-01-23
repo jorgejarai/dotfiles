@@ -40,9 +40,11 @@ alias nethackcurses='NETHACKOPTIONS="windowtype:curses" nethack'
 alias bootvm='VBoxManage startvm "Ubuntu" --type headless'
 alias shutdownvm='ssh vm shutdown now'
 
-alias cleanheads='ssh srv /home/jorge/.local/bin/cleanheads'
-alias nozzlecheck='ssh srv /home/jorge/.local/bin/nozzlecheck'
+alias cleanheads='ssh pi escputil -c -r /dev/usb/lp0'
+alias nozzlecheck='ssh pi escputil -n -r /dev/usb/lp0'
 
 alias direwolf='direwolf -c $HOME/.direwolf.conf'
+
+alias rap='rsync -raP'
 
 # vim: set syntax=sh:
