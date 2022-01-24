@@ -203,7 +203,7 @@ include "%L"
 <Multi_key> <p> <9> : "⁹"
 <Multi_key> <p> <minus> : "⁻"
 <Multi_key> <p> <plus> : "⁺"
-<Multi_key> <p> <a> : "ᵃ"
+<Multi_key> <o> <a> : "ᵃ"
 
 # Arrows
 <Multi_key> <minus> <less> : "←"
