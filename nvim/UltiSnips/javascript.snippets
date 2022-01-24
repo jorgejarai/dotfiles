@@ -1,0 +1,23 @@
+snippet cl "Log to console"
+console.log($1);
+endsnippet
+
+snippet ce "Error to console"
+console.error($1);
+endsnippet
+
+snippet fm "Function module"
+const $1 = ($2) => {
+    $0
+};
+
+export default $1;
+endsnippet
+
+snippet afm "Async function module"
+const $1 = async ($2) => {
+    $0
+};
+
+export default $1;
+endsnippet
