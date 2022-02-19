@@ -216,8 +216,8 @@ include "%L"
 <Multi_key> <greater> <greater> : "»"
 
 # Interrobang
-<Multi_key> <question> <exclamation> : "‽"
-<Multi_key> <exclamation> <question> : "⸘"
+<Multi_key> <question> <exclam> : "‽"
+<Multi_key> <exclam> <question> : "⸘"
 
 # Approximate symbol
 <Multi_key> <a> <p> <r> : "≈"
