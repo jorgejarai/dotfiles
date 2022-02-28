@@ -17,7 +17,6 @@ alias l='ls -CF'
 
 alias bc='bc -l -q ~/.config/bcrc'
 alias cd..='cd ..'
-alias update-ydl='sudo pip3 install --upgrade youtube-dl'
 alias hd='hexdump -C'
 
 alias ncal='ncal -s ES -b'
@@ -32,7 +31,7 @@ alias mp3dload='youtube-dl -x --audio-format mp3'
 alias oggdload='youtube-dl -x --audio-format vorbis'
 alias destreamer='$HOME/Sources/destreamer/destreamer.sh -o /tmp/'
 
-alias ydl='youtube-dl'
+alias ydl='yt-dlp --cookies ~/Downloads/cookies.Facebook.txt'
 
 alias nethackx11='NETHACKOPTIONS="windowtype:x11" nethack'
 alias nethackcurses='NETHACKOPTIONS="windowtype:curses" nethack'
@@ -46,5 +45,7 @@ alias nozzlecheck='ssh pi escputil -n -r /dev/usb/lp0'
 alias direwolf='direwolf -c $HOME/.direwolf.conf'
 
 alias rap='rsync -raP'
+
+alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland'
 
 # vim: set syntax=sh:
