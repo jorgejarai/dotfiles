@@ -91,3 +91,19 @@ map('i', '<C-j>', 'copilot#Accept("<CR>")', {
 })
 map('n', '<leader>cd', ':Copilot disable<CR>')
 map('n', '<leader>ce', ':Copilot enable<CR>')
+
+-- nvim-yode
+map('', '<leader>yc', ':YodeCreateSeditorFloating<CR>')
+map('', '<leader>yr', ':YodeCreateSeditorReplace<CR>')
+map('n', '<leader>bd', ':YodeBufferDelete<CR>')
+
+map('', '<C-W>r', ':YodeLayoutShiftWinDown<CR>')
+map('', '<C-W>R', ':YodeLayoutShiftWinUp<CR>')
+map('', '<C-W>J', ':YodeLayoutShiftWinBottom<CR>')
+map('', '<C-W>K', ':YodeLayoutShiftWinTop<CR>')
+
+vim.cmd('set showtabline=2')
+
+-- vim-easy-align
+map('x', 'ga', '<Plug>(EasyAlign)')
+map('n', 'ga', '<Plug>(EasyAlign)')

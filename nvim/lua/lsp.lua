@@ -92,10 +92,10 @@ lsp.texlab.setup {
 }
 
 local lua_runtime_path = vim.split(package.path, ';')
-table.insert(lua_runtime_path, "lua/?.lua")
-table.insert(lua_runtime_path, "lua/?/init.lua")
+table.insert(lua_runtime_path, 'lua/?.lua')
+table.insert(lua_runtime_path, 'lua/?/init.lua')
 
-require'lspconfig'.sumneko_lua.setup {
+lsp.sumneko_lua.setup {
     settings = {
         Lua = {
             runtime = {
@@ -107,9 +107,23 @@ require'lspconfig'.sumneko_lua.setup {
             },
             workspace = {
                 library = {
-                    library = vim.api.nvim_get_runtime_file("", true)
+                    library = vim.api.nvim_get_runtime_file('', true)
                 }
             }
         }
     }
 }
+
+lsp.emmet_ls.setup({
+    -- on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "html", "css", "typescriptreact", "javascriptreact" },
+})
+
+local lsp_installer = require('nvim-lsp-installer')
+
+lsp_installer.on_server_ready(function (server)
+    local opts = {}
+
+    server:setup(opts)
+end)

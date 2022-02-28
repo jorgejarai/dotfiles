@@ -2,11 +2,10 @@ local install_path = vim.fn.stdpath('data') ..
                          '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    vim.fn.system({
+    packer_bootstrap = vim.fn.system({
         'git', 'clone', '--depth', '1',
         'https://github.com/wbthomason/packer.nvim', install_path
     })
-    vim.cmd('packadd packer.nvim')
 end
 
 vim.cmd('packadd packer.nvim')
@@ -39,7 +38,7 @@ require('packer').startup(function(use)
         }
     }
     use 'SirVer/UltiSnips' -- Snippets
-    use 'kabouzeid/nvim-lspinstall' -- Install missing LSPs
+    use 'williamboman/nvim-lsp-installer' -- Install missing LSPs
     use 'github/copilot.vim' -- GitHub Copilot
     use 'sbdchd/neoformat' -- Autoformat files
     use 'simrat39/rust-tools.nvim' -- Utils for Rust
@@ -53,18 +52,29 @@ require('packer').startup(function(use)
     use 'chaoren/vim-wordmotion' -- Better inter-word movement
     use 'vimwiki/vimwiki' -- Personal wiki
     use 'windwp/nvim-autopairs' -- Autoclose parentheses
-    use {
+    use { -- Jump through document
         'phaazon/hop.nvim',
         branch = 'v1',
         config = function() require('hop').setup() end
     }
-    use {
+    use { -- Status line
         'nvim-lualine/lualine.nvim',
         requires = {
             'kyazdani42/nvim-web-devicons',
             opt = true
         }
     }
+    use 'windwp/nvim-ts-autotag' -- Autoclose tags
     use 'ryanoasis/vim-devicons' -- Icons
+    use { -- Yode
+	'hoschi/yode-nvim',
+	config = function()
+	    require('yode-nvim').setup({})
+	end
+    }
+
+    if packer_bootstrap then
+        require('packer').sync()
+    end
 end)
 
