@@ -28,10 +28,10 @@ local on_attach = function(_, bufnr)
                                 '<cmd>lua vim.lsp.buf.type_definition()<CR>',
                                 opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e',
-                                '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+                                '<cmd>lua vim.diagnostic.open_float(0, {scope="cursor"})<CR>',
                                 opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q',
-                                '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',
+                                '<cmd>lua vim.diagnostic.setloclist()<CR>',
                                 opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn',
                                 '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -39,10 +39,10 @@ local on_attach = function(_, bufnr)
                                 "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
                                 opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d',
-                                '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
+                                '<cmd>lua vim.diagnostic.goto_prev()<CR>',
                                 opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d',
-                                '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
+                                '<cmd>lua vim.diagnostic.goto_next()<CR>',
                                 opts)
 end
 
