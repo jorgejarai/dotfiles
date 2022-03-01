@@ -105,5 +105,7 @@ map('', '<C-W>K', ':YodeLayoutShiftWinTop<CR>')
 vim.cmd('set showtabline=2')
 
 -- vim-easy-align
-map('x', 'ga', '<Plug>(EasyAlign)')
-map('n', 'ga', '<Plug>(EasyAlign)')
+vim.cmd[[
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+]]
