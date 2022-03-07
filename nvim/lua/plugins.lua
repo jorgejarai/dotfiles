@@ -65,13 +65,14 @@ require('packer').startup(function(use)
         }
     }
     use 'windwp/nvim-ts-autotag' -- Autoclose tags
-    use 'ryanoasis/vim-devicons' -- Icons
     use { -- Yode
 	'hoschi/yode-nvim',
 	config = function()
 	    require('yode-nvim').setup({})
 	end
     }
+    use 'p00f/nvim-ts-rainbow' -- Rainbow parentheses
+    use 'ryanoasis/vim-devicons' -- Icons
 
     if packer_bootstrap then
         require('packer').sync()
