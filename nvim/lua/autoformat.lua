@@ -1,13 +1,7 @@
--- vim.cmd('au BufWritePre * undojoin | Neoformat')
--- vim.cmd(
-    -- 'au BufWritePre * try | undojoin | Neoformat | catch /^Vim\\%((\\a\\+)\\)\\=:E790/ | endtry')
-
--- Neoformat
-
 vim.cmd([[
 augroup fmt
     autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
+    au BufWritePre * try | undojoin | Neoformat | catch /^Vim\\%((\\a\\+)\\)\\=:E790/ | endtry
 augroup END
 ]])
 

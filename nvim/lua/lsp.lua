@@ -1,5 +1,5 @@
 local lsp = require 'lspconfig'
-local configs = require 'lspconfig/configs'
+local lsp_installer = require 'nvim-lsp-installer'
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -7,10 +7,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 local on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    local opts = {
-        noremap = true,
-        silent = true
-    }
+    local opts = {noremap = true, silent = true}
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD',
                                 '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd',
@@ -31,99 +28,93 @@ local on_attach = function(_, bufnr)
                                 '<cmd>lua vim.diagnostic.open_float(0, {scope="cursor"})<CR>',
                                 opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q',
-                                '<cmd>lua vim.diagnostic.setloclist()<CR>',
-                                opts)
+                                '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn',
                                 '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ls',
                                 "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
                                 opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d',
-                                '<cmd>lua vim.diagnostic.goto_prev()<CR>',
-                                opts)
+                                '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d',
-                                '<cmd>lua vim.diagnostic.goto_next()<CR>',
-                                opts)
+                                '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
 
-local language_servers = {
-    'bashls', 'cssls', 'cmake', 'html', 'pyright', 'rust_analyzer',
-    'tailwindcss', 'tsserver'
+local servers = {
+    "bashls", "cssls", "cmake", "html", "pyright", "rust_analyzer",
+    "tailwindcss", "tsserver", "clangd", "jsonls", "texlab", "sumneko_lua",
+    "emmetls", "bashls"
 }
 
-for _, server in ipairs(language_servers) do
-    lsp[server].setup {
-        on_attach = on_attach,
-        capabilities = capabilities
-    }
+for _, name in pairs(servers) do
+    local server_is_found, server = lsp_installer.get_server(name)
+
+    if server_is_found and not server:is_installed() then
+        print("Installing " .. name)
+        server:install()
+    end
 end
 
-lsp.clangd.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = {'clangd', '--background-index', '--clang-tidy'}
-}
-
-lsp.jsonls.setup {
-    capabilities = capabilities,
-    commands = {
-        Format = {
-            function()
-                vim.lsp.buf.range_formatting({}, {0, 0}, {vim.fn.line('$'), 0})
-            end
-        }
-    }
-}
-
-lsp.texlab.setup {
-    settings = {
-        texlab = {
-            build = {
-                args = {'%f', '--synctex', '--keep-logs', '-Zshell-escape'},
-                executable = 'tectonic',
-                onSave = true
-            },
-            chktex = {
-                onEdit = true,
-                onOpenAndSave = true
+local enhance_server_opts = {
+    ["clangd"] = function(opts)
+        opts.cmd = {'clangd', '--background-index', '--clang-tidy'}
+    end,
+    ["jsonls"] = function(opts)
+        opts.commands = {
+            Format = {
+                function()
+                    vim.lsp.buf.range_formatting({}, {0, 0},
+                                                 {vim.fn.line('$'), 0})
+                end
             }
         }
-    }
-}
-
-local lua_runtime_path = vim.split(package.path, ';')
-table.insert(lua_runtime_path, 'lua/?.lua')
-table.insert(lua_runtime_path, 'lua/?/init.lua')
-
-lsp.sumneko_lua.setup {
-    settings = {
-        Lua = {
-            runtime = {
-                version = 'LuaJIT',
-                path = lua_runtime_path
+    end,
+    ["texlab"] = function(opts)
+        opts.settings = {
+            build = {
+                args = {
+                    '-pvc', '-pdf', '-interaction=nonstopmode', "-shell-escape",
+                    "-synctex=1", "%f"
+                },
+                executable = 'latexmk',
+                forwardSearchAfter = false,
+                isContinuous = true
             },
-            diagnostics = {
-                globals = {'vim'}
-            },
-            workspace = {
-                library = {
-                    library = vim.api.nvim_get_runtime_file('', true)
+            chktex = {onEdit = true, onOpenAndSave = true},
+            latexindent = {["local"] = "~/Proyectos/dotfiles/latexindent.yml"}
+        }
+    end,
+    ["sumneko_lua"] = function(opts)
+        local lua_runtime_path = vim.split(package.path, ';')
+        table.insert(lua_runtime_path, 'lua/?.lua')
+        table.insert(lua_runtime_path, 'lua/?/init.lua')
+
+        opts.settings = {
+            Lua = {
+                runtime = {version = 'LuaJIT', path = lua_runtime_path},
+                diagnostics = {globals = {'vim'}},
+                workspace = {
+                    library = {
+                        library = vim.api.nvim_get_runtime_file('', true)
+                    }
                 }
             }
         }
-    }
+    end,
+    ["emmetls"] = function(opts)
+        opts.filetypes = {"html", "css", "typescriptreact", "javascriptreact"}
+    end
 }
 
-lsp.emmet_ls.setup({
-    -- on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { "html", "css", "typescriptreact", "javascriptreact" },
-})
-
-local lsp_installer = require('nvim-lsp-installer')
-
-lsp_installer.on_server_ready(function (server)
+lsp_installer.on_server_ready(function(server)
     local opts = {}
+
+    opts.on_attach = on_attach
+    opts.capabilities = capabilities
+
+    if enhance_server_opts[server.name] then
+        enhance_server_opts[server.name](opts)
+    end
 
     server:setup(opts)
 end)

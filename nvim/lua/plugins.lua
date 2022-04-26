@@ -18,7 +18,10 @@ require('packer').startup(function(use)
     use 'editorconfig/editorconfig-vim' -- Editorconfig support
     use 'kassio/neoterm' -- Terminal emulator
     use 'preservim/nerdtree' -- File tree sidebar
-    use 'neovim/nvim-lspconfig' -- LSP support
+    use {
+	'neovim/nvim-lspconfig', -- LSP support
+	'williamboman/nvim-lsp-installer' -- Install missing LSPs
+    }
     use { -- Fuzzy finder
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'}}
@@ -38,7 +41,6 @@ require('packer').startup(function(use)
         }
     }
     use 'SirVer/UltiSnips' -- Snippets
-    use 'williamboman/nvim-lsp-installer' -- Install missing LSPs
     use 'github/copilot.vim' -- GitHub Copilot
     use 'sbdchd/neoformat' -- Autoformat files
     use 'simrat39/rust-tools.nvim' -- Utils for Rust
@@ -72,6 +74,16 @@ require('packer').startup(function(use)
 	end
     }
     use 'p00f/nvim-ts-rainbow' -- Rainbow parentheses
+    use {
+	'narutoxy/dim.lua',
+	requires = {
+	    'nvim-treesitter/nvim-treesitter',
+	    'neovim/nvim-lspconfig'
+	},
+	config = function()
+	    require('dim').setup({})
+	end
+    }
     use 'ryanoasis/vim-devicons' -- Icons
 
     if packer_bootstrap then

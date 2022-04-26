@@ -1,7 +1,5 @@
 local function map(mode, lhs, rhs, opts)
-    local options = {
-        noremap = true
-    }
+    local options = {noremap = true}
     if opts then options = vim.tbl_extend('force', options, opts) end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
@@ -20,24 +18,16 @@ map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
 map('n', '<leader>fw', '<cmd>Telescope file_browser<CR>')
 
 -- Edit settings
-map('n', '<leader>e', ':e $MYVIMRC<CR>', {
-    silent = true
-})
+map('n', '<leader>e', ':e $MYVIMRC<CR>', {silent = true})
 
 -- Reload settings
-map('n', '<leader>r', ':so $MYVIMRC<CR>', {
-    silent = true
-})
+map('n', '<leader>r', ':so $MYVIMRC<CR>', {silent = true})
 
 -- Install plugins
-map('n', '<leader>p', ':PackerSync<CR>', {
-    silent = true
-})
+map('n', '<leader>p', ':PackerSync<CR>', {silent = true})
 
 -- Maximizer
-map('n', '<leader>m', ':MaximizerToggle!<CR>', {
-    silent = true
-})
+map('n', '<leader>m', ':MaximizerToggle!<CR>', {silent = true})
 
 -- Tabs
 map('n', '<leader>1', '1gt')
@@ -62,12 +52,8 @@ vim.cmd('cnoreabbrev tc tabclose')
 vim.cmd('cnoreabbrev to tabonly')
 
 -- Window split
-map('n', '<Leader>zv', ':wincmd v<CR>', {
-    silent = true
-})
-map('n', '<Leader>zs', ':wincmd s<CR>', {
-    silent = true
-})
+map('n', '<Leader>zv', ':wincmd v<CR>', {silent = true})
+map('n', '<Leader>zs', ':wincmd s<CR>', {silent = true})
 
 -- Equalise window size
 map('n', '<silent>', '<Leader>= :wincmd =<CR>')
@@ -85,10 +71,7 @@ map('', 's', '<cmd>HopChar1<CR>')
 map('o', 's', '<cmd>HopChar1<CR>')
 
 -- Copilot
-map('i', '<C-j>', 'copilot#Accept("<CR>")', {
-    expr = true,
-    silent = true
-})
+map('i', '<C-j>', 'copilot#Accept("<CR>")', {expr = true, silent = true})
 map('n', '<leader>cd', ':Copilot disable<CR>')
 map('n', '<leader>ce', ':Copilot enable<CR>')
 
@@ -105,7 +88,14 @@ map('', '<C-W>K', ':YodeLayoutShiftWinTop<CR>')
 vim.cmd('set showtabline=2')
 
 -- vim-easy-align
-vim.cmd[[
+vim.cmd [[
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 ]]
+
+-- Save and close commands
+vim.cmd('cnoreabbrev W w')
+vim.cmd('cnoreabbrev Q q')
+vim.cmd('cnoreabbrev wQ wq')
+vim.cmd('cnoreabbrev Wq wq')
+vim.cmd('cnoreabbrev WQ wq')
