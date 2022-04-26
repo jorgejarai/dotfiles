@@ -149,6 +149,8 @@ include "%L"
 <Multi_key> <Multi_key> <d> <e> <d> <o> <s>         : "👉🏻👈🏻"
 <Multi_key> <Multi_key> <w> <a> <t>                 : "😨"
 <Multi_key> <Multi_key> <g> <e> <i>                 : "🏳️‍🌈"
+<Multi_key> <Multi_key> <h> <o> <t>                 : "🥵"
+<Multi_key> <Multi_key> <e> <y> <e> <s>             : "👀"
 
 # Esperanto diacritics
 <Multi_key> <c> <x> : "ĉ"
