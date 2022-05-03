@@ -68,7 +68,7 @@ bindkey "^[[1;3D" backward-word
 export LS_COLORS="$(cat ~/.config/ls_colors)"
 
 # Load NVM
-[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh && nvm use 16.13.2 > /dev/null
+[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh && nvm use 16.14.2 > /dev/null
 
 # Load z
 [ -f $HOME/opt/z/z.sh ] && source $HOME/opt/z/z.sh
