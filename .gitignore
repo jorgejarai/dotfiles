@@ -87,3 +87,5 @@ shada/
 undo/
 
 test/vint
+
+nvim/plugin/
