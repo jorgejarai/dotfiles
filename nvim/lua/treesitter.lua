@@ -1,7 +1,7 @@
 local ts = require 'nvim-treesitter.configs'
 
 ts.setup {
-    ensure_installed = 'maintained',
+    ensure_installed = {'bash', 'bibtex', 'c', 'cmake', 'comment', 'cpp', 'css', 'dart', 'dockerfile', 'glsl', 'go', 'graphql', 'html', 'http', 'javascript', 'jsdoc', 'json', 'json5', 'jsonc', 'kotlin', 'latex', 'llvm', 'lua', 'make', 'php', 'phpdoc', 'prisma', 'python', 'regex', 'rust', 'scss', 'svelte', 'toml', 'tsx', 'typescript', 'vim', 'vue', 'yaml'},
     autotag = {
 	enable = true,
     },
