@@ -46,6 +46,8 @@ alias direwolf='direwolf -c $HOME/.direwolf.conf'
 
 alias rap='rsync -raP'
 
-alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland'
+# alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland'
+
+alias latexbuild='latexmk -pvc -pdf --shell-escape -pdflatex="pdflatex -interaction=nonstopmode -synctex=1" -outdir=build'
 
 # vim: set syntax=sh:
