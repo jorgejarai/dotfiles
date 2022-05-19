@@ -92,9 +92,12 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 ]]
 
--- Save and close commands
+-- Save, edit and close commands
 vim.cmd('cnoreabbrev W w')
 vim.cmd('cnoreabbrev Q q')
 vim.cmd('cnoreabbrev wQ wq')
 vim.cmd('cnoreabbrev Wq wq')
 vim.cmd('cnoreabbrev WQ wq')
+vim.cmd('cnoreabbrev Qa qa')
+vim.cmd('cnoreabbrev qA qa')
+vim.cmd('cnoreabbrev E e')
