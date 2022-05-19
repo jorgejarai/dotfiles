@@ -17,10 +17,9 @@ require('packer').startup(function(use)
     }
     use 'editorconfig/editorconfig-vim' -- Editorconfig support
     use 'kassio/neoterm' -- Terminal emulator
-    use 'preservim/nerdtree' -- File tree sidebar
     use {
-	'neovim/nvim-lspconfig', -- LSP support
-	'williamboman/nvim-lsp-installer' -- Install missing LSPs
+        'neovim/nvim-lspconfig', -- LSP support
+        'williamboman/nvim-lsp-installer' -- Install missing LSPs
     }
     use { -- Fuzzy finder
         'nvim-telescope/telescope.nvim',
@@ -61,33 +60,27 @@ require('packer').startup(function(use)
     }
     use { -- Status line
         'nvim-lualine/lualine.nvim',
-        requires = {
-            'kyazdani42/nvim-web-devicons',
-            opt = true
-        }
+        requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
     use 'windwp/nvim-ts-autotag' -- Autoclose tags
     use { -- Yode
-	'hoschi/yode-nvim',
-	config = function()
-	    require('yode-nvim').setup({})
-	end
+        'hoschi/yode-nvim',
+        config = function() require('yode-nvim').setup({}) end
     }
     use 'p00f/nvim-ts-rainbow' -- Rainbow parentheses
     use {
-	'narutoxy/dim.lua',
-	requires = {
-	    'nvim-treesitter/nvim-treesitter',
-	    'neovim/nvim-lspconfig'
-	},
-	config = function()
-	    require('dim').setup({})
-	end
+        'narutoxy/dim.lua',
+        requires = {'nvim-treesitter/nvim-treesitter', 'neovim/nvim-lspconfig'},
+        config = function() require('dim').setup({}) end
+    }
+    use { -- File tree sidebar
+        'kyazdani42/nvim-tree.lua',
+        requires = {'kyazdani42/nvim-web-devicons'},
+        tag = 'nightly',
+        config = function() require('nvim-tree').setup({}) end
     }
     use 'ryanoasis/vim-devicons' -- Icons
 
-    if packer_bootstrap then
-        require('packer').sync()
-    end
+    if packer_bootstrap then require('packer').sync() end
 end)
 

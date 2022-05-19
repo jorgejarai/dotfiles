@@ -7,8 +7,10 @@ end
 -- Set leader
 vim.g.mapleader = ' '
 
--- Toggle NERDTree
-map('n', '<F8>', ':NERDTreeToggle<CR>')
+-- nvim-tree
+map('n', '<c-n>', ':NvimTreeToggle<CR>', {silent = true})
+map('n', '<leader>r', ':NvimTreeRefresh<CR>', {silent = true})
+map('n', '<leader>n', ':NvimTreeFindFile<CR>', {silent = true})
 
 -- Telescope
 map('n', '<leader>ff', '<cmd>Telescope find_files<CR>')
@@ -19,9 +21,6 @@ map('n', '<leader>fw', '<cmd>Telescope file_browser<CR>')
 
 -- Edit settings
 map('n', '<leader>e', ':e $MYVIMRC<CR>', {silent = true})
-
--- Reload settings
-map('n', '<leader>r', ':so $MYVIMRC<CR>', {silent = true})
 
 -- Install plugins
 map('n', '<leader>p', ':PackerSync<CR>', {silent = true})
