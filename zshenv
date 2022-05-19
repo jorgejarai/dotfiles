@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+# $PATH
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home/"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
@@ -15,11 +18,17 @@ export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 export MANPATH=$HOME/perl5/man:$MANPATH
 
-export BAT_THEME="GitHub"
-
+# Locales
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
+
+# Cargo
 . "$HOME/.cargo/env"
 
-#export LDFLAGS="-L/usr/local/opt/llvm/lib"
-#export CPPFLAGS="-I/usr/local/opt/llvm/include"
+# Appearance
+export BAT_THEME="GitHub"
+export LS_COLORS="$(cat ~/.config/ls_colors)"
+
+# FZF
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_OPTS='--color=light --border=rounded --height=60%'

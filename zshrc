@@ -54,18 +54,11 @@ function precmd() {
 }
 
 # All hail FZF
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_DEFAULT_OPTS='--color=light --border=rounded --height=60%'
 
 # Use Alt+Left and Alt+Right for navigating between words
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
-
-# Custom ls colors
-export LS_COLORS="$(cat ~/.config/ls_colors)"
 
 # Load NVM
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh && nvm use 16.14.2 > /dev/null
