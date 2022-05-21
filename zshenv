@@ -32,3 +32,7 @@ export LS_COLORS="$(cat ~/.config/ls_colors)"
 # FZF
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS='--color=light --border=rounded --height=60%'
+
+# Default editor
+export VISUAL=nvim
+export EDITOR="$VISUAL"
