@@ -19,9 +19,7 @@ local press = function(key)
 end
 
 cmp.setup {
-    snippet = {
-        expand = function(args) vim.fn['UltiSnips#Anon'](args.body) end
-    },
+    snippet = {expand = function(args) vim.fn['UltiSnips#Anon'](args.body) end},
     mapping = {
         ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -57,35 +55,12 @@ cmp.setup {
             end
         end, {'i', 's', 'c'})
     },
-    sources = cmp.config.sources({
-        {
-            name = 'nvim_lsp'
-        }, {
-            name = 'ultisnips'
-        }
-    }, {
-        {
-            name = 'buffer'
-        }
-    })
+    sources = cmp.config.sources({{name = 'nvim_lsp'}, {name = 'ultisnips'}},
+                                 {{name = 'buffer'}})
 }
 
-cmp.setup.cmdline('/', {
-    sources = {
-        {
-            name = 'buffer'
-        }
-    }
-})
+cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
 
 cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-        {
-            name = 'path'
-        }
-    }, {
-        {
-            name = 'cmdline'
-        }
-    })
+    sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
 })

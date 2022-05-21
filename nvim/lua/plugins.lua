@@ -40,7 +40,6 @@ require('packer').startup(function(use)
         }
     }
     use 'SirVer/UltiSnips' -- Snippets
-    use 'github/copilot.vim' -- GitHub Copilot
     use 'sbdchd/neoformat' -- Autoformat files
     use 'simrat39/rust-tools.nvim' -- Utils for Rust
     use 'numToStr/Comment.nvim' -- Comment shortcut
@@ -63,10 +62,6 @@ require('packer').startup(function(use)
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
     use 'windwp/nvim-ts-autotag' -- Autoclose tags
-    use { -- Yode
-        'hoschi/yode-nvim',
-        config = function() require('yode-nvim').setup({}) end
-    }
     use 'p00f/nvim-ts-rainbow' -- Rainbow parentheses
     use {
         'narutoxy/dim.lua',
@@ -79,7 +74,25 @@ require('packer').startup(function(use)
         tag = 'nightly',
         config = function() require('nvim-tree').setup({}) end
     }
-    use 'ryanoasis/vim-devicons' -- Icons
+    use { -- Icons
+        'kyazdani42/nvim-web-devicons',
+        config = function()
+            require('nvim-web-devicons').setup({default = true})
+        end
+    }
+    use 'b0o/schemastore.nvim' -- JSON schemas
+    use {
+        'antoinemadec/FixCursorHold.nvim',
+        config = function() vim.g.cursorhold_updatetime = 100 end
+    } -- Fix CursorHold issues
+    -- use {
+    --     'zbirenbaum/copilot.lua',
+    --     event = 'InsertEnter',
+    --     config = function()
+    --         vim.schedule(function() require("copilot").setup() end)
+    --     end
+    -- }
+    -- use {'zbirenbaum/copilot-cmp', after = {'copilot.lua', 'nvim-cmp'}}
 
     if packer_bootstrap then require('packer').sync() end
 end)

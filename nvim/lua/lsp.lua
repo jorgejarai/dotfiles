@@ -68,6 +68,12 @@ local enhance_server_opts = {
                 end
             }
         }
+        opts.settings = {
+            json = {
+                schemas = require('schemastore').json.schemas(),
+                validate = {enable = true}
+            }
+        }
     end,
     ["texlab"] = function(opts)
         opts.settings = {
