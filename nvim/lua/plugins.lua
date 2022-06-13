@@ -85,6 +85,13 @@ require('packer').startup(function(use)
         'antoinemadec/FixCursorHold.nvim',
         config = function() vim.g.cursorhold_updatetime = 100 end
     } -- Fix CursorHold issues
+    use {
+        'nvim-neorg/neorg',
+        config = function()
+            require('neorg').setup {load = {['core.defaults'] = {}}}
+        end,
+        requires = 'nvim-lua/plenary.nvim'
+    }
     -- use {
     --     'zbirenbaum/copilot.lua',
     --     event = 'InsertEnter',
