@@ -39,8 +39,8 @@ cmp.setup {
                 press('<ESC>:call UltiSnips#JumpForwards()<CR>')
             elseif cmp.visible() then
                 cmp.select_next_item()
-            elseif has_any_words_before() then
-                press('<Tab>')
+                -- elseif has_any_words_before() then
+                --     press('<Tab>')
             else
                 fallback()
             end

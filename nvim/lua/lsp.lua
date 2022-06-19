@@ -1,5 +1,5 @@
-local lsp = require 'lspconfig'
-local lsp_installer = require 'nvim-lsp-installer'
+local lsp = require('lspconfig')
+local lsp_installer = require('nvim-lsp-installer')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -43,17 +43,10 @@ end
 local servers = {
     "bashls", "cssls", "cmake", "html", "pyright", "rust_analyzer",
     "tailwindcss", "tsserver", "clangd", "jsonls", "texlab", "sumneko_lua",
-    "emmetls", "bashls"
+    "emmet_ls", "bashls"
 }
 
-for _, name in pairs(servers) do
-    local server_is_found, server = lsp_installer.get_server(name)
-
-    if server_is_found and not server:is_installed() then
-        print("Installing " .. name)
-        server:install()
-    end
-end
+lsp_installer.setup({ensure_installed = servers, automatic_installation = true})
 
 local enhance_server_opts = {
     ["clangd"] = function(opts)
@@ -107,20 +100,18 @@ local enhance_server_opts = {
             }
         }
     end,
-    ["emmetls"] = function(opts)
+    ["emmet_ls"] = function(opts)
         opts.filetypes = {"html", "css", "typescriptreact", "javascriptreact"}
     end
 }
 
-lsp_installer.on_server_ready(function(server)
+for _, name in pairs(servers) do
     local opts = {}
 
     opts.on_attach = on_attach
     opts.capabilities = capabilities
 
-    if enhance_server_opts[server.name] then
-        enhance_server_opts[server.name](opts)
-    end
+    if enhance_server_opts[name] then enhance_server_opts[name](opts) end
 
-    server:setup(opts)
-end)
+    lsp[name].setup(opts)
+end
