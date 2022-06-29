@@ -27,11 +27,10 @@ alias dmenu='dmenu -b -fn "mono-10"'
 
 alias scrsize='printf "%sx%s\n" $COLUMNS $LINES'
 
-alias mp3dload='youtube-dl -x --audio-format mp3'
-alias oggdload='youtube-dl -x --audio-format vorbis'
-alias destreamer='$HOME/Sources/destreamer/destreamer.sh -o /tmp/'
-
 alias ydl='yt-dlp --cookies ~/Downloads/cookies.Facebook.txt'
+
+alias mp3dload='ydl -x --audio-format mp3'
+alias oggdload='ydl -x --audio-format vorbis'
 
 alias nethackx11='NETHACKOPTIONS="windowtype:x11" nethack'
 alias nethackcurses='NETHACKOPTIONS="windowtype:curses" nethack'
