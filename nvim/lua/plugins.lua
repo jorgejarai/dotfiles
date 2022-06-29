@@ -8,6 +8,13 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     })
 end
 
+vim.cmd [[
+    augroup packer_user_config
+	autocmd!
+	autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    augroup end
+]]
+
 vim.cmd('packadd packer.nvim')
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim' -- Plugin manager
@@ -17,17 +24,13 @@ require('packer').startup(function(use)
     }
     use 'editorconfig/editorconfig-vim' -- Editorconfig support
     use 'kassio/neoterm' -- Terminal emulator
-    use {
-        'neovim/nvim-lspconfig', -- LSP support
-        'williamboman/nvim-lsp-installer' -- Install missing LSPs
-    }
+    use {'williamboman/nvim-lsp-installer', 'neovim/nvim-lspconfig'}
     use { -- Fuzzy finder
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'}}
     }
     use 'tpope/vim-fugitive' -- Git support
     use 'itchyny/vim-gitbranch' -- Get current Git branch name
-    use 'airblade/vim-gitgutter' -- Git gutter
     use 'junegunn/vim-peekaboo' -- Preview contents of registers
     use 'kosayoda/nvim-lightbulb' -- Shows available code actions
     use 'mhinz/vim-startify' -- Start screen
@@ -81,18 +84,37 @@ require('packer').startup(function(use)
         end
     }
     use 'b0o/schemastore.nvim' -- JSON schemas
-    use {
+    use { -- Fix CursorHold issues
         'antoinemadec/FixCursorHold.nvim',
         config = function() vim.g.cursorhold_updatetime = 100 end
-    } -- Fix CursorHold issues
-    -- use {
-    --     'zbirenbaum/copilot.lua',
-    --     event = 'InsertEnter',
-    --     config = function()
-    --         vim.schedule(function() require("copilot").setup() end)
-    --     end
-    -- }
-    -- use {'zbirenbaum/copilot-cmp', after = {'copilot.lua', 'nvim-cmp'}}
+    }
+    use { -- Org-mode like features
+        'nvim-neorg/neorg',
+        config = function()
+            require('neorg').setup {load = {['core.defaults'] = {}}}
+        end,
+        requires = 'nvim-lua/plenary.nvim'
+    }
+    use { -- Git gutter
+        'lewis6991/gitsigns.nvim',
+        config = function() require('gitsigns').setup() end
+    }
+    use { -- FZF for Telescope
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+    }
+    use 'cljoly/telescope-repo.nvim'
+    use {
+        "AckslD/nvim-neoclip.lua",
+        requires = {
+            {'tami5/sqlite.lua', module = 'sqlite'},
+            {'nvim-telescope/telescope.nvim'}
+        },
+        config = function()
+            require('neoclip').setup({enable_persistent_history = true})
+        end
+    }
+    use 'nvim-telescope/telescope-z.nvim'
 
     if packer_bootstrap then require('packer').sync() end
 end)

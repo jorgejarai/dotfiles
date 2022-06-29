@@ -49,4 +49,7 @@ alias rap='rsync -raP'
 
 alias latexbuild='latexmk -pvc -pdf --shell-escape -pdflatex="pdflatex -interaction=nonstopmode -synctex=1" -outdir=build'
 
+alias desk_on='ssh pi "~/.local/bin/desk_on"'
+alias desk_off='ssh pi "~/.local/bin/desk_off"'
+
 # vim: set syntax=sh:

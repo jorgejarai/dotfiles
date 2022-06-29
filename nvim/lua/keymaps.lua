@@ -18,6 +18,9 @@ map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 map('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
 map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
 map('n', '<leader>fw', '<cmd>Telescope file_browser<CR>')
+map('n', '<leader>fr', '<cmd>Telescope repo list<CR>')
+map('n', '<leader>fc', '<cmd>Telescope neoclip<CR>')
+map('n', '<leader>fz', '<cmd>Telescope z list<CR>')
 
 -- Edit settings
 map('n', '<leader>e', ':e $MYVIMRC<CR>', {silent = true})
