@@ -43,7 +43,7 @@ end
 local servers = {
     "bashls", "cssls", "cmake", "html", "pyright", "rust_analyzer",
     "tailwindcss", "tsserver", "clangd", "jsonls", "texlab", "sumneko_lua",
-    "emmet_ls", "bashls"
+    "emmet_ls", "bashls", "prismals", "dartls"
 }
 
 lsp_installer.setup({ensure_installed = servers, automatic_installation = true})

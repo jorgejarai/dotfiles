@@ -10,7 +10,7 @@ vim.g.mapleader = ' '
 -- nvim-tree
 map('n', '<c-n>', ':NvimTreeToggle<CR>', {silent = true})
 map('n', '<leader>r', ':NvimTreeRefresh<CR>', {silent = true})
-map('n', '<leader>n', ':NvimTreeFindFile<CR>', {silent = true})
+-- map('n', '<leader>n', ':NvimTreeFindFile<CR>', {silent = true})
 
 -- Telescope
 map('n', '<leader>ff', '<cmd>Telescope find_files<CR>')
@@ -21,6 +21,8 @@ map('n', '<leader>fw', '<cmd>Telescope file_browser<CR>')
 map('n', '<leader>fr', '<cmd>Telescope repo list<CR>')
 map('n', '<leader>fc', '<cmd>Telescope neoclip<CR>')
 map('n', '<leader>fz', '<cmd>Telescope z list<CR>')
+map('n', '<leader>fnf', '<cmd>Telescope neorg find_linkable<CR>')
+map('n', '<leader>fnl', '<cmd>Telescope neorg insert_link<CR>')
 
 -- Edit settings
 map('n', '<leader>e', ':e $MYVIMRC<CR>', {silent = true})
@@ -92,3 +94,6 @@ vim.cmd('cnoreabbrev WQ wq')
 vim.cmd('cnoreabbrev Qa qa')
 vim.cmd('cnoreabbrev qA qa')
 vim.cmd('cnoreabbrev E e')
+
+-- Neorg
+-- See ./neorg_conf.lua

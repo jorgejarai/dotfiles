@@ -90,10 +90,7 @@ require('packer').startup(function(use)
     }
     use { -- Org-mode like features
         'nvim-neorg/neorg',
-        config = function()
-            require('neorg').setup {load = {['core.defaults'] = {}}}
-        end,
-        requires = 'nvim-lua/plenary.nvim'
+        requires = {'nvim-lua/plenary.nvim', "nvim-neorg/neorg-telescope"}
     }
     use { -- Git gutter
         'lewis6991/gitsigns.nvim',
@@ -115,6 +112,19 @@ require('packer').startup(function(use)
         end
     }
     use 'nvim-telescope/telescope-z.nvim'
+    use {
+        "zbirenbaum/copilot.lua",
+        event = {"VimEnter"},
+        config = function()
+            vim.defer_fn(function() require("copilot").setup() end, 100)
+        end
+    }
+    use {"zbirenbaum/copilot-cmp", module = "copilot_cmp"}
+    use {
+        'akinsho/flutter-tools.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+        config = require("flutter-tools").setup({})
+    }
 
     if packer_bootstrap then require('packer').sync() end
 end)

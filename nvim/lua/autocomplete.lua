@@ -55,8 +55,9 @@ cmp.setup {
             end
         end, {'i', 's', 'c'})
     },
-    sources = cmp.config.sources({{name = 'nvim_lsp'}, {name = 'ultisnips'}},
-                                 {{name = 'buffer'}})
+    sources = cmp.config.sources({
+        {name = 'copilot'}, {name = 'nvim_lsp'}, {name = 'ultisnips'}
+    }, {{name = 'buffer'}})
 }
 
 cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
