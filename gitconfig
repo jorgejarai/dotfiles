@@ -39,3 +39,5 @@
 	first-run = false
 [pull]
 	rebase = false
+[safe]
+	directory = /opt/flutter
