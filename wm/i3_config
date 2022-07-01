@@ -101,6 +101,10 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86MonBrightnessUp exec xbacklight -inc 1 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 1 # decrease screen brightness
 
+# keyboard brightness controls
+bindsym XF86KbdBrightnessUp exec brightnessctl --device smc::kbd_backlight set 10%+
+bindsym XF86KbdBrightnessDown exec brightnessctl --device smc::kbd_backlight set 10%-
+
 # Screenshot
 bindsym --release $mod+z exec scrot -fF "/home/jorge/Pictures/Screenshots/Screenshot_%Y%M%d_%H%M%S.png" -s
 
