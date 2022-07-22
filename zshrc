@@ -65,3 +65,6 @@ bindkey "^[[1;3D" backward-word
 
 # Load z
 [ -f $HOME/opt/z/z.sh ] && source $HOME/opt/z/z.sh
+
+# bun completions
+[ -s "/home/jorge/.bun/_bun" ] && source "/home/jorge/.bun/_bun"
