@@ -112,14 +112,14 @@ require('packer').startup(function(use)
         end
     }
     use 'nvim-telescope/telescope-z.nvim'
-    use {
-        "zbirenbaum/copilot.lua",
-        event = {"VimEnter"},
-        config = function()
-            vim.defer_fn(function() require("copilot").setup() end, 100)
-        end
-    }
-    use {"zbirenbaum/copilot-cmp", module = "copilot_cmp"}
+    -- use {
+    --     "zbirenbaum/copilot.lua",
+    --     event = {"VimEnter"},
+    --     config = function()
+    -- vim.defer_fn(function() require("copilot").setup() end, 100)
+    --     end
+    -- }
+    -- use {"zbirenbaum/copilot-cmp", module = "copilot_cmp"}
     use {
         'akinsho/flutter-tools.nvim',
         requires = 'nvim-lua/plenary.nvim',
