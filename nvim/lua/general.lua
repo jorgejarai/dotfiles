@@ -10,6 +10,7 @@ vim.opt.wildmode = {'longest', 'list', 'full'}
 vim.opt.wrap = true
 vim.opt.filetype = 'on'
 vim.opt.lazyredraw = true
+vim.opt.shell = '/bin/bash'
 
 -- Search
 -- vim.opt.hlsearch = true
