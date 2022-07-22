@@ -51,7 +51,6 @@ export no_proxy="localhost,127.0.0.1,localaddress,.udec.cl"
 
 # Miscellaneous
 export BAT_THEME="GitHub"
-export EDITOR=nvim
 
 # Custom ls colors
 export LS_COLORS="$(cat ~/.config/ls_colors)"
@@ -62,3 +61,10 @@ export FZF_DEFAULT_COMMAND='fd --type f' export FZF_DEFAULT_OPTS='--color=light 
 # Bun
 export BUN_INSTALL="/home/jorge/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Default editor
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
+# Google Chrome executable
+export CHROME_EXECUTABLE="google-chrome-stable"
