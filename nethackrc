@@ -35,6 +35,9 @@ MENUCOLOR="cursed"=orange&bold
 MENUCOLOR="uncursed"=green
 MENUCOLOR="blessed"=cyan&bold
 
+MENUCOLOR="holy"=cyan&bold
+MENUCOLOR="unholy"=orange&bold
+
 MENUCOLOR="loadstone\|wand \(of\|called\) cancellation"=red&bold
 MENUCOLOR="Amulet of Yendor named"=magenta
 MENUCOLOR="gold piece"=yellow
