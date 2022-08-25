@@ -61,7 +61,7 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 
 # Load NVM
-[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh && nvm use 16.14.2 > /dev/null
+[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh && nvm use 16.17.0 > /dev/null
 
 # Load z
 [ -f $HOME/opt/z/z.sh ] && source $HOME/opt/z/z.sh
