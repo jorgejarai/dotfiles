@@ -43,7 +43,7 @@ end
 local servers = {
     "bashls", "cssls", "cmake", "html", "pyright", "rust_analyzer",
     "tailwindcss", "tsserver", "clangd", "jsonls", "texlab", "sumneko_lua",
-    "emmet_ls", "bashls", "prismals", "dartls"
+    "emmet_ls", "bashls", "prismals"
 }
 
 lsp_installer.setup({ensure_installed = servers, automatic_installation = true})
@@ -51,6 +51,7 @@ lsp_installer.setup({ensure_installed = servers, automatic_installation = true})
 local enhance_server_opts = {
     ["clangd"] = function(opts)
         opts.cmd = {'clangd', '--background-index', '--clang-tidy'}
+        opts.capabilities.offsetEncoding = 'utf-8'
     end,
     ["jsonls"] = function(opts)
         opts.commands = {

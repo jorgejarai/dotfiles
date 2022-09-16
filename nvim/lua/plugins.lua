@@ -15,7 +15,7 @@ vim.cmd [[
     augroup end
 ]]
 
-vim.cmd('packadd packer.nvim')
+-- vim.cmd('packadd packer.nvim')
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim' -- Plugin manager
     use { -- Treesitter
@@ -112,19 +112,26 @@ require('packer').startup(function(use)
         end
     }
     use 'nvim-telescope/telescope-z.nvim'
-    -- use {
-    --     "zbirenbaum/copilot.lua",
-    --     event = {"VimEnter"},
-    --     config = function()
-    -- vim.defer_fn(function() require("copilot").setup() end, 100)
-    --     end
-    -- }
-    -- use {"zbirenbaum/copilot-cmp", module = "copilot_cmp"}
+    use {
+        "zbirenbaum/copilot.lua",
+        event = {"VimEnter"},
+        config = function()
+            vim.defer_fn(function() require("copilot").setup() end, 100)
+        end
+    }
+    use {
+        "zbirenbaum/copilot-cmp",
+        after = {"copilot.lua"},
+        config = function()
+            require("copilot_cmp").setup({method = 'getCompletionsCycling'})
+        end
+    }
     use {
         'akinsho/flutter-tools.nvim',
         requires = 'nvim-lua/plenary.nvim',
-        config = require("flutter-tools").setup({})
+        config = function()require("flutter-tools").setup({})end
     }
+    use {'onsails/lspkind-nvim'}
 
     if packer_bootstrap then require('packer').sync() end
 end)

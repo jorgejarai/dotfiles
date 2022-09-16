@@ -74,11 +74,6 @@ map('n', '<leader>gg', ':G<CR>')
 map('', 's', '<cmd>HopChar1<CR>')
 map('o', 's', '<cmd>HopChar1<CR>')
 
--- Copilot
-map('i', '<C-j>', 'copilot#Accept("<CR>")', {expr = true, silent = true})
-map('n', '<leader>cd', ':Copilot disable<CR>')
-map('n', '<leader>ce', ':Copilot enable<CR>')
-
 -- vim-easy-align
 vim.cmd [[
 xmap ga <Plug>(EasyAlign)
@@ -91,6 +86,9 @@ vim.cmd('cnoreabbrev Q q')
 vim.cmd('cnoreabbrev wQ wq')
 vim.cmd('cnoreabbrev Wq wq')
 vim.cmd('cnoreabbrev WQ wq')
+vim.cmd('cnoreabbrev wA wa')
+vim.cmd('cnoreabbrev Wa wa')
+vim.cmd('cnoreabbrev WA wa')
 vim.cmd('cnoreabbrev Qa qa')
 vim.cmd('cnoreabbrev qA qa')
 vim.cmd('cnoreabbrev E e')

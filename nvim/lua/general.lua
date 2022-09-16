@@ -19,17 +19,14 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Indentation
--- vim.opt.autoindent = true
+vim.opt.autoindent = true
 vim.opt.expandtab = false
 vim.opt.shiftround = true
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 8
 
-vim.opt.listchars = {
-    tab = '»·',
-    trail = '·'
-}
+vim.opt.listchars = {tab = '»·', trail = '·'}
 
 -- Persist undo history between sessions
 vim.opt.undofile = true
