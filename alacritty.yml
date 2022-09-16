@@ -1,0 +1,53 @@
+window:
+  dimensions:
+    columns: 80
+    lines: 24
+
+  padding:
+    x: 2
+    y: 2
+
+font:
+  normal:
+    family: Iosevka Nerd Font
+    style: Text
+
+  bold:
+    family: Iosevka Nerd Font
+    style: Bold
+
+  italic:
+    family: Iosevka Nerd Font
+    style: Text Italic
+
+  bold_italic:
+    family: Iosevka Nerd Font
+    style: Bold Italic
+
+  size: 13
+
+colors:
+  # COLORSCHEME: atom_one_light.yaml
+  primary:
+    background: "0xf8f8f8"
+    foreground: "0x2a2b33"
+
+  normal:
+    black: "0x000000"
+    red: "0xde3d35"
+    green: "0x3e953a"
+    yellow: "0xd2b67b"
+    blue: "0x2f5af3"
+    magenta: "0xa00095"
+    cyan: "0x3e953a"
+    white: "0xbbbbbb"
+
+  bright:
+    black: "0x000000"
+    red: "0xde3d35"
+    green: "0x3e953a"
+    yellow: "0xd2b67b"
+    blue: "0x2f5af3"
+    magenta: "0xa00095"
+    cyan: "0x3e953a"
+    white: "0xffffff"
