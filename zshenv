@@ -68,3 +68,12 @@ export EDITOR="$VISUAL"
 
 # Google Chrome executable
 export CHROME_EXECUTABLE="google-chrome-stable"
+
+# Ruby gems
+export PATH="/home/jorge/.local/share/gem/ruby/3.0.0/bin:$PATH"
+
+# DJGPP cross-compiler
+export PATH="/home/jorge/opt/djgpp/bin:$PATH"
+
+# AMPL
+export PATH="/home/jorge/opt/ampl:$PATH"
