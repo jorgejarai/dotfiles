@@ -14,8 +14,10 @@ alias egrep='egrep --color=always'
 alias ll='ls -la'
 
 alias bc='bc -l -q ~/.config/bcrc'
-alias cd..='cd ..'
+
 alias hd='hexdump -C'
+
+alias cd..='cd ..'
 
 alias ncal='ncal -s ES -b'
 alias epoch='date +%s'
