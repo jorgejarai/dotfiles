@@ -30,7 +30,7 @@ include "%L"
 <Multi_key> <w> <j> : "⁠"
 
 # Non-breaking space
-<Multi_key> <Multi_key> <n> <b> <s> <p> : " "
+<Multi_key> <Multi_key> <space> <space> : " "
 
 # Square root
 <Multi_key> <s> <q> : "√"
@@ -69,6 +69,7 @@ include "%L"
 <Multi_key> <bar> <bar>: "∨"
 <Multi_key> <asciitilde> <grave>: "¬"
 <Multi_key> <grave> <asciitilde>: "¬"
+<Multi_key> <n> <o> <t>: "¬"
 
 # Set theory
 <Multi_key> <e> <o> : "∈"
@@ -162,7 +163,10 @@ include "%L"
 <Multi_key> <Multi_key> <u> <period> <u>            : "😓"
 <Multi_key> <Multi_key> <d> <e> <d> <o> <s>         : "👉🏻👈🏻"
 <Multi_key> <Multi_key> <w> <a> <t>                 : "😨"
-<Multi_key> <Multi_key> <y> <a> <w> <n>             : "🥱"
+<Multi_key> <Multi_key> <g> <e> <i>                 : "🏳️‍🌈"
+<Multi_key> <Multi_key> <h> <o> <t>                 : "🥵"
+<Multi_key> <Multi_key> <e> <y> <e> <s>             : "👀"
+<Multi_key> <Multi_key> <p> <d> <g>                 : "🤑"
 
 # Esperanto diacritics
 <Multi_key> <c> <x> : "ĉ"
@@ -189,3 +193,50 @@ include "%L"
 <Multi_key> <J> <X> : "Ĵ"
 <Multi_key> <S> <X> : "Ŝ"
 <Multi_key> <U> <X> : "Ŭ"
+
+# Subscript characters
+<Multi_key> <underscore> <0> : "₀"
+<Multi_key> <underscore> <1> : "₁"
+<Multi_key> <underscore> <2> : "₂"
+<Multi_key> <underscore> <3> : "₃"
+<Multi_key> <underscore> <4> : "₄"
+<Multi_key> <underscore> <5> : "₅"
+<Multi_key> <underscore> <6> : "₆"
+<Multi_key> <underscore> <7> : "₇"
+<Multi_key> <underscore> <8> : "₈"
+<Multi_key> <underscore> <9> : "₉"
+<Multi_key> <underscore> <minus> : "₋"
+<Multi_key> <underscore> <plus> : "₊"
+
+# Superscript characters
+<Multi_key> <p> <0> : "⁰"
+<Multi_key> <p> <1> : "¹"
+<Multi_key> <p> <2> : "²"
+<Multi_key> <p> <3> : "³"
+<Multi_key> <p> <4> : "⁴"
+<Multi_key> <p> <5> : "⁵"
+<Multi_key> <p> <6> : "⁶"
+<Multi_key> <p> <7> : "⁷"
+<Multi_key> <p> <8> : "⁸"
+<Multi_key> <p> <9> : "⁹"
+<Multi_key> <p> <minus> : "⁻"
+<Multi_key> <p> <plus> : "⁺"
+<Multi_key> <o> <a> : "ᵃ"
+
+# Arrows
+<Multi_key> <minus> <less> : "←"
+<Multi_key> <minus> <greater> : "→"
+<Multi_key> <minus> <equal> : "⇐"
+<Multi_key> <equal> <greater> : "⇒"
+
+# Spanish quotes
+<Multi_key> <less> <less> : "«"
+<Multi_key> <greater> <greater> : "»"
+
+# Interrobang
+<Multi_key> <question> <exclam> : "‽"
+<Multi_key> <exclam> <question> : "⸘"
+
+# Approximate symbol
+<Multi_key> <a> <p> <r> : "≈"
+

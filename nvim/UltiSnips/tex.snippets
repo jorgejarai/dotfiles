@@ -1,0 +1,126 @@
+snippet skel "Document skeleton" b
+\documentclass[letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{tikz}
+\usepackage[margin=2cm]{geometry}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+
+\title{$1}
+\author{Jorge Jara}
+\date{$2}
+
+\begin{document}
+    \maketitle
+
+    $0
+\end{document}
+endsnippet
+
+snippet it "Italic text"
+\textit{$1}
+endsnippet
+
+snippet bf "Bold text"
+\textbf{$1}
+endsnippet
+
+snippet tt "Monospaced text"
+\texttt{$1}
+endsnippet
+
+snippet frame "Beamer frame" b
+\begin{frame}{$1}
+    $0
+\end{frame}
+endsnippet
+
+snippet frag "Fragile Beamer frame" b
+\begin{frame}{$1}[fragile]
+    $0
+\end{frame}
+endsnippet
+
+snippet beg "Begin environment" b
+\begin{$1}
+    $0
+\end{$1}
+endsnippet
+
+snippet fig "Figure" b
+\begin{figure}[H]
+    \centering
+    $0
+\end{figure}
+endsnippet
+
+snippet tab "Table" b
+\begin{tabular}{$1}
+    $0
+\end{tabular}
+endsnippet
+
+snippet minted "Minted code" b
+\begin{minted}{$1}
+    $0
+\end{minted}
+endsnippet
+
+snippet inmint "Inline Minted"
+\mintinline{$1}{$2}
+endsnippet
+
+snippet de "Display equation"
+\[ $1 \]
+endsnippet
+
+snippet ie "Inline equation"
+\( $1 \)
+endsnippet
+
+snippet item "Bullet list" b
+\begin{itemize}
+    \item $0
+\end{itemize}
+endsnippet
+
+snippet enum "Numbered list" b
+\begin{enumerate}
+    \item $0
+\end{enumerate}
+endsnippet
+
+snippet i "List item" b
+\item
+endsnippet
+
+snippet sc "Section" b
+\section{$1}
+endsnippet
+
+snippet ssc "Subsection" b
+\section{$1}
+endsnippet
+
+snippet sssc "Subsubsection" b
+\section{$1}
+endsnippet
+
+snippet sc* "Section (unnumbered)" b
+\section{$1}
+endsnippet
+
+snippet ssc* "Subsection (unnumbered)" b
+\section{$1}
+endsnippet
+
+snippet sssc* "Subsubsection (unnumbered)" b
+\section{$1}
+endsnippet
+
