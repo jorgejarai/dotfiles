@@ -1,5 +1,4 @@
 local lsp = require('lspconfig')
-local lsp_installer = require('nvim-lsp-installer')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -42,17 +41,11 @@ end
 
 local servers = {
     "bashls", "cssls", "cmake", "html", "pyright", "rust_analyzer",
-    "tailwindcss", "tsserver", "clangd", "jsonls", "texlab", "sumneko_lua",
-    "emmet_ls", "bashls", "prismals"
+    "tailwindcss", "tsserver", "jsonls", "texlab", "sumneko_lua", "emmet_ls",
+    "bashls", "prismals"
 }
 
-lsp_installer.setup({ensure_installed = servers, automatic_installation = true})
-
 local enhance_server_opts = {
-    ["clangd"] = function(opts)
-        opts.cmd = {'clangd', '--background-index', '--clang-tidy'}
-        opts.capabilities.offsetEncoding = 'utf-8'
-    end,
     ["jsonls"] = function(opts)
         opts.commands = {
             Format = {
@@ -71,17 +64,20 @@ local enhance_server_opts = {
     end,
     ["texlab"] = function(opts)
         opts.settings = {
+            auxDirectory = 'build',
             build = {
                 args = {
-                    '-pvc', '-pdf', '-interaction=nonstopmode', "-shell-escape",
-                    "-synctex=1", "%f"
+                    '-pdf', '-interaction=nonstopmode', "-shell-escape",
+                    "-synctex=1", '-outdir=build', "%f"
                 },
                 executable = 'latexmk',
                 forwardSearchAfter = false,
-                isContinuous = true
+                isContinuous = true,
+                onSave = true
             },
             chktex = {onEdit = true, onOpenAndSave = true},
-            latexindent = {["local"] = "~/Proyectos/dotfiles/latexindent.yml"}
+            latexindent = {["local"] = "~/Proyectos/dotfiles/latexindent.yml"},
+            forwardSearch = {executable = 'zathura', args = {'%p'}}
         }
     end,
     ["sumneko_lua"] = function(opts)
@@ -116,3 +112,13 @@ for _, name in pairs(servers) do
 
     lsp[name].setup(opts)
 end
+
+require("clangd_extensions").setup({
+    server = {
+        cmd = {'clangd', '--background-index', '--clang-tidy'},
+        capabilities = {offsetEncoding = 'utf-8'}
+    }
+})
+
+require('mason').setup()
+require('mason-lspconfig').setup({ensure_installed = servers})

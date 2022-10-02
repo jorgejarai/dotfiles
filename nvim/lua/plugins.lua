@@ -24,7 +24,10 @@ require('packer').startup(function(use)
     }
     use 'editorconfig/editorconfig-vim' -- Editorconfig support
     use 'kassio/neoterm' -- Terminal emulator
-    use {'williamboman/nvim-lsp-installer', 'neovim/nvim-lspconfig'}
+    use {
+        "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig"
+    }
     use { -- Fuzzy finder
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'}}
@@ -129,9 +132,11 @@ require('packer').startup(function(use)
     use {
         'akinsho/flutter-tools.nvim',
         requires = 'nvim-lua/plenary.nvim',
-        config = function()require("flutter-tools").setup({})end
+        config = function() require("flutter-tools").setup({}) end
     }
     use {'onsails/lspkind-nvim'}
+    use {'p00f/clangd_extensions.nvim'}
+    use {'williamboman/mason.nvim'}
 
     if packer_bootstrap then require('packer').sync() end
 end)
