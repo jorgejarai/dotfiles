@@ -126,7 +126,10 @@ require('packer').startup(function(use)
         "zbirenbaum/copilot-cmp",
         after = {"copilot.lua"},
         config = function()
-            require("copilot_cmp").setup({method = 'getCompletionsCycling'})
+            require("copilot_cmp").setup({
+                method = 'getCompletionsCycling',
+                insert_text = require('copilot_cmp.format').remove_existing
+            })
         end
     }
     use {
@@ -136,7 +139,6 @@ require('packer').startup(function(use)
     }
     use {'onsails/lspkind-nvim'}
     use {'p00f/clangd_extensions.nvim'}
-    use {'williamboman/mason.nvim'}
 
     if packer_bootstrap then require('packer').sync() end
 end)

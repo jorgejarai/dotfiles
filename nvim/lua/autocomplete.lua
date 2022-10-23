@@ -29,7 +29,7 @@ cmp.setup {
         ['<C-e>'] = cmp.mapping.close(),
         ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace, -- Replace
-            select = true
+            select = false
         },
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.get_selected_entry() == nil and
