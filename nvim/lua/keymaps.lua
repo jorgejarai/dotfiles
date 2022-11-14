@@ -9,7 +9,7 @@ vim.g.mapleader = ' '
 
 -- nvim-tree
 map('n', '<c-n>', ':NvimTreeToggle<CR>', {silent = true})
-map('n', '<leader>r', ':NvimTreeRefresh<CR>', {silent = true})
+map('n', '<leader>rr', ':NvimTreeRefresh<CR>', {silent = true})
 -- map('n', '<leader>n', ':NvimTreeFindFile<CR>', {silent = true})
 
 -- Telescope
@@ -23,9 +23,6 @@ map('n', '<leader>fc', '<cmd>Telescope neoclip<CR>')
 map('n', '<leader>fz', '<cmd>Telescope z list<CR>')
 map('n', '<leader>fnf', '<cmd>Telescope neorg find_linkable<CR>')
 map('n', '<leader>fnl', '<cmd>Telescope neorg insert_link<CR>')
-
--- Edit settings
-map('n', '<leader>e', ':e $MYVIMRC<CR>', {silent = true})
 
 -- Install plugins
 map('n', '<leader>p', ':PackerSync<CR>', {silent = true})
