@@ -77,3 +77,6 @@ export PATH="/home/jorge/opt/djgpp/bin:$PATH"
 
 # AMPL
 export PATH="/home/jorge/opt/ampl:$PATH"
+
+# Gurobi license file
+export GRB_LICENSE_FILE="/home/jorge/opt/gurobi.lic"
