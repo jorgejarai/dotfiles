@@ -6,7 +6,7 @@ ZSH_THEME="jorge"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git zsh-syntax-highlighting battery command-not-found zsh-autosuggestions)
+plugins=(git zsh-syntax-highlighting battery command-not-found zsh-autosuggestions zsh-z)
 
 source $ZSH/oh-my-zsh.sh
 
