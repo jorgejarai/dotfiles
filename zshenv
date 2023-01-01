@@ -80,3 +80,6 @@ export PATH="/home/jorge/opt/ampl:$PATH"
 
 # Gurobi license file
 export GRB_LICENSE_FILE="/home/jorge/opt/gurobi.lic"
+
+# Cargo: Use git executable for fetching
+export CARGO_NET_GIT_FETCH_WITH_CLI=true
