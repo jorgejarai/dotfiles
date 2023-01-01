@@ -24,7 +24,7 @@ font:
     family: Iosevka Nerd Font
     style: Bold Italic
 
-  size: 11
+  size: 12
 
 colors:
   # COLORSCHEME: atom_one_light.yaml
