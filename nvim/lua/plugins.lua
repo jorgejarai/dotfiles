@@ -139,6 +139,8 @@ require('packer').startup(function(use)
     }
     use {'onsails/lspkind-nvim'}
     use {'p00f/clangd_extensions.nvim'}
+    use {'eandrju/cellular-automaton.nvim'}
+    use {'jose-elias-alvarez/typescript.nvim'}
 
     if packer_bootstrap then require('packer').sync() end
 end)
