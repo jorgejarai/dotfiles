@@ -63,4 +63,6 @@ alias get='git '
 
 alias syncmusic='rap ~/Music/ desk:/mnt/hdd/Music/ && rap desk:/mnt/hdd/Music/ ~/Music/'
 
+alias clipboard='xclip -selection clipboard'
+
 # vim: set syntax=sh:
