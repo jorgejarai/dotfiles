@@ -8,8 +8,11 @@ export PATH="$PATH:$ANDROID_HOME/tools"
 export PATH="$PATH:$ANDROID_HOME/tools/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
-# .local/bin
-export PATH="$PATH:$HOME/.local/bin"
+# ~/bin
+export PATH="$HOME/bin:$PATH"
+
+# ~/.local/bin
+export PATH="$HOME/.local/bin:$PATH"
 
 # Yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
