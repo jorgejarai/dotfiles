@@ -51,4 +51,13 @@ if not vim.g.vscode then
             lsp_ok = 'middle'
         }
     }
+
+    vim.cmd([[
+	hi DiagnosticFloatingInfo guifg=#3191d6
+
+	hi DiagnosticVirtualTextInfo guifg=#3191d6 gui=bold,italic
+	hi DiagnosticVirtualTextError guifg=#fe0505 gui=bold,italic
+	hi DiagnosticVirtualTextWarn guifg=#faaa17 gui=bold,italic
+	hi DiagnosticVirtualTextHint guifg=#3191d6 gui=bold,italic
+    ]])
 end
