@@ -1,7 +1,7 @@
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
 local cmp = require('cmp')
-local lspkind = require('lspkind')
+-- local lspkind = require('lspkind')
 
 -- local has_words_before = function()
 --     if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
@@ -53,15 +53,15 @@ cmp.setup {
             end
         end, {'i', 's', 'c'})
     },
-    formatting = {
-        format = lspkind.cmp_format({
-            mode = "symbol",
-            max_width = 50,
-            symbol_map = {Copilot = ""}
-        })
-    },
+    -- formatting = {
+    --     format = lspkind.cmp_format({
+    --         mode = "symbol",
+    --         max_width = 50,
+    --         symbol_map = {Copilot = ""}
+    --     })
+    -- },
     sources = cmp.config.sources({
-        {name = 'copilot', group_index = 2},
+        -- {name = 'copilot', group_index = 2},
         {name = 'nvim_lsp', group_index = 2},
 	{name = 'path', group_index = 2},
         {name = 'ultisnips', group_index = 2}

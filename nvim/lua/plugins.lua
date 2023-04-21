@@ -69,11 +69,11 @@ require('packer').startup(function(use)
     }
     use 'windwp/nvim-ts-autotag' -- Autoclose tags
     use 'p00f/nvim-ts-rainbow' -- Rainbow parentheses
-    use {
-        'narutoxy/dim.lua',
-        requires = {'nvim-treesitter/nvim-treesitter', 'neovim/nvim-lspconfig'},
-        config = function() require('dim').setup({}) end
-    }
+    -- use {
+    --     'narutoxy/dim.lua',
+    --     requires = {'nvim-treesitter/nvim-treesitter', 'neovim/nvim-lspconfig'},
+    --     config = function() require('dim').setup({}) end
+    -- }
     use { -- File tree sidebar
         'kyazdani42/nvim-tree.lua',
         requires = {'kyazdani42/nvim-web-devicons'},
@@ -117,19 +117,20 @@ require('packer').startup(function(use)
     use 'nvim-telescope/telescope-z.nvim'
     use {
         "zbirenbaum/copilot.lua",
-        event = {"VimEnter"},
-        config = function()
-            vim.defer_fn(function() require("copilot").setup() end, 100)
-        end
+	cmd = "Copilot",
+	event = "InsertEnter",
+	config = function()
+	  require("copilot").setup({})
+	end
     }
     use {
         "zbirenbaum/copilot-cmp",
         after = {"copilot.lua"},
         config = function()
-            require("copilot_cmp").setup({
-                method = 'getCompletionsCycling',
-                insert_text = require('copilot_cmp.format').remove_existing
-            })
+            -- require("copilot_cmp").setup({
+            --     method = 'getCompletionsCycling',
+            --     insert_text = require('copilot_cmp.format').remove_existing
+            -- })
         end
     }
     use {
