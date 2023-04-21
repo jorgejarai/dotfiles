@@ -91,10 +91,6 @@ require('packer').startup(function(use)
         'antoinemadec/FixCursorHold.nvim',
         config = function() vim.g.cursorhold_updatetime = 100 end
     }
-    use { -- Org-mode like features
-        'nvim-neorg/neorg',
-        requires = {'nvim-lua/plenary.nvim', "nvim-neorg/neorg-telescope"}
-    }
     use { -- Git gutter
         'lewis6991/gitsigns.nvim',
         config = function() require('gitsigns').setup() end
