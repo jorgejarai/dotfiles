@@ -1,12 +1,13 @@
 #!/usr/bin/env zsh
 
 # Java
+# Android
 export ANDROID_HOME="$HOME/Android/Sdk"
-export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
-export PATH="$PATH:$ANDROID_HOME/tools"
-export PATH="$PATH:$ANDROID_HOME/tools/bin"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+export PATH="$HOME/opt/android-studio/bin:$PATH"
 
 # ~/bin
 export PATH="$HOME/bin:$PATH"
@@ -86,3 +87,7 @@ export GRB_LICENSE_FILE="/home/jorge/opt/gurobi.lic"
 
 # Cargo: Use git executable for fetching
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
+
+# Deno
+export DENO_INSTALL="/home/jorge/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
