@@ -1,11 +1,14 @@
 unset autoindent
 set tabsize 4
+set tabstospaces
 unset nonewlines
 set smarthome
 set constantshow
 set linenumbers
-set morespace
-set smooth
 set softwrap
-set suspend
-# set indicator
+set indicator
+set cutfromcursor
+set guidestripe 80
+set mouse
+
+bind ^Z suspend main
