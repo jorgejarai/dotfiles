@@ -11,7 +11,6 @@ if not vim.g.vscode then
     require('telescope_conf')
     require('neoterm')
     require('texlab')
-    require('neorg_conf')
 end
 
 require('treesitter')
