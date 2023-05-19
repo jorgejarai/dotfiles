@@ -58,7 +58,6 @@ if not vim.g.vscode then
 
     require('nvim-tree').setup({
         renderer = {
-            root_folder_label = false,
             highlight_git = false,
             highlight_opened_files = "none",
             indent_markers = {enable = false},
