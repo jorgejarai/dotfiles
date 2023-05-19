@@ -91,3 +91,7 @@ export CARGO_NET_GIT_FETCH_WITH_CLI=true
 # Deno
 export DENO_INSTALL="/home/jorge/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+# CUDA
+export CUDA_HOME="/opt/cuda"
+export PATH="/opt/cuda/bin:$PATH"
