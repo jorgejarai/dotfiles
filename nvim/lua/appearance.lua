@@ -60,7 +60,7 @@ if not vim.g.vscode then
         renderer = {
             highlight_git = false,
             highlight_opened_files = "none",
-            indent_markers = {enable = false},
+            indent_markers = {enable = true},
             icons = {
                 show = {
                     file = true,
