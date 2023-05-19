@@ -30,21 +30,16 @@ if not vim.g.vscode then
         colorscheme = 'one',
         active = {
             left = {
-                {'mode', 'paste'}, {'gitbranch', 'readonly', 'filename', 'modified'}
+                {'mode', 'paste'},
+                {'gitbranch', 'readonly', 'filename', 'modified'}
             },
             right = {
-                {'lsp_errors', 'lsp_warnings', 'lsp_ok', 'lineinfo'}, {'percent'},
-                {'fileformat', 'fileencoding', 'filetype'}
+                {'lsp_errors', 'lsp_warnings', 'lsp_ok', 'lineinfo'},
+                {'percent'}, {'fileformat', 'fileencoding', 'filetype'}
             }
         },
-        component_expand = {
-            lsp_errors = '',
-            lsp_warnings = '',
-            lsp_ok = ''
-        },
-        component_function = {
-            gitbranch = 'FugitiveHead'
-        },
+        component_expand = {lsp_errors = '', lsp_warnings = '', lsp_ok = ''},
+        component_function = {gitbranch = 'FugitiveHead'},
         component_type = {
             lsp_warnings = 'warning',
             lsp_errors = 'error',
@@ -60,4 +55,44 @@ if not vim.g.vscode then
 	hi DiagnosticVirtualTextWarn guifg=#faaa17 gui=bold,italic
 	hi DiagnosticVirtualTextHint guifg=#3191d6 gui=bold,italic
     ]])
+
+    require('nvim-tree').setup({
+        renderer = {
+            root_folder_label = false,
+            highlight_git = false,
+            highlight_opened_files = "none",
+            indent_markers = {enable = false},
+            icons = {
+                show = {
+                    file = true,
+                    folder = true,
+                    folder_arrow = true,
+                    git = false
+                },
+                glyphs = {
+                    default = "󰈚",
+                    symlink = "",
+                    folder = {
+                        default = "",
+                        empty = "",
+                        empty_open = "",
+                        open = "",
+                        symlink = "",
+                        symlink_open = "",
+                        arrow_open = "",
+                        arrow_closed = ""
+                    },
+                    git = {
+                        unstaged = "✗",
+                        staged = "✓",
+                        unmerged = "",
+                        renamed = "➜",
+                        untracked = "★",
+                        deleted = "",
+                        ignored = "◌"
+                    }
+                }
+            }
+        }
+    })
 end

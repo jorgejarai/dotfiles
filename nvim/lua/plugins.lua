@@ -24,7 +24,7 @@ require('packer').startup(function(use)
     }
     use 'editorconfig/editorconfig-vim' -- Editorconfig support
     use 'kassio/neoterm' -- Terminal emulator
-    use {
+    use { -- LSP server installer
         "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig"
     }
@@ -113,11 +113,9 @@ require('packer').startup(function(use)
     use 'nvim-telescope/telescope-z.nvim'
     use {
         "zbirenbaum/copilot.lua",
-	cmd = "Copilot",
-	event = "InsertEnter",
-	config = function()
-	  require("copilot").setup({})
-	end
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function() require("copilot").setup({}) end
     }
     use {
         "zbirenbaum/copilot-cmp",
