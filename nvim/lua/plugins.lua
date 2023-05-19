@@ -76,8 +76,7 @@ require('packer').startup(function(use)
     -- }
     use { -- File tree sidebar
         'kyazdani42/nvim-tree.lua',
-        requires = {'kyazdani42/nvim-web-devicons'},
-        tag = 'nightly'
+        requires = {'kyazdani42/nvim-web-devicons'}
     }
     use { -- Icons
         'kyazdani42/nvim-web-devicons',
