@@ -77,8 +77,7 @@ require('packer').startup(function(use)
     use { -- File tree sidebar
         'kyazdani42/nvim-tree.lua',
         requires = {'kyazdani42/nvim-web-devicons'},
-        tag = 'nightly',
-        config = function() require('nvim-tree').setup({}) end
+        tag = 'nightly'
     }
     use { -- Icons
         'kyazdani42/nvim-web-devicons',
@@ -136,6 +135,19 @@ require('packer').startup(function(use)
     use {'p00f/clangd_extensions.nvim'}
     use {'eandrju/cellular-automaton.nvim'}
     use {'jose-elias-alvarez/typescript.nvim'}
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function()
+            require('indent_blankline').setup({
+                show_current_context = true,
+                show_current_context_start = true
+            })
+        end
+    }
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = function() require('colorizer').setup({}) end
+    }
 
     if packer_bootstrap then require('packer').sync() end
 end)
