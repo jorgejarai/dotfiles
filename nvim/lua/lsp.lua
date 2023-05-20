@@ -27,8 +27,8 @@ end
 
 local servers = {
     "bashls", "cssls", "cmake", "html", "pyright", "rust_analyzer",
-    "tailwindcss", "jsonls", "texlab", "lua_ls", "emmet_ls",
-    "bashls", "prismals", "phpactor", "csharp_ls"
+    "tailwindcss", "jsonls", "texlab", "lua_ls", "emmet_ls", "bashls",
+    "prismals", "phpactor", "csharp_ls", "zls"
 }
 
 local enhance_server_opts = {
@@ -110,8 +110,5 @@ require('mason').setup()
 require('mason-lspconfig').setup({ensure_installed = servers})
 
 require("typescript").setup({
-    server = {
-	on_attach = on_attach,
-	capabilities = capabilities
-    }
+    server = {on_attach = on_attach, capabilities = capabilities}
 })
