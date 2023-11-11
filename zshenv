@@ -32,5 +32,5 @@ source "$HOME/.cargo/env"
 [ -f "$HOME/.config/api_keys.sh" ] && source "$HOME/.config/api_keys.sh"
 
 # Default editor
-export VISUAL=nvim
+export VISUAL="nvim"
 export EDITOR="$VISUAL"
