@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# Use GNU ls instead of the BSD version on macOS
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    alias ls='gls -Fh --color=always'
-else
-    alias ls='ls -Fh --color=always'
-fi
-
 alias grep='grep --color=always'
 alias fgrep='fgrep --color=always'
 alias egrep='egrep --color=always'
@@ -26,12 +19,6 @@ alias iso8601='date -Iseconds'
 alias scrsize='printf "%sx%s\n" $COLUMNS $LINES'
 
 alias ydl='yt-dlp'
-
-alias mp3dload='ydl -x --audio-format mp3'
-alias oggdload='ydl -x --audio-format vorbis'
-
-alias nethackx11='NETHACKOPTIONS="windowtype:x11" nethack'
-alias nethackcurses='NETHACKOPTIONS="windowtype:curses" nethack'
 
 alias direwolf='direwolf -c $HOME/.direwolf.conf'
 
