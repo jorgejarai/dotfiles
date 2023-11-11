@@ -27,8 +27,8 @@ end
 
 local servers = {
     "bashls", "cssls", "cmake", "html", "pyright", "rust_analyzer",
-    "tailwindcss", "jsonls", "texlab", "sumneko_lua", "emmet_ls",
-    "bashls", "prismals", "phpactor", "csharp_ls"
+    "tailwindcss", "jsonls", "texlab", "lua_ls", "emmet_ls", "bashls",
+    "prismals", "phpactor", "csharp_ls", "zls"
 }
 
 local enhance_server_opts = {
@@ -66,7 +66,7 @@ local enhance_server_opts = {
             forwardSearch = {executable = 'zathura', args = {'%p'}}
         }
     end,
-    ["sumneko_lua"] = function(opts)
+    ["lua_ls"] = function(opts)
         local lua_runtime_path = vim.split(package.path, ';')
         table.insert(lua_runtime_path, 'lua/?.lua')
         table.insert(lua_runtime_path, 'lua/?/init.lua')
@@ -110,8 +110,5 @@ require('mason').setup()
 require('mason-lspconfig').setup({ensure_installed = servers})
 
 require("typescript").setup({
-    server = {
-	on_attach = on_attach,
-	capabilities = capabilities
-    }
+    server = {on_attach = on_attach, capabilities = capabilities}
 })

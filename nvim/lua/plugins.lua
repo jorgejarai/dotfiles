@@ -24,7 +24,7 @@ require('packer').startup(function(use)
     }
     use 'editorconfig/editorconfig-vim' -- Editorconfig support
     use 'kassio/neoterm' -- Terminal emulator
-    use {
+    use { -- LSP server installer
         "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig"
     }
@@ -69,16 +69,14 @@ require('packer').startup(function(use)
     }
     use 'windwp/nvim-ts-autotag' -- Autoclose tags
     use 'p00f/nvim-ts-rainbow' -- Rainbow parentheses
-    use {
-        'narutoxy/dim.lua',
-        requires = {'nvim-treesitter/nvim-treesitter', 'neovim/nvim-lspconfig'},
-        config = function() require('dim').setup({}) end
-    }
+    -- use {
+    --     'narutoxy/dim.lua',
+    --     requires = {'nvim-treesitter/nvim-treesitter', 'neovim/nvim-lspconfig'},
+    --     config = function() require('dim').setup({}) end
+    -- }
     use { -- File tree sidebar
         'kyazdani42/nvim-tree.lua',
-        requires = {'kyazdani42/nvim-web-devicons'},
-        tag = 'nightly',
-        config = function() require('nvim-tree').setup({}) end
+        requires = {'kyazdani42/nvim-web-devicons'}
     }
     use { -- Icons
         'kyazdani42/nvim-web-devicons',
@@ -90,10 +88,6 @@ require('packer').startup(function(use)
     use { -- Fix CursorHold issues
         'antoinemadec/FixCursorHold.nvim',
         config = function() vim.g.cursorhold_updatetime = 100 end
-    }
-    use { -- Org-mode like features
-        'nvim-neorg/neorg',
-        requires = {'nvim-lua/plenary.nvim', "nvim-neorg/neorg-telescope"}
     }
     use { -- Git gutter
         'lewis6991/gitsigns.nvim',
@@ -117,19 +111,18 @@ require('packer').startup(function(use)
     use 'nvim-telescope/telescope-z.nvim'
     use {
         "zbirenbaum/copilot.lua",
-        event = {"VimEnter"},
-        config = function()
-            vim.defer_fn(function() require("copilot").setup() end, 100)
-        end
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function() require("copilot").setup({}) end
     }
     use {
         "zbirenbaum/copilot-cmp",
         after = {"copilot.lua"},
         config = function()
-            require("copilot_cmp").setup({
-                method = 'getCompletionsCycling',
-                insert_text = require('copilot_cmp.format').remove_existing
-            })
+            -- require("copilot_cmp").setup({
+            --     method = 'getCompletionsCycling',
+            --     insert_text = require('copilot_cmp.format').remove_existing
+            -- })
         end
     }
     use {
@@ -141,6 +134,29 @@ require('packer').startup(function(use)
     use {'p00f/clangd_extensions.nvim'}
     use {'eandrju/cellular-automaton.nvim'}
     use {'jose-elias-alvarez/typescript.nvim'}
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function()
+            require('indent_blankline').setup({
+                show_current_context = true,
+                show_current_context_start = true
+            })
+        end
+    }
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = function() require('colorizer').setup({}) end
+    }
+    use {
+        'nvim-treesitter/nvim-treesitter-context',
+        requires = 'nvim-treesitter/nvim-treesitter',
+        config = function()
+            require("treesitter-context").setup({
+                mode = 'topline',
+                line_numbers = true
+            })
+        end
+    }
 
     if packer_bootstrap then require('packer').sync() end
 end)
