@@ -25,7 +25,7 @@ alias iso8601='date -Iseconds'
 
 alias scrsize='printf "%sx%s\n" $COLUMNS $LINES'
 
-alias ydl='yt-dlp --cookies ~/Downloads/cookies.Facebook.txt'
+alias ydl='yt-dlp'
 
 alias mp3dload='ydl -x --audio-format mp3'
 alias oggdload='ydl -x --audio-format vorbis'
@@ -33,35 +33,13 @@ alias oggdload='ydl -x --audio-format vorbis'
 alias nethackx11='NETHACKOPTIONS="windowtype:x11" nethack'
 alias nethackcurses='NETHACKOPTIONS="windowtype:curses" nethack'
 
-alias cleanheads='ssh pi escputil -c -r /dev/usb/lp0'
-alias nozzlecheck='ssh pi escputil -n -r /dev/usb/lp0'
-
 alias direwolf='direwolf -c $HOME/.direwolf.conf'
 
 alias rap='rsync -raP'
 
-# alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland'
-
 alias latexbuild='latexmk -pvc -pdf -view=none --shell-escape -pdflatex="pdflatex -interaction=nonstopmode -synctex=1" -outdir=build'
 
-alias desk_on='ssh pi "~/.local/bin/desk_on"'
-alias desk_off='ssh pi "~/.local/bin/desk_off"'
-
 alias pubip='curl icanhazip.com'
-
-alias gs='git status '
-alias ga='git add '
-alias gb='git branch '
-alias gc='git commit'
-alias gd='git diff'
-alias gco='git checkout '
-alias gk='gitk --all&'
-alias gx='gitx --all'
-
-alias got='git '
-alias get='git '
-
-alias syncmusic='rap ~/Music/ desk:/mnt/hdd/Music/ && rap desk:/mnt/hdd/Music/ ~/Music/'
 
 alias clipboard='xclip -selection clipboard'
 
