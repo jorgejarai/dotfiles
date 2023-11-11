@@ -15,8 +15,8 @@ source "$ZSH/oh-my-zsh.sh"
 # Load FZF
 [ -d /usr/share/doc/fzf ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 [ -d /usr/share/doc/fzf ] && source /usr/share/doc/fzf/examples/completion.zsh
-export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_DEFAULT_OPTS='--color=light --border=rounded --height=60%'
+export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_DEFAULT_OPTS="--color=light --border=rounded --height=60%"
 
 # Use Alt+Left and Alt+Right for navigating between words
 bindkey "^[[1;3C" forward-word
