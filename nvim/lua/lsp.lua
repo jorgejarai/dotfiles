@@ -28,7 +28,7 @@ end
 local servers = {
     "bashls", "cssls", "cmake", "html", "pyright", "rust_analyzer",
     "tailwindcss", "jsonls", "texlab", "lua_ls", "emmet_ls", "bashls",
-    "prismals", "phpactor", "csharp_ls", "zls"
+    "prismals", "phpactor", "csharp_ls", "zls", "volar"
 }
 
 local enhance_server_opts = {
