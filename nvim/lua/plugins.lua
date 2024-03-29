@@ -144,16 +144,16 @@ require('packer').startup(function(use)
         'norcalli/nvim-colorizer.lua',
         config = function() require('colorizer').setup({}) end
     }
-    use {
-        'nvim-treesitter/nvim-treesitter-context',
-        requires = 'nvim-treesitter/nvim-treesitter',
-        config = function()
-            require("treesitter-context").setup({
-                mode = 'topline',
-                line_numbers = true
-            })
-        end
-    }
+    -- use {
+    --     'nvim-treesitter/nvim-treesitter-context',
+    --     requires = 'nvim-treesitter/nvim-treesitter',
+    --     config = function()
+    --         require("treesitter-context").setup({
+    --             mode = 'topline',
+    --             line_numbers = true
+    --         })
+    --     end
+    -- }
 
     if packer_bootstrap then require('packer').sync() end
 end)

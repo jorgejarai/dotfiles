@@ -6,6 +6,8 @@ ZSH_THEME="jorge"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root cursor)
+
 plugins=(git zsh-syntax-highlighting battery command-not-found zsh-autosuggestions zsh-z)
 
 source "$ZSH/oh-my-zsh.sh"  

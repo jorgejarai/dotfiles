@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-# Java
 # Android
 export ANDROID_HOME="$HOME/Android/Sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"

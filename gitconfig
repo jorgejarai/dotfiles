@@ -12,6 +12,7 @@
 	defaultBranch = main
 [alias]
 	co = checkout
+	chucrut = checkout
 	ci = commit
 	st = status
 	br = branch
