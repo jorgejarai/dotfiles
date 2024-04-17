@@ -1,5 +1,46 @@
 #!/bin/usr/env zsh
 
+# Execution time routines (used in prompt)
+function preexec() {
+    # Use GNU date instead of the BSD version on macOS
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        timer=$(($(gdate +%s%0N) / 1000000))
+    else
+        timer=$(($(date +%s%0N) / 1000000))
+    fi
+}
+
+function precmd() {
+    if [ $timer ]; then
+        # Use GNU date instead of the BSD version on macOS
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            now=$(($(gdate +%s%0N) / 1000000))
+        else
+            now=$(($(date +%s%0N) / 1000000))
+        fi
+        elapsed=$(($now - $timer))
+
+        ms=$((elapsed % 1000))
+        s=$(((elapsed / 1000) % 60))
+        min=$(((elapsed / 60000) % 60))
+        h=$((elapsed / 3600000))
+
+        if ((h > 0)); then
+            timer_show=" ${h} h ${min} min"
+        elif ((min > 0)); then
+            timer_show=" ${min} min ${s} s"
+        elif ((s >= 30)); then
+            timer_show=" ${s} s"
+        elif ((s > 5)); then
+            timer_show=" ${s}.$(printf %02d $ms) s"
+        else
+            timer_show=""
+        fi
+
+        unset timer
+    fi
+}
+
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="jorge"
