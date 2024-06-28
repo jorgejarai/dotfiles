@@ -30,4 +30,9 @@ alias pubip="curl icanhazip.com"
 
 alias clipboard="xclip -selection clipboard"
 
+alias ddown="docker compose down"
+alias dup="docker compose up"
+alias dupd="docker compose up -d"
+alias ddup="docker compose down && docker compose up"
+
 # vim: set syntax=sh:
