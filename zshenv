@@ -27,9 +27,15 @@ export PATH="$HOME/opt/flutter/bin:$PATH"
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 source "$HOME/.cargo/env"
 
+# Zig
+export PATH="$HOME/opt/zig:$PATH"
+
 # API keys
 [ -f "$HOME/.config/api_keys.sh" ] && source "$HOME/.config/api_keys.sh"
 
 # Default editor
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
+
+# Luarocks
+command -v luarocks >/dev/null 2>&1 && eval "$(luarocks path --bin)"
