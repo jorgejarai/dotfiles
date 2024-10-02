@@ -79,3 +79,4 @@ export GPG_TTY=$(tty)
 # Per-device settings
 [ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
 
+eval "$(/home/jorge/.local/bin/mise activate zsh)"

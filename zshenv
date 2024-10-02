@@ -39,3 +39,6 @@ export EDITOR="$VISUAL"
 
 # Luarocks
 command -v luarocks >/dev/null 2>&1 && eval "$(luarocks path --bin)"
+
+# sccache
+RUSTC_WRAPPER=sccache
