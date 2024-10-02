@@ -9,22 +9,22 @@ window:
 
 font:
   normal:
-    family: Iosevka Nerd Font
+    family: NotoSansM Nerd Font
     style: Text
 
   bold:
-    family: Iosevka Nerd Font
+    family: NotoSansM Nerd Font
     style: Bold
 
   italic:
-    family: Iosevka Nerd Font
+    family: NotoSansM Nerd Font
     style: Text Italic
 
   bold_italic:
-    family: Iosevka Nerd Font
+    family: NotoSansM Nerd Font
     style: Bold Italic
 
-  size: 14
+  size: 9
 
 colors:
   # COLORSCHEME: atom_one_light.yaml
