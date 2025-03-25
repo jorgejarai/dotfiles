@@ -1,9 +1,16 @@
 {
   "extras": [
-
+    "lazyvim.plugins.extras.ai.copilot-chat",
+    "lazyvim.plugins.extras.editor.dial",
+    "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.toml",
+    "lazyvim.plugins.extras.util.dot",
+    "lazyvim.plugins.extras.util.mini-hipatterns",
+    "lazyvim.plugins.extras.vscode"
   ],
+  "install_version": 7,
   "news": {
-    "NEWS.md": "6520"
+    "NEWS.md": "10960"
   },
-  "version": 6
+  "version": 8
 }
