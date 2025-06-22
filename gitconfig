@@ -20,6 +20,7 @@
 	type = cat-file -t
 	dump = cat-file -p
 	tree = log --graph --oneline --all
+  psuh = push
 [color]
 	ui = true
 [color "diff-highlight"]
