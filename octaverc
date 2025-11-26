@@ -1,3 +1,0 @@
-global gnuplot_has_pm2d=1
-automatic_replot=1;
-graphics_toolkit("gnuplot")
