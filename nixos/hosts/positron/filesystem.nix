@@ -9,14 +9,13 @@
     fsType = "cifs";
     options = [
       "credentials=/etc/smbcredentials"
-      "_netdev"
       "x-systemd.automount"
-      "x-systemd.mount-timeout=30"
-      "x-systemd.idle-timeout=0"
+      "x-systemd.device-timeout=5s"
+      "x-systemd.mount-timeout=5s"
+      "x-systemd.idle-timeout=60"
       "noauto"
+      "uid=1000"
       "gid=100" # users
-      "file_mode=0664"
-      "dir_mode=0775"
     ];
   };
 }
