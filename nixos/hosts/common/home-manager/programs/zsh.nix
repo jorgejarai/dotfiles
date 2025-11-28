@@ -27,7 +27,6 @@
       clipboard = "if [ -n \"$WAYLAND_DISPLAY\" ]; then wl-copy; else xclip -selection clipboard; fi";
       procs = "nocorrect procs";
       difft = "nocorrect difft";
-      z = "zoxide";
 
       dcbuild = "docker compose build";
       dcdown = "docker compose down";
