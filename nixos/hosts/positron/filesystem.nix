@@ -9,6 +9,7 @@
     fsType = "cifs";
     options = [
       "credentials=/etc/smbcredentials"
+      "_netdev"
       "x-systemd.automount"
       "x-systemd.device-timeout=5s"
       "x-systemd.mount-timeout=5s"
