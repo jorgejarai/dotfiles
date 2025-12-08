@@ -57,6 +57,7 @@
   };
 
   services.pcscd.enable = true;
+  services.fprintd.enable = true;
 
   environment.systemPackages = with pkgs; [
     gparted
