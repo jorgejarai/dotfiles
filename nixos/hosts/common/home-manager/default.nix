@@ -9,7 +9,7 @@
   home.username = "jorge";
   home.homeDirectory = "/home/jorge";
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   home.sessionPath = [
     "$HOME/.local/bin"
