@@ -7,6 +7,7 @@
     ./networking.nix
     ./programs.nix
     ./windowing.nix
+    ./nvidia.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

@@ -10,6 +10,8 @@
     iw
     kdePackages.kate
     libreoffice
+    lm_sensors
+    lshw
     microsoft-edge
     mpv
     naps2
@@ -26,6 +28,7 @@
     pcsc-tools
     remmina
     solaar
+    usbutils
     vscode
     wavemon
     wl-clipboard
