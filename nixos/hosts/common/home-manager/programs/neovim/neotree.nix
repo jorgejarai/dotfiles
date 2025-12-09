@@ -2,40 +2,43 @@
   programs.nixvim = {
     plugins.neo-tree = {
       enable = true;
-      sources = [
-        "filesystem"
-        "buffers"
-        "git_status"
-        "document_symbols"
-      ];
-      addBlankLineAtTop = false;
 
-      filesystem = {
-        bindToCwd = false;
-        followCurrentFile = {
-          enabled = true;
-        };
-      };
+      settings = {
+        sources = [
+          "filesystem"
+          "buffers"
+          "git_status"
+          "document_symbols"
+        ];
+        addBlankLineAtTop = false;
 
-      defaultComponentConfigs = {
-        indent = {
-          withExpanders = true;
-          expanderCollapsed = "󰅂";
-          expanderExpanded = "󰅀";
-          expanderHighlight = "NeoTreeExpander";
+        filesystem = {
+          bindToCwd = false;
+          followCurrentFile = {
+            enabled = true;
+          };
         };
 
-        gitStatus = {
-          symbols = {
-            added = " ";
-            conflict = "󰩌 ";
-            deleted = "󱂥";
-            ignored = " ";
-            modified = " ";
-            renamed = "󰑕";
-            staged = "󰩍";
-            unstaged = "";
-            untracked = " ";
+        defaultComponentConfigs = {
+          indent = {
+            withExpanders = true;
+            expanderCollapsed = "󰅂";
+            expanderExpanded = "󰅀";
+            expanderHighlight = "NeoTreeExpander";
+          };
+
+          gitStatus = {
+            symbols = {
+              added = " ";
+              conflict = "󰩌 ";
+              deleted = "󱂥";
+              ignored = " ";
+              modified = " ";
+              renamed = "󰑕";
+              staged = "󰩍";
+              unstaged = "";
+              untracked = " ";
+            };
           };
         };
       };

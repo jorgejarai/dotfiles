@@ -10,6 +10,13 @@
     initContent = ''
       ENABLE_CORRECTION="true"
       COMPLETION_WAITING_DOTS="true"
+
+      bindkey  "^[[H"   beginning-of-line
+      bindkey  "^[[F"   end-of-line
+      bindkey  "^[[3~"  delete-char
+
+      bindkey  "^[b"   backward-word
+      bindkey  "^[f"   forward-word
     '';
 
     shellAliases = {

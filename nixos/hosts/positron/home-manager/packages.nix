@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     adwaita-icon-theme
+    # apptainer
     audacity
     ccid
     discord
@@ -8,6 +9,7 @@
     flrig
     inkscape
     iw
+    jpilot
     kdePackages.kate
     libreoffice
     lm_sensors
