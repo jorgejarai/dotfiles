@@ -33,6 +33,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    pinentry-qt
   ];
 
   home-manager.users.jorge = import ./home-manager;

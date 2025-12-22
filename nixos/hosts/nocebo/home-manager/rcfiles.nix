@@ -10,5 +10,11 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
+    ".gnupg/gpg-agent.conf".text = ''
+      enable-ssh-support
+      disable-scdaemon
+      pinentry-program /run/current-system/sw/bin/pinentry-qt
+    '';
   };
 }
