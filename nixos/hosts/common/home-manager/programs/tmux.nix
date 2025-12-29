@@ -34,6 +34,8 @@
       bind - split-window -v
       unbind '"'
       unbind %
+
+      set -g default-terminal "xterm-256color"
     '';
   };
 }
