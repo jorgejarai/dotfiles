@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     adwaita-icon-theme
     # apptainer
+    arduino-ide
     audacity
     ccid
     discord
@@ -27,11 +28,12 @@
     nerd-fonts.noto
     nerd-fonts.symbols-only
     obsidian
+    openscad
     pcsc-tools
     remmina
     solaar
     usbutils
-    vscode
+    vscode-fhs
     wavemon
     wl-clipboard
     wsjtx
