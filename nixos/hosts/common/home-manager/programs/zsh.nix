@@ -25,6 +25,7 @@
 
     shellAliases = {
       update = "sudo nixos-rebuild switch --flake ~/Proyectos/dotfiles/nixos";
+      uupdate = "sudo nix flake update --flake ~/Proyectos/dotfiles/nixos";
 
       "cd.." = "cd ..";
       "cd-" = "cd -";
