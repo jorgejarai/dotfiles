@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -7,17 +7,21 @@
     history.size = 10000;
     defaultKeymap = "emacs";
 
-    initContent = ''
-      ENABLE_CORRECTION="true"
-      COMPLETION_WAITING_DOTS="true"
+    initContent = let
+      zshConfigEarlyInit = lib.mkOrder 500 ''
+        ENABLE_CORRECTION="true"
+        COMPLETION_WAITING_DOTS="true"
+      '';
+      zshConfig = lib.mkOrder 1000 ''
+        bindkey  "$terminfo[khome]"   beginning-of-line
+        bindkey  "$terminfo[kend]"    end-of-line
+        bindkey  "$terminfo[kdch1]"   delete-char
 
-      bindkey  "^[[H"   beginning-of-line
-      bindkey  "^[[F"   end-of-line
-      bindkey  "^[[3~"  delete-char
-
-      bindkey  "^[b"   backward-word
-      bindkey  "^[f"   forward-word
-    '';
+        bindkey  "$terminfo[kLFT5]"   backward-word
+        bindkey  "$terminfo[kRIT5]"   forward-word
+      '';
+    in
+      lib.mkMerge [zshConfigEarlyInit zshConfig];
 
     shellAliases = {
       update = "sudo nixos-rebuild switch --flake ~/Proyectos/dotfiles/nixos";
