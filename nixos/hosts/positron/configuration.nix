@@ -11,8 +11,18 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 5;
+    };
+    efi.canTouchEfiVariables = true;
+  };
+
+  boot.resumeDevice = "/dev/disk/by-uuid/eaa46864-ab43-4e07-8576-842ba4dd9ab7";
+
+  powerManagement.enable = true;
+  powerManagement.powertop.enable = true;
 
   hardware.bluetooth.enable = true;
   hardware.logitech.wireless.enable = true;
