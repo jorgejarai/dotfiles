@@ -1,6 +1,6 @@
 {
   programs.nixvim.plugins.startup = {
-    enable = true;
+    enable = false;
 
     settings = {
       sections.body = {
