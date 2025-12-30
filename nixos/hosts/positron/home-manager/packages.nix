@@ -35,7 +35,6 @@
     usbutils
     vscode-fhs
     wavemon
-    wl-clipboard
     wsjtx
   ];
 

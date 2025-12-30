@@ -19,6 +19,7 @@
     screen
     sops
     traceroute
+    wl-clipboard
     yt-dlp
   ];
 }

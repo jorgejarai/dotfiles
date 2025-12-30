@@ -33,6 +33,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    python3 # used for passff host integration
     pinentry-qt
   ];
 
