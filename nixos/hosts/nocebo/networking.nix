@@ -1,4 +1,8 @@
 {
+  imports = [
+    ../common/networking.nix
+  ];
+
   networking = {
     hostName = "nocebo";
 

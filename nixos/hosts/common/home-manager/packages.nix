@@ -5,6 +5,7 @@
     chafa
     devenv
     difftastic
+    dig
     fastfetch
     fd
     file

@@ -1,4 +1,11 @@
 {
-  wsl.defaultUser = "jorge";
-  wsl.enable = true;
+  wsl = {
+    enable = true;
+  
+    defaultUser = "jorge";
+    wslConf.network = {
+      generateResolvConf = false;
+      generateHosts = false;
+    };
+  };
 }
