@@ -37,7 +37,14 @@
 
   virtualisation.docker.enable = true;
 
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      cups-filters
+      cups-browsed
+    ];
+  };
+
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -50,7 +57,17 @@
   users.users.jorge = {
     isNormalUser = true;
     description = "Jorge Jara";
-    extraGroups = ["networkmanager" "wheel" "dialout" "cdrom" "docker" "wireshark" "scanner" "lp" "plugdev"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "dialout"
+      "cdrom"
+      "docker"
+      "wireshark"
+      "scanner"
+      "lp"
+      "plugdev"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -85,4 +102,16 @@
   sops.defaultSopsFile = ../../secrets/positron.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+
+  # Workaround for ~/.ssh/config having owner nobody:nogroup in FHS programs
+  # (cf. https://github.com/nix-community/home-manager/issues/322#issuecomment-3662161429)
+  systemd.services.home-manager-jorge = {
+    preStart = ''
+      rm -f "$HOME/.ssh/config"
+    '';
+
+    postStart = ''
+      cp --remove-destination "$(readlink -f "$HOME/.ssh/config")" "$HOME/.ssh/config"
+    '';
+  };
 }

@@ -7,7 +7,7 @@
     ../common/networking.nix
   ];
 
-  networking = { 
+  networking = {
     hostName = "positron";
     networkmanager.enable = true;
 
@@ -40,6 +40,7 @@
   services.avahi = {
     enable = true;
     nssmdns4 = true;
+    openFirewall = true;
   };
 
   sops.secrets."zerotier/primary_id" = {};
