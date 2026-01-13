@@ -15,6 +15,7 @@
     libreoffice
     lm_sensors
     lshw
+    mgba
     microsoft-edge
     mpv
     naps2
