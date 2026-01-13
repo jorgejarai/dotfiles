@@ -6,7 +6,12 @@
       add_newline = false;
       command_timeout = 1300;
       scan_timeout = 50;
-      format = "$hostname$directory$git_branch$git_status$time$status$cmd_duration$battery$character";
+      format = "$env_var$hostname$directory$git_branch$git_status$time$status$cmd_duration$battery$character";
+      env_var = {
+        IN_NIX_SHELL = {
+          format = "[\\[nix-shell\\] ](blue)";
+        };
+      };
       battery = {
         disabled = false;
         format = "[$percentage]($style) ";
