@@ -48,7 +48,15 @@
     ${config.sops.placeholder."zerotier/primary_id"}
   '';
 
-  services.zerotierone.enable = true;
+  services.zerotierone = {
+    enable = true;
+
+    localConf = {
+      physical = {
+        "10.0.0.0/24".blacklist = true;
+      };
+    };
+  };
 
   systemd.services.zerotierone.postStart = lib.mkAfter ''
     network_id=$(cat ${config.sops.templates."zerotier-network".path})
