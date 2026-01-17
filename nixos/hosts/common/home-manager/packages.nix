@@ -19,6 +19,7 @@
     ripgrep
     screen
     sops
+    timg
     traceroute
     wl-clipboard
     yt-dlp
