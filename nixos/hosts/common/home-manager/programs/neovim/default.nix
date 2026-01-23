@@ -1,41 +1,34 @@
 {
-  imports = [
-    ./bufferline.nix
-    ./gitsigns.nix
-    ./lazygit.nix
-    ./lsp.nix
-    ./lualine.nix
-    ./neotree.nix
-    ./startup.nix
-    ./telescope.nix
-    ./toggleterm.nix
-    ./treesitter.nix
-    ./undotree.nix
-  ];
-
   programs.nixvim = {
+    imports = [
+      ./appearance
+      ./cmp.nix
+      ./conform.nix
+      ./keymaps
+      ./lsp.nix
+      ./smart-splits.nix
+      ./snacks.nix
+      ./telescope.nix
+      ./treesitter.nix
+      ./undotree.nix
+    ];
+
     enable = true;
     enableMan = true;
 
     globals.mapleader = " ";
 
-    colorschemes.catppuccin = {
-      enable = true;
-      settings = {
-        flavour = "latte";
-      };
-    };
-
     opts = {
+      backup = false;
       showmatch = true;
       ignorecase = true;
       smartcase = true;
       hlsearch = true;
       incsearch = true;
-      tabstop = 4;
-      softtabstop = 4;
+      tabstop = 2;
+      softtabstop = 2;
       expandtab = true;
-      shiftwidth = 4;
+      shiftwidth = 2;
       autoindent = true;
       number = true;
       relativenumber = true;
@@ -48,16 +41,54 @@
     };
 
     plugins = {
-      web-devicons.enable = true;
-      nvim-tree.enable = true;
-      copilot-lua.enable = true;
+      comment.enable = true;
       copilot-chat.enable = true;
-      lazygit.enable = true;
+      copilot-lua.enable = true;
       fzf-lua.enable = true;
+      lazygit.enable = true;
+      mini-ai = {
+        enable = true;
+        settings = {
+          custom_textobjects = {
+            f = {
+              __raw = "require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' })";
+            };
+            c = {
+              __raw = "require('mini.ai').gen_spec.treesitter({ a = '@class.outer', i = '@class.inner' })";
+            };
+          };
+        };
+      };
+      nvim-autopairs.enable = true;
+      nvim-surround.enable = true;
+      schemastore.enable = true;
+      spectre.enable = true;
+      spider.enable = true;
+      undotree.enable = true;
       which-key.enable = true;
-      indent-blankline.enable = true;
-      todo-comments.enable = true;
     };
+
+    autoCmd = [
+      {
+        event = ["FileType"];
+        pattern = [
+          "c"
+          "cpp"
+          "python"
+          "json"
+          "yaml"
+        ];
+        callback = {
+          __raw = ''
+            function()
+              vim.opt_local.tabstop = 4
+              vim.opt_local.shiftwidth = 4
+              vim.opt_local.softtabstop = 4
+            end
+          '';
+        };
+      }
+    ];
 
     withNodeJs = true;
     withPython3 = true;

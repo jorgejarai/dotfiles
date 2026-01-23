@@ -9,16 +9,20 @@
     fastfetch
     fd
     file
+    ghostscript
+    imagemagick
     inotify-tools
     iperf3
     lazygit
     lynx
+    mermaid-cli
     nmap
     openssl
     pass
     ripgrep
     screen
     sops
+    tectonic
     timg
     traceroute
     wl-clipboard
