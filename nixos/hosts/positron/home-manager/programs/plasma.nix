@@ -32,6 +32,10 @@
         "LC_TELEPHONE" = "es_CL.UTF-8";
         "LC_TIME" = "C";
       };
+      kdeglobals.PreviewSettings = {
+        EnableRemoteFolderThumbnail = true;
+        MaximumRemoteSize = 3145728;
+      };
     };
     powerdevil = {
       AC = {
