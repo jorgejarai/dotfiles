@@ -6,8 +6,11 @@
         enabled = true;
         notify = true;
       };
+      explorer = {
+        replace_netrw = true;
+        trash = true;
+      };
       image.enabled = true;
-      indent.enabled = true;
       lazygit.enabled = true;
       notifier = {
         enabled = true;
@@ -16,30 +19,6 @@
       picker.enabled = true;
       scope.enabled = true;
       scroll.enabled = true;
-      # statuscolumn = {
-      #   enabled = true;
-      #   opts = {
-      #     left = [
-      #       "mark"
-      #       "sign"
-      #     ];
-      #     right = [
-      #       "fold"
-      #       "git"
-      #     ];
-      #     folds = {
-      #       open = false;
-      #       git_hl = false;
-      #     };
-      #     git = {
-      #       patterns = [
-      #         "GitSign"
-      #         "MiniDiffSign"
-      #       ];
-      #     };
-      #     refresh = 50;
-      #   };
-      # };
     };
   };
 

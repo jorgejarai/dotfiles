@@ -6,6 +6,7 @@
       focusOnToggle = true;
     };
   };
+
   keymaps = [
     {
       mode = "n";

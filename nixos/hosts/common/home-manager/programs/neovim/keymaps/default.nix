@@ -1,15 +1,26 @@
 {
   imports = [
-    ./tabs.nix
+    ./buffers.nix
+    ./lsp.nix
+    ./smart-splits.nix
   ];
 
   keymaps = [
     {
       mode = "n";
-      key = "<leader>rs";
-      action = ":Spectre<CR>";
+      key = "<leader>us";
+      action = '':let @/ = ""<cr>'';
       options = {
-        desc = "Spectre toggle";
+        desc = "Clear Search";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>W";
+      action = ":set wrap!<cr>";
+      options = {
+        desc = "Toggle Wrap";
         silent = true;
       };
     }

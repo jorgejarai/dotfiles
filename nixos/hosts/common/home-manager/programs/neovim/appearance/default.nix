@@ -14,7 +14,6 @@
   plugins = {
     gitsigns.enable = true;
     indent-blankline.enable = true;
-    mini-icons.enable = true;
     noice = {
       enable = true;
       settings = {

@@ -2,16 +2,38 @@
   plugins.bufferline = {
     enable = true;
     settings.options = {
-      close_icon = " ";
-      buffer_close_icon = "󰱝 ";
-      modified_icon = "󰔯 ";
+      diagnostics = "nvim_lsp";
+      diagnostics_indicator = {
+        __raw = ''
+          function(count, level, diagnostics_dict, context)
+            if context.buffer:current() then
+              return ""
+            end
+
+            local s = " "
+            for e, n in pairs(diagnostics_dict) do
+              local sym = e == "error" and " "
+                or (e == "warning" and " " or " ")
+              s = s .. n .. sym
+            end
+            return s
+          end
+        '';
+      };
+      separator_style = "slant";
 
       offsets = [
         {
-          filetype = "neo-tree";
-          text = "Neo-tree";
+          filetype = "snacks_layout_box";
+          text = {
+            __raw = ''
+              function()
+                return vim.fn.getcwd()
+              end
+            '';
+          };
           highlight = "Directory";
-          text_align = "left";
+          separator = true;
         }
       ];
     };

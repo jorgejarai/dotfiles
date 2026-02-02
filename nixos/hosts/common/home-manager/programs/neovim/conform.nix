@@ -91,6 +91,9 @@
         squeeze_blanks = {
           command = lib.getExe' pkgs.coreutils "cat";
         };
+        yamllint = {
+          command = lib.getExe pkgs.yamllint;
+        };
       };
     };
 

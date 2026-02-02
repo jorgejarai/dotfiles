@@ -25,6 +25,7 @@
     tectonic
     timg
     traceroute
+    unzip
     wl-clipboard
     yt-dlp
   ];

@@ -45,11 +45,22 @@
           {
             __unkeyed-1 = "navic";
           }
+          {
+            __unkeyed-1.__raw = ''
+              function()
+                local recording = vim.fn.reg_recording() ~= ""
+                if not recording then
+                  return ""
+                end
+                return "󰑊 @" .. vim.fn.reg_recording()
+              end,
+              color = {fg = "#fe640b"}
+            '';
+          }
         ];
         lualine_x = [
           {
             __unkeyed-1 = "filetype";
-            icon_only = true;
             separator = "";
             padding = {
               left = 1;
@@ -69,8 +80,8 @@
               end,
 
               cond = function()
-              local ok, clients = pcall(vim.lsp.get_clients, { name = "copilot", bufnr = 0 })
-              return ok and #clients > 0
+                local ok, clients = pcall(vim.lsp.get_clients, { name = "copilot", bufnr = 0 })
+                return ok and #clients > 0
               end,
             '';
           }

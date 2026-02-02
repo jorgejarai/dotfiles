@@ -1,6 +1,15 @@
-{pkgs, ...}: {
+{
   plugins = {
-    lspkind.enable = true;
+    lspkind = {
+      enable = true;
+      settings = {
+        symbol_map = {
+          Copilot = " ";
+        };
+        maxwidth = 50;
+        ellipsis_char = "...";
+      };
+    };
     lspsaga = {
       enable = true;
       settings = {
@@ -24,6 +33,7 @@
         dockerls.enable = true;
         eslint.enable = true;
         html.enable = true;
+        jdtls.enable = true;
         jsonls.enable = true;
         lua_ls.enable = true;
         nil_ls.enable = true;
@@ -100,41 +110,21 @@
         };
       };
     };
-  };
 
-  keymaps = [
-    {
-      mode = "n";
-      key = "<leader>ca";
-      action = ":Lspsaga code_action<CR>";
-      options = {
-        desc = "Code Action";
-        silent = true;
+    mini-ai = {
+      enable = true;
+      settings = {
+        custom_textobjects = {
+          f = {
+            __raw = "require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' })";
+          };
+          c = {
+            __raw = "require('mini.ai').gen_spec.treesitter({ a = '@class.outer', i = '@class.inner' })";
+          };
+        };
       };
-    }
-    {
-      mode = "n";
-      key = "K";
-      action = ":Lspsaga hover_doc<CR>";
-      options = {
-        desc = "Hover Documentation";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>l";
-      action = {
-        __raw = ''
-          require("lsp_lines").toggle
-        '';
-      };
-      options = {
-        desc = "Toggle lsp_lines";
-        silent = true;
-      };
-    }
-  ];
+    };
+  };
 
   extraConfigLua = ''
     local _border = "rounded"
