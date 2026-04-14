@@ -10,8 +10,8 @@
     flrig
     inkscape
     iw
-    jpilot
     kdePackages.kate
+    kdePackages.kdialog
     libreoffice
     lm_sensors
     lshw

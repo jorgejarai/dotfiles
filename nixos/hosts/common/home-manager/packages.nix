@@ -19,6 +19,7 @@
     nmap
     openssl
     pass
+    python3
     ripgrep
     screen
     sops
