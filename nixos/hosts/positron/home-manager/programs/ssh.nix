@@ -20,7 +20,6 @@
         user = "git";
         hostname = "ssh.github.com";
         port = 443;
-        identityFile = "~/.ssh/github";
       };
       concordia = {
         hostname = "192.168.194.110";
