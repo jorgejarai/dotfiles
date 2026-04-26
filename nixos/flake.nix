@@ -23,6 +23,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    minegrub-theme.url = "github:Lxtharia/minegrub-theme";
   };
 
   outputs = {
@@ -32,32 +33,10 @@
     plasma-manager,
     nixvim,
     sops-nix,
+    minegrub-theme,
     ...
   } @ inputs: let
-    overlays = [
-      (final: prev: {
-        fprintd = final.callPackage ./packages/fprintd-1.94.4 {};
-      })
-      (final: prev: {
-        libfprint = prev.libfprint.overrideAttrs (oldAttrs: {
-          version = "git";
-          src = final.fetchFromGitHub {
-            owner = "ericlinagora";
-            repo = "libfprint-CS9711";
-            rev = "c242a40fcc51aec5b57d877bdf3edfe8cb4883fd";
-            sha256 = "sha256-WFq8sNitwhOOS3eO8V35EMs+FA73pbILRP0JoW/UR80=";
-          };
-          nativeBuildInputs =
-            oldAttrs.nativeBuildInputs
-            ++ [
-              final.opencv
-              final.cmake
-              final.doctest
-              final.nss
-            ];
-        });
-      })
-    ];
+    overlays = [];
     baseHomeManagerConfig = {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
@@ -93,6 +72,7 @@
       ];
       positron = mkSystem [
         ./hosts/positron/configuration.nix
+        minegrub-theme.nixosModules.default
         {
           home-manager.sharedModules =
             commonHomeManagerModules

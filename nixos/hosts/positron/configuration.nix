@@ -12,9 +12,13 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader = {
-    systemd-boot = {
+    grub = {
       enable = true;
-      configurationLimit = 5;
+      device = "nodev";
+      efiSupport = true;
+      useOSProber = true;
+      configurationLimit = 3;
+      minegrub-theme.enable = true;
     };
     efi.canTouchEfiVariables = true;
   };
@@ -83,9 +87,6 @@
       PermitRootLogin = "no";
     };
   };
-
-  services.pcscd.enable = true;
-  services.fprintd.enable = true;
 
   environment.systemPackages = with pkgs; [
     gparted
