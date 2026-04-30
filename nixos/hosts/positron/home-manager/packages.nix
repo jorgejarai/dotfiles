@@ -4,7 +4,7 @@
     # apptainer
     arduino-ide
     audacity
-    ccid
+    calibre
     discord
     fldigi
     flrig
