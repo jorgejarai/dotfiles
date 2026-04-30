@@ -2,28 +2,14 @@
   imports = [
     ../common/configuration.nix
 
+    ./boot.nix
     ./filesystem.nix
     ./hardware-configuration.nix
     ./networking.nix
+    ./nvidia.nix
     ./programs.nix
     ./windowing.nix
-    ./nvidia.nix
   ];
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.loader = {
-    grub = {
-      enable = true;
-      device = "nodev";
-      efiSupport = true;
-      useOSProber = true;
-      configurationLimit = 3;
-      minegrub-theme.enable = true;
-    };
-    efi.canTouchEfiVariables = true;
-  };
-
-  boot.resumeDevice = "/dev/disk/by-uuid/eaa46864-ab43-4e07-8576-842ba4dd9ab7";
 
   powerManagement.enable = true;
   powerManagement.powertop.enable = true;
