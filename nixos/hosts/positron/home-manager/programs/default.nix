@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./emacs.nix
     ./plasma.nix
     ./ssh.nix
   ];

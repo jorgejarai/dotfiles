@@ -5,6 +5,7 @@
     arduino-ide
     audacity
     calibre
+    deno
     discord
     fldigi
     flrig
@@ -31,6 +32,9 @@
     obsidian
     openscad
     pcsc-tools
+    rlwrap
+    roswell
+    sbcl
     remmina
     solaar
     usbutils
