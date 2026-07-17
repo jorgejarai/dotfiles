@@ -37,9 +37,11 @@
     sbcl
     remmina
     solaar
+    thonny
     usbutils
     vscode-fhs
     wavemon
+    winboat
     wsjtx
   ];
 

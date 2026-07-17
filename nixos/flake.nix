@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-26.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +29,7 @@
 
   outputs = {
     nixpkgs,
+    nixpkgs-stable,
     nixos-wsl,
     home-manager,
     plasma-manager,
@@ -54,6 +56,12 @@
       import nixpkgs {
         inherit system overlays;
         config.allowUnfree = true;
+        config.permittedInsecurePackages = ["electron-40.10.5"]; # FIXME
+      };
+    mkPkgsStable = system:
+      import nixpkgs-stable {
+        inherit system;
+        config.allowUnfree = true;
       };
     mkSystem = extraModules:
       nixpkgs.lib.nixosSystem rec {
@@ -74,6 +82,7 @@
         ./hosts/positron/configuration.nix
         minegrub-theme.nixosModules.default
         {
+          home-manager.extraSpecialArgs = {pkgs-stable = mkPkgsStable "x86_64-linux";};
           home-manager.sharedModules =
             commonHomeManagerModules
             ++ [
