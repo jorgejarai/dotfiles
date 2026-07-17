@@ -1,3 +1,4 @@
+OPTIONS=windowtype:curses,!tutorial
 OPTIONS=DECgraphics,suppress_alert:3.3.1
 OPTIONS=showexp,showscore,time,color,hilite_pile
 OPTIONS=autodig,fruit:guava,boulder:0,!cmdassist
