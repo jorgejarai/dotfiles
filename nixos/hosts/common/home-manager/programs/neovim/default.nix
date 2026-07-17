@@ -63,6 +63,7 @@
       smear-cursor.enable = true;
       undotree.enable = true;
       which-key.enable = true;
+      wilder.enable = true;
     };
 
     userCommands = {
