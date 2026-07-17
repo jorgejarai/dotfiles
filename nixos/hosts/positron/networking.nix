@@ -10,13 +10,15 @@
   networking = {
     hostName = "positron";
     networkmanager.enable = true;
+    nftables.enable = true;
 
     firewall = {
+      trustedInterfaces = [config.services.tailscale.interfaceName];
+
       allowedTCPPorts = [
         22
       ];
-      allowedUDPPorts = [
-      ];
+      allowedUDPPorts = [config.services.tailscale.port];
 
       allowedTCPPortRanges = [
         {
@@ -57,6 +59,12 @@
       };
     };
   };
+
+  services.tailscale.enable = true;
+
+  systemd.services.tailscaled.serviceConfig.Environment = [
+    "TS_DEBUG_FIREWALL_MODE=nftables"
+  ];
 
   systemd.services.zerotierone.postStart = lib.mkAfter ''
     network_id=$(cat ${config.sops.templates."zerotier-network".path})
