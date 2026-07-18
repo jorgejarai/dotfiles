@@ -86,9 +86,9 @@
 
   home-manager.users.jorge = import ./home-manager;
 
-  sops.defaultSopsFile = ../../secrets/positron.yaml;
-  sops.defaultSopsFormat = "yaml";
-  sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+  # sops.defaultSopsFile = ../../secrets/positron.yaml;
+  # sops.defaultSopsFormat = "yaml";
+  # sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
 
   # Workaround for ~/.ssh/config having owner nobody:nogroup in FHS programs
   # (cf. https://github.com/nix-community/home-manager/issues/322#issuecomment-3662161429)

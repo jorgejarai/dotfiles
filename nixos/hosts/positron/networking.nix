@@ -45,30 +45,9 @@
     openFirewall = true;
   };
 
-  sops.secrets."zerotier/primary_id" = {};
-  sops.templates."zerotier-network".content = ''
-    ${config.sops.placeholder."zerotier/primary_id"}
-  '';
-
-  services.zerotierone = {
-    enable = true;
-
-    localConf = {
-      physical = {
-        "10.0.0.0/24".blacklist = true;
-      };
-    };
-  };
-
   services.tailscale.enable = true;
 
   systemd.services.tailscaled.serviceConfig.Environment = [
     "TS_DEBUG_FIREWALL_MODE=nftables"
   ];
-
-  systemd.services.zerotierone.postStart = lib.mkAfter ''
-    network_id=$(cat ${config.sops.templates."zerotier-network".path})
-    sleep 3
-    ${config.services.zerotierone.package}/bin/zerotier-cli join "$network_id" || true
-  '';
 }
