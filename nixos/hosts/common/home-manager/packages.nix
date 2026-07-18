@@ -17,6 +17,7 @@
     lynx
     mermaid-cli
     nmap
+    opencode
     openssl
     pass
     python3
@@ -25,6 +26,7 @@
     sops
     tectonic
     timg
+    tio
     traceroute
     unzip
     wl-clipboard
