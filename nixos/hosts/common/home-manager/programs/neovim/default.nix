@@ -6,7 +6,7 @@
 
       ./blink.nix
       ./conform.nix
-      ./copilot.nix
+      # ./copilot.nix
       ./flash.nix
       ./grug-far.nix
       ./hardtime.nix

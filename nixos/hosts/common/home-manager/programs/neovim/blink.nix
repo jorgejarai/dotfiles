@@ -30,12 +30,12 @@
           ];
 
           providers = {
-            copilot = {
-              async = true;
-              module = "blink-cmp-copilot";
-              name = "copilot";
-              score_offset = 100;
-            };
+            # copilot = {
+            #   async = true;
+            #   module = "blink-cmp-copilot";
+            #   name = "copilot";
+            #   score_offset = 100;
+            # };
 
             git = {
               module = "blink-cmp-git";
@@ -53,7 +53,7 @@
       };
     };
 
-    blink-cmp-copilot.enable = true;
+    # blink-cmp-copilot.enable = true;
     blink-cmp-git.enable = true;
   };
 }
