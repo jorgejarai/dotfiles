@@ -25,7 +25,10 @@
   services.udev.packages = [pkgs.sane-airscan];
   services.ipp-usb.enable = true;
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings.features.cdi = true;
+  };
 
   services.printing = {
     enable = true;
