@@ -18,7 +18,6 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
