@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./emacs.nix
     ./plasma.nix
@@ -11,6 +15,7 @@
       nativeMessagingHosts = [
         pkgs.passff-host
       ];
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
     };
     wezterm = {
       enable = true;
