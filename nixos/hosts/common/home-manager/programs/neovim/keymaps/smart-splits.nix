@@ -4,97 +4,145 @@
       mode = "n";
       key = "<C-h>";
       action = ":lua require('smart-splits').move_cursor_left()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Move cursor to left split";
+      };
     }
     {
       mode = "n";
       key = "<C-j>";
       action = ":lua require('smart-splits').move_cursor_down()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Move cursor to split below";
+      };
     }
     {
       mode = "n";
       key = "<C-k>";
       action = ":lua require('smart-splits').move_cursor_up()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Move cursor to split above";
+      };
     }
     {
       mode = "n";
       key = "<C-l>";
       action = ":lua require('smart-splits').move_cursor_right()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Move cursor to right split";
+      };
     }
     {
       mode = "n";
       key = "<C-Left>";
       action = ":lua require('smart-splits').move_cursor_left()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Move cursor to left split";
+      };
     }
     {
       mode = "n";
       key = "<C-Down>";
       action = ":lua require('smart-splits').move_cursor_down()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Move cursor to split below";
+      };
     }
     {
       mode = "n";
       key = "<C-Up>";
       action = ":lua require('smart-splits').move_cursor_up()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Move cursor to split above";
+      };
     }
     {
       mode = "n";
       key = "<C-Right>";
       action = ":lua require('smart-splits').move_cursor_right()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Move cursor to right split";
+      };
     }
     {
       mode = "n";
       key = "<A-h>";
       action = ":lua require('smart-splits').resize_left()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Resize split left";
+      };
     }
     {
       mode = "n";
       key = "<A-j>";
       action = ":lua require('smart-splits').resize_down()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Resize split down";
+      };
     }
     {
       mode = "n";
       key = "<A-k>";
       action = ":lua require('smart-splits').resize_up()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Resize split up";
+      };
     }
     {
       mode = "n";
       key = "<A-l>";
       action = ":lua require('smart-splits').resize_right()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Resize split right";
+      };
     }
     {
       mode = "n";
       key = "<A-Left>";
       action = ":lua require('smart-splits').resize_left()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Resize split left";
+      };
     }
     {
       mode = "n";
       key = "<A-Down>";
       action = ":lua require('smart-splits').resize_down()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Resize split down";
+      };
     }
     {
       mode = "n";
       key = "<A-Up>";
       action = ":lua require('smart-splits').resize_up()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Resize split up";
+      };
     }
     {
       mode = "n";
       key = "<A-Right>";
       action = ":lua require('smart-splits').resize_right()<CR>";
-      options.silent = true;
+      options = {
+        silent = true;
+        desc = "Resize split right";
+      };
     }
   ];
 }
