@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   extraPackages = with pkgs; [
     alejandra
     asmfmt
@@ -74,10 +70,7 @@
           __unkeyed-2 = "prettier";
           stop_after_first = true;
         };
-        yaml = [
-          "yamllint"
-          "yamlfmt"
-        ];
+        yaml = ["yamlfmt"];
         bash = ["shellcheck" "shellharden" "shfmt"];
         sh = ["shellcheck" "shellharden" "shfmt"];
         "_" = [
@@ -85,15 +78,6 @@
           "trim_whitespace"
           "trim_newlines"
         ];
-      };
-
-      formatters = {
-        squeeze_blanks = {
-          command = lib.getExe' pkgs.coreutils "cat";
-        };
-        yamllint = {
-          command = lib.getExe pkgs.yamllint;
-        };
       };
     };
 
