@@ -10,6 +10,7 @@
       ./flash.nix
       ./grug-far.nix
       ./hardtime.nix
+      ./harpoon.nix
       ./lsp.nix
       ./snacks.nix
       ./spider.nix
