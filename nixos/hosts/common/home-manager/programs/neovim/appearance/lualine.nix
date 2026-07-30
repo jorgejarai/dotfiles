@@ -1,4 +1,9 @@
 {
+  plugins.navic = {
+    enable = true;
+    settings.auto_attach = true;
+  };
+
   plugins.lualine = {
     enable = true;
 
@@ -42,7 +47,17 @@
             };
           }
           {
-            __unkeyed-1 = "navic";
+            __unkeyed-1.__raw = ''
+              function()
+                return require("nvim-navic").get_location()
+              end
+            '';
+            cond.__raw = ''
+              function()
+                local ok, navic = pcall(require, "nvim-navic")
+                return ok and navic.is_available()
+              end
+            '';
           }
           {
             __unkeyed-1.__raw = ''
