@@ -70,16 +70,16 @@
     userCommands = {
       "W".command = "w";
       "Q" = {
-        command = "q";
+        command = "q<bang>";
         bang = true;
       };
       "Wq" = {
-        command = "wq";
+        command = "wq<bang>";
         bang = true;
       };
       "Wa".command = "wa";
       "Qa" = {
-        command = "qa";
+        command = "qa<bang>";
         bang = true;
       };
     };

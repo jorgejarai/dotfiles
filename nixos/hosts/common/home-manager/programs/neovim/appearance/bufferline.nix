@@ -50,10 +50,5 @@
       action = "BufferLineCycleNext";
       options.desc = "Go to next buffer";
     }
-    {
-      key = "<leader>bd";
-      action = "BufferLinePickClose";
-      options.desc = "Delete buffer";
-    }
   ];
 }
