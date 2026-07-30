@@ -25,7 +25,7 @@
             "path"
             "snippets"
             "buffer"
-            "copilot"
+            # "copilot"
             "git"
           ];
 
