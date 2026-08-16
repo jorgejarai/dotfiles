@@ -22,6 +22,8 @@
         bindkey  "$terminfo[kdch1]"   delete-char
         bindkey  "$terminfo[kLFT5]"   backward-word
         bindkey  "$terminfo[kRIT5]"   forward-word
+
+        zstyle ':completion:*' matcher-list ''' 'm:{a-z}={A-Z}'
       '';
       zshConfigLateInit = lib.mkOrder 1500 ''
         autoload -U url-quote-magic
