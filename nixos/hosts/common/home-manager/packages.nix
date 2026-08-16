@@ -3,6 +3,7 @@
     age
     bat
     chafa
+    claude-code
     devenv
     difftastic
     dig
