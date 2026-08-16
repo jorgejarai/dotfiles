@@ -30,6 +30,7 @@
     tio
     traceroute
     unzip
+    wakeonlan
     wl-clipboard
     yt-dlp
   ];
