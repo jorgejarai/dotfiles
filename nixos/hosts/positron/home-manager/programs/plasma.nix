@@ -4,6 +4,10 @@
     shortcuts = {
       "services/org.kde.konsole.desktop"."_launch" = [];
       "services/org.wezfurlong.wezterm.desktop"."_launch" = "Ctrl+Alt+T";
+      kwin."Window Maximize" = "Meta+Up";
+      kwin."Window Minimize" = "Meta+Down";
+      kwin."Window Quick Tile Top" = [];
+      kwin."Window Quick Tile Bottom" = [];
     };
     overrideConfig = true;
     kscreenlocker = {
