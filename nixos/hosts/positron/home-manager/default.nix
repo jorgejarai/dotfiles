@@ -4,6 +4,7 @@
 
     ./programs
 
+    ./xdg.nix
     ./packages.nix
     ./rcfiles.nix
   ];
