@@ -41,6 +41,7 @@
     baseHomeManagerConfig = {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
+      home-manager.backupFileExtension = "hm-bak";
     };
     commonHomeManagerModules = [
       nixvim.homeModules.nixvim
