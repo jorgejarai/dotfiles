@@ -12,6 +12,15 @@
   programs = {
     firefox = {
       enable = true;
+      package = pkgs.firefox.override {
+        extraPrefsFiles = [
+          (pkgs.writeText "good-girl.cfg" (builtins.readFile ../../dotfiles/firefox/good-girl.cfg))
+        ];
+        # Required: good-girl.cfg uses privileged Services.obs/Services.prefs APIs.
+        extraAutoConfig = ''
+          pref("general.config.sandbox_enabled", false);
+        '';
+      };
       nativeMessagingHosts = [
         pkgs.passff-host
       ];
