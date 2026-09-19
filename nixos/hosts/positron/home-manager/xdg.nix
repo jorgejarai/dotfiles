@@ -6,7 +6,7 @@
   xdg.desktopEntries = {
     nethack = {
       name = "NetHack (alt.org)";
-      exec = "${pkgs.wezterm}/bin/wezterm --config initial_cols=130 --config initial_rows=40 ssh nethack@alt.org";
+      exec = "${pkgs.wezterm}/bin/wezterm --config initial_cols=130 --config initial_rows=40 -e ssh nethack@alt.org";
       icon = "nethack";
       terminal = false;
       type = "Application";
