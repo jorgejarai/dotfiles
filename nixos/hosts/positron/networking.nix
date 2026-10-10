@@ -2,15 +2,46 @@
   config,
   lib,
   ...
-}: {
+}: let
+  wifiNetworks = ["home"];
+in {
   imports = [
     ../common/networking.nix
   ];
 
+  sops.secrets."network-manager-wifi-env" = {};
+
   networking = {
     hostName = "positron";
-    networkmanager.enable = true;
     nftables.enable = true;
+
+    networkmanager = {
+      enable = true;
+      ensureProfiles = {
+        environmentFiles = [config.sops.secrets."network-manager-wifi-env".path];
+        profiles = lib.listToAttrs (map (name: {
+            inherit name;
+            value = {
+              connection = {
+                id = name;
+                type = "wifi";
+              };
+              wifi = {
+                mode = "infrastructure";
+                ssid = "$WIFI_SSID_${lib.toUpper name}";
+              };
+              wifi-security = {
+                auth-alg = "open";
+                key-mgmt = "wpa-psk";
+                psk = "$WIFI_PSK_${lib.toUpper name}";
+              };
+              ipv4.method = "auto";
+              ipv6.method = "auto";
+            };
+          })
+          wifiNetworks);
+      };
+    };
 
     firewall = {
       trustedInterfaces = [config.services.tailscale.interfaceName];
