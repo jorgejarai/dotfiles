@@ -31,7 +31,7 @@
       enableZshIntegration = true;
       extraConfig = ''
         return {
-          color_scheme = 'Gruvbox dark, soft (base16)',
+          color_scheme = 'Catppuccin Macchiato',
           font = wezterm.font_with_fallback({
             "BlexMono Nerd Font",
           }),
